@@ -1,6 +1,6 @@
 var request = require("request");
 // set parameters
-const txHash = "0x6a502fab01e83e41b1f0dba0448800ccee7e8a379823b938ecf6e12e5491a110";
+const txHash = "0x450a8e0db4966a9b05bcbba038a4b1d74c30b0b178ff76f325dc7da9c56f305a";
 // set url
 const url = "https://api.deversifi.com/v1/pub/transaction/" + txHash;
 // execute request and print result
