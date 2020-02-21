@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background: #212433;
+  color: #C8C9DA;
+  font-family: 'Lato', sans-serif;
+}
+
+div.code-toolbar > .toolbar {
+  display: none;
+};

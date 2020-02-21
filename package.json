@@ -1,0 +1,31 @@
+{
+  "name": "swagger-playground",
+  "private": true,
+  "scripts": {
+    "start": "parcel src/index.html",
+    "prebuild": "rm -rf dist",
+    "build": "parcel build src/index.html",
+    "postbuild": "cp src/_redirects dist/_redirects",
+    "lint": "eslint 'src/**/*.{js,jsx}'"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.8.3",
+    "highlight-words-core": "^1.2.2",
+    "prismjs": "^1.19.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "styled-components": "^5.0.1",
+    "swagger-ui": "^3.25.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-prismjs": "^2.0.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "parcel-bundler": "^1.12.4"
+  }
+}
