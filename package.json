@@ -1,5 +1,6 @@
 {
-  "name": "swagger-playground",
+  "name": "deversifi-api-docs",
+  "version": "0.0.9",
   "private": true,
   "scripts": {
     "start": "parcel src/index.html",
