@@ -41,14 +41,12 @@ export const Intro = (props) => (
         <Text>
           The DeversiFi API allows trading of cryptocurrency tokens from any Ethereum wallet or smart-contract.
         </Text>
-        <Note>
-          Note: DeversiFi currently uses version 2.1 of the 0x protocol for settlement on the Ethereum blockchain.
-        </Note>
+     
         <Text>
           The available endpoints allow access to submit, cancel and query placed orders onto the DeversiFi order book, whilst keeping full custody of funds and authenticating only using an Ethereum account. By using this API anyone is able to create and integrate their own interfaces, or run trading algorithms whilst keeping secure control of their funds in a personal Ethereum wallet.
         </Text>
         <Text>
-          If you are new to interacting with the Ethereum blockchain and DeversiFi API usage, be sure to go through the <GreenLink href="#"> Beginner API DeversiFi guide</GreenLink>.
+          The DeversiFi APIs can be interacted with directly as described by the endpoint documentation below or via a client library. The dvf-client-js library simplifies the interaction with the exchange and helps you get started quicker. The library itself and tutorial on how to use it can be found on the DeversiFi Github:  <CodeInText>https://github.com/DeversiFi</CodeInText>
         </Text>
         <Text>
           This documentation set is actively maintained and updated. If you would like to suggest any changes or find there is something missing, please reach out to us via email - <GreenLink href="#">feedback@deversifi.com</GreenLink> - or leave a suggestion as a comment.
@@ -57,8 +55,8 @@ export const Intro = (props) => (
         <List>
           <ListItem>Trading base url: <CodeInText>https://api.deversifi.com/v1/trading/</CodeInText></ListItem>
           <ListItem>Public volume data base url: <CodeInText>https://api.deversifi.com/v1/pub/</CodeInText></ListItem>
-          <ListItem>Price data base url (bitfinex proxy): <CodeInText>https://api.deversifi.com/bfx/v2/</CodeInText></ListItem>
-          <ListItem>Price data websocket proxy base url (bitfinex proxy): <CodeInText>https://api.deversifi.com/bfx/ws/2/</CodeInText></ListItem>
+          <ListItem>Price data base url: <CodeInText>https://api.deversifi.com/bfx/v2/</CodeInText></ListItem>
+          <ListItem>Price data websocket proxy base url: <CodeInText>https://api.deversifi.com/bfx/ws/2/</CodeInText></ListItem>
         </List>
       </Context>
     </Main>
