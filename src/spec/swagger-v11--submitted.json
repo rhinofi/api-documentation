@@ -13,7 +13,7 @@
     "/v1/pub/last24HoursVolume" : {
       "get" : {
         "title": "24hr Trading Volume",
-        "summary" : "Request information regarding the trading volume of the last 24 hours. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per trading pair.",
+        "summary" : "Request information regarding the trading volume for the last 24 hours. The request returns the overall trading volume details in USD as well as the trading volume per token in USD and the native token.",
         "operationId" : "getV1PubLast24HoursVolume",
         "tags" : [ "Market" ],
         "responses" : {
@@ -79,7 +79,7 @@
     "/v1/pub/24HoursVolume/{Year}/{Month}/{Day}" : {
       "get" : {
         "title": "Historic Trading Volume",
-        "summary" : "Request information regarding the trading volume of a specific date. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per trading pair.",
+        "summary" : "Request information regarding the trading volume for a specific date. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token.",
         "operationId" : "getV1Pub24HoursVolume",
         "parameters" : [ {
           "in" : "path",
@@ -160,7 +160,7 @@
     "/v1/pub/tokenRanking/{currency}" : {
       "get" : {
         "title": "Volume ranking by token",
-        "summary" : "This method provides a ranked output of all the trading volumes for a given crypto currency. If the parameters startDate and endDate are provided, a ranked output of all trading volumes within the specified time period for a given cryptocurrency is returned. All volumes are quoted in ETH.",
+        "summary" : "This returns a user ranking by trading volume for a chosen token. If the parameters startDate and endDate are provided, the ranking includes only trading volume within that window of time. All volumes are quoted in ETH.",
         "operationId" : "getV1PubAllTimeVolumeTokenRanking",
         "parameters" : [ {
           "in" : "path",
@@ -223,7 +223,7 @@
     "/v1/pub/USDRanking" : {
       "get" : {
         "title": "User ranking by volume",
-        "summary" : "This method provides a ranked output of all the trading volumes for all the tokens. If the parameters startDate and endDate are provided, a ranked output of all the trading volumes within the specified time period for all available tokens is returned. The volumes are quoted in USD.",
+        "summary" : "This returns a user ranking by overall trading volume quoted in USD. If the parameters startDate and endDate are provided, the ranking includes only trading volume within that window of time.",
         "operationId" : "getV1PubAllTokensVolumeUSDRanking",
         "parameters" : [ {
           "in" : "query",
@@ -276,7 +276,7 @@
     "/v1/pub/30DaysVolume/{Address}" : {
       "get" : {
         "title": "User 30-day volume",
-        "summary" : "Request information regarding the trading volume of the last 30 days for a specific address. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per trading pair. Results are cached for 60 minutes.",
+        "summary" : "Request information regarding the trading volume of a specific address for the last 30 days. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token. Results are cached for 60 minutes.",
         "operationId" : "getV1Pub30DaysVolumeSpecificAddress",
         "parameters" : [ {
           "in" : "path",
@@ -1021,7 +1021,7 @@
     "/v1/trading/w/submitOrder" : {
       "post" : {
         "title": "Submit Order",
-        "summary" : "This authenticated endpoint is used to place an order on the DeversiFi exchange.",
+        "summary" : "This authenticated endpoint is used to submit an order.",
         "operationId" : "postV1TradingWSubmitorder",
         "parameters" : [ {
           "in" : "body",
@@ -1181,7 +1181,7 @@
     "/v1/trading/w/cancelOrder" : {
       "post" : {
         "title": "Cancel Order",
-        "summary" : "This is used by an authenticated endpoint to cancel a specific order.",
+        "summary" : "This endpoint allows to cancel a specific order.",
         "operationId" : "postV1TradingWCancelorder",
         "parameters" : [ {
           "in" : "body",
@@ -1413,7 +1413,7 @@
     "/v1/trading/r/getOrder" : {
       "post" : {
         "title": "Order",
-        "summary" : "This is endpoint is used to retrieve a specific order using an order ID.",
+        "summary" : "This is endpoint is used to retrieve the details for a specific order using the order ID.",
         "operationId" : "postV1TradingRGetorder",
         "parameters" : [ {
           "in" : "body",
@@ -1526,7 +1526,7 @@
     "/v1/trading/r/openOrders" : {
       "post" : {
         "title": "All Orders",
-        "summary" : "This authenticated endpoint provided access to all open orders.",
+        "summary" : "This endpoints allows to retrieve details on all open orders.",
         "operationId" : "postV1TradingROpenorders",
         "parameters" : [ {
           "in" : "body",
@@ -1639,7 +1639,7 @@
     "/v1/trading/r/orderHistory" : {
       "post" : {
         "title": "Order History",
-        "summary" : "This method is used to retrieve a list of all a user's past orders. This includes executed trades, as well as expired and cancelled orders.",
+        "summary" : "This method is used to retrieve a list of all past orders for a user. This includes executed trades, as well as expired and cancelled orders.",
         "operationId" : "postV1TradingROrderhistory",
         "parameters" : [ {
           "in" : "body",
@@ -2032,7 +2032,7 @@
     "/v1/trading/r/getWithdrawals" : {
       "post" : {
         "title": "Historic Withdrawals",
-        "summary" : "This endpoint is used to retrieve all the withdrawals. If a token is specified, withdrawals pertaining to only that particular token are provided.",
+        "summary" : "This endpoint is used to retrieve all past withdrawals. If a token is specified, withdrawals pertaining to only that particular token are provided.",
         "operationId" : "postV1TradingRGetwithdrawals",
         "parameters" : [ {
           "in" : "body",
@@ -2103,7 +2103,7 @@
     "/bfx/v2/book/{Symbol}/{Precision}" : {
       "get" : {
         "title": "Orderbook",
-        "summary" : "This is used by an authenticated endpoint to retrieve a specific order and allows you to keep track of the state of Deversifi order books on a price aggregated basis with customizable precision. Raw books can be retrieved by using precision R0.",
+        "summary" : "This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision. Raw books can be retrieved by using precision R0.",
         "operationId" : "getBfxV2Book",
         "parameters" : [ {
           "in" : "path",

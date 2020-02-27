@@ -5,11 +5,11 @@ import {List, ListItem} from '../../common/List';
 
 export const HowItWorksSection = () => (
   <TutorialSection title="How DeversiFi Works">
-    <Text>DeversiFi is a high speed non-custodial trading platform that allows users to trade various digital asset pairs. DeversiFi is an orderbook exchange:</Text>
+    <Text>DeversiFi is a high speed non-custodial trading platform that allows users to trade various digital asset pairs. </Text>
     <List>
-      <ListItem>Buyer and sellers place their trades on the orderbook (i.e. sell 2ETH at 250USDt per ETH)</ListItem>
-      <ListItem>When 2 opposing orders match - a trade is executed.</ListItem>
-      <ListItem>All funds that have been used to place orders on DeversiFi are locked in a smart contract, which guarantees execution. So all orders on the DeversiFi orderbook are available to take if matched. This means that a user can be certain that their order will be executed at the indicated price.</ListItem>
+      <ListItem>Non-custodial: All assets deposited to DeversiFi are locked within one of the exchange wrapper contracts or the StarkEx contract itself (for more information about the StarkEx contract see the StarkWare Settlement Layer section). Once funds are locked, only trades, withdrawals and deposits a user signs with their private key can be executed. </ListItem>
+      <ListItem>Exchange: DeversiFi is an orderbook exchange - all orders placed by users are available on the exchange order books. This allows for transparent price discovery and market depth. To provide its users with deep liquidity DeversiFi is connected to liquidity providers. </ListItem>
+      <ListItem>Highj-speed: Since all funds are locked within one of the exchange’s smart contract trades can be matched instantly and settled on-chain later as there is a 100% guarantee that each user's funds are present. This allows DeversiFi to match orders placed by users instantly and balances are immediately available to trade again (for more information about settlement see the StarkWare Settlement Layer section).</ListItem>
     </List>
   </TutorialSection>
 );
