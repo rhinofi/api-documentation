@@ -12,7 +12,7 @@ export const SmartContractsSection = () => (
     <SubTitle>Mainnet Contracts</SubTitle>
     
     <Text>
-    Up to date information on the exchange contracts can be obtained via the Get Config endpoint: <CodeInText>https://api.deversifi.dev/v1/trading/r/getConf</CodeInText>
+    Up to date information on the exchange contracts can be obtained via the GetConfig endpoint.
     </Text>
     
     <Text>
