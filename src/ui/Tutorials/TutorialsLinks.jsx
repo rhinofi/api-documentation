@@ -90,7 +90,7 @@ export const TutorialsLinks = () => {
       <TutorialsLink
         currentSection={currentSection}
         setCurrentSection={setCurrentSection}
-        text="USDTetherMarkets"
+        text="USD Tether Markets"
       />
     </ul>
   );

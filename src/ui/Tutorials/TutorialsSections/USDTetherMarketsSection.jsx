@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import {Code} from '../../common/Code';
 
 export const USDTetherMarketsSection = () => (
-  <TutorialSection title="USDTetherMarkets">
+  <TutorialSection title="USD Tether Markets">
     <Text>To provide traders with the best liquidity possible the XXX/USDT markets on DeversiFi build on the liquidity of XXX/USD markets from liquidity providers. However since there is often not a direct 1:1 rate between USD and USDT, a shift must be applied to the order books to reflect that.The configuration for DeversiFi returns a settleSpread parameter:</Text>
     <CodeWrapper>
       <PrismCode
