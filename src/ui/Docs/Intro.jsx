@@ -37,20 +37,28 @@ export const Intro = (props) => (
         </a>
       </Buttons>
       <Context>
-        <Title>Introduction - DeversiFi</Title>
+        <Title>Introduction to DeversiFi</Title>
         <Text>
-          The DeversiFi API allows trading of cryptocurrency tokens from any Ethereum wallet or smart-contract.
+          The DeversiFi API allows automated high-speed trading of cryptocurrencies and tokens, including Ethereum and Bitcoin, using funds held in a secure personal wallet or smart-contract.
         </Text>
-     
+
         <Text>
-          The available endpoints allow access to submit, cancel and query placed orders onto the DeversiFi order book, whilst keeping full custody of funds and authenticating only using an Ethereum account. By using this API anyone is able to create and integrate their own interfaces, or run trading algorithms whilst keeping secure control of their funds in a personal Ethereum wallet.
+          The endpoints which have been made available allow access to submit, cancel and query placed orders onto the DeversiFi order book, whilst maintaining full control and custody of funds and authenticating only using cryptographic signatures in place of API keys. Using this API you will be able to:
+          <List>
+            <ListItem>Create and integrate trading into your own application</ListItem>
+            <ListItem>Design and run advanced trading algorithms</ListItem>
+            <ListItem>Monitor price data and DeversiFi trading volumes</ListItem>
+            <ListItem>Take advantage of DeFi arbitrage opportunties whilst keeping secure control of your funds in a personal Ethereum wallet.</ListItem>
+          </List>
         </Text>
         <Text>
-          The DeversiFi APIs can be interacted with directly as described by the endpoint documentation below or via a client library. The dvf-client-js library simplifies the interaction with the exchange and helps you get started quicker. The library itself and tutorial on how to use it can be found on the DeversiFi Github:  <CodeInText>https://github.com/DeversiFi</CodeInText>
+          The DeversiFi APIs can be interacted with directly as described by the endpoint documentation below or making use of our open-source client libraries. The <CodeInText>dvf-client-js</CodeInText> (Node.js) library simplifies the interaction with the exchange and helps you get started faster. The library itself and tutorial on how to use it can be found on the <GreenLink href="https://github.com/DeversiFi/dvf-client-js">DeversiFi Github</GreenLink>
         </Text>
         <Text>
-          This documentation set is actively maintained and updated. If you would like to suggest any changes or find there is something missing, please reach out to us via email - <GreenLink href="#">feedback@deversifi.com</GreenLink> - or leave a suggestion as a comment.
+          This documentation set is actively maintained and updated. If you would like to suggest any changes or find there is something missing, please <GreenLink href="https://github.com/deversifi/api-documentation/issues">create an issue on Github</GreenLink>.
         </Text>
+        <br/><br/>
+        <Title>URLs</Title>
         <Text>The base URL for requests is <CodeInText>https://api.deversifi.com</CodeInText></Text>
         <List>
           <ListItem>Trading base url: <CodeInText>https://api.deversifi.com/v1/trading/</CodeInText></ListItem>
