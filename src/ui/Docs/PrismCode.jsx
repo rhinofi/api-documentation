@@ -14,7 +14,7 @@ export function PrismCode({code, plugins, language, isHidden}) {
   return (
     <Pre isHidden={isHidden} className={!plugins ? '' : plugins.join(' ')}>
       <Code ref={ref} className={`language-${language}`}>
-        {code.trim()}
+        {code ? code.trim() : ''}
       </Code>
     </Pre>
   );
