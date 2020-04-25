@@ -1309,9 +1309,72 @@
         }
       }
     },
+    "/v1/trading/r/getVaultId" : {
+      "post" : {
+        "title": "Get New Vault Id",
+        "summary" : "An authenticated endpoint used to retrieve a vaultId for given token.",
+        "operationId" : "postV1TradingRGetvaultid",
+        "parameters" : [
+          {
+            "in" : "query",
+            "name" : "body",
+            "type": "object"
+          }
+        ],
+        "tags" : [ "Trading" ],
+        "responses" : {
+          "default" : {
+            "schema" : { "type" : "string" },
+            "description" : "Successful"
+          }
+        }
+      }
+    },
+    "/v1/pub/feeRate" : {
+      "get" : {
+        "title": "Get User Fee Rate",
+        "summary" : "Return current fee rate for a given address",
+        "operationId" : "getV1TradingRFeerate",
+        "parameters" : [
+          {
+            "type" : "number",
+            "name" : "nonce",
+            "in" : "query",
+            "required" : true
+          },
+          {
+            "type" : "string",
+            "name" : "signature",
+            "in" : "query",
+            "required" : true
+          }
+        ],
+        "tags" : [ "Trading" ],
+        "responses" : {
+          "default" : {
+            "schema" : { "type" : "string" },
+            "description" : "Successful"
+          }
+        }
+      },
+    },
+    "/v1/trading/r/estimatedNextBatchTime" : {
+      "get" : {
+        "title": "Estimated Next Batch Time",
+        "summary" : "Returns a countdown until the expected next batch time, which will include all pending withdrawals.",
+        "operationId" : "getV1TradingREstimatednextbatchtime",
+        "tags" : [ "Market" ],
+        "responses" : {
+          "default" : {
+            "schema" : { "type" : "string" },
+            "description" : "Successful"
+          }
+        }
+      }
+    },
     "/v1/trading/r/getDeposits" : {
       "post" : {
-        "title": "Historic Deposits",
+        "title": "Deposit History",
         "summary" : "This is an authenticated endpoint used to retrieve deposits. A token can be specified to get deposits for a specific token.",
         "operationId" : "postV1TradingRGetdeposits",
         "parameters" : [ {
@@ -2029,10 +2092,81 @@
         }
       }
     },
-    "/v1/trading/r/getWithdrawals" : {
+    "/v1/trading/r/getPendingWithdrawals" : {
       "post" : {
-        "title": "Historic Withdrawals",
-        "summary" : "This endpoint is used to retrieve all past withdrawals. If a token is specified, withdrawals pertaining to only that particular token are provided.",
+        "title": "Pending Withdrawals",
+        "summary" : "This endpoint is used to retrieve all pending withdrawals. If a token is specified, withdrawals pertaining to only that particular token are provided.",
+        "operationId" : "postV1TradingRGetPendingWithdrawals",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Payload",
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "token" : {
+                "type" : "string",
+                "description" : "This is used to specify a particular token.",
+                "example" : "ETH"
+              },
+              "nonce" : {
+                "type" : "number",
+                "description" : "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+                "example" : 1.57615690205E9
+              },
+              "signature" : {
+                "type" : "string",
+                "description" : "The signature obtained by signing the nonce with your private ethereum key.",
+                "example" : "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+              }
+            },
+            "required" : [ "nonce", "signature" ]
+          }
+        } ],
+        "tags" : [ "Trading" ],
+        "responses" : {
+          "default" : {
+            "description" : "Returns all the withdrawals.",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "ethAddress" : {
+                  "type" : "string",
+                  "description" : "Ethereum public address of the user.",
+                  "example" : "0x341E46a19F25787373eaE444Df0110DEa6a4127a"
+                },
+                "token" : {
+                  "type" : "string",
+                  "description" : "The token that was withdrawn.",
+                  "example" : "ETH"
+                },
+                "amount" : {
+                  "type" : "number",
+                  "description" : "The amount that was withdrawn.",
+                  "example" : 100
+                },
+                "starkKey" : {
+                  "type" : "string",
+                  "description" : "The Stark public key of the user.",
+                  "example" : "1096391677682140209565436534397888993113230781145932035642834566847897455970"
+                }
+              }
+            },
+            "examples" : {
+              "application/json" : [ {
+                "ethAddress" : "0x341E46a19F25787373eaE444Df0110DEa6a4127a",
+                "token" : "ETH",
+                "amount" : 100,
+                "starkKey" : "1096391677682140209565436534397888993113230781145932035642834566847897455970"
+              } ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/withdrawHistory" : {
+      "post" : {
+        "title": "Withdrawal History",
+        "summary" : "This endpoint is used to retrieve all historic withdrawals. If a token is specified, withdrawals pertaining to only that particular token are provided.",
         "operationId" : "postV1TradingRGetwithdrawals",
         "parameters" : [ {
           "in" : "body",
