@@ -37,12 +37,15 @@ ${bodyOpts}
 // perform the request
 request.perform();
 
-// print the result 
+// print the result
 std::cout << response.str() << std::endl;
   `.trim();
 }
 
 function escapeString(str) {
+  if (!str) {
+    return ''
+  }
   return str
     .replace(/\\/g, '\\\\')
     .replace(/"/g, '\\"');

@@ -25,6 +25,7 @@ function getParams(parameters) {
         return `    ${x.name}: ${value},\n`;
       } else if (x.in === 'body') {
         const example = getExampleFromSchema(x.schema);
+        if (!example) return ''
         const exampleCode = JSON.stringify(example, null, 2)
           .split('\n')
           .map((x, i) => i !== 0 ? '    ' + x : x)

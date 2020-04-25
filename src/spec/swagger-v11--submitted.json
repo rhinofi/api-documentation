@@ -2120,7 +2120,7 @@
           "description" : "Set the price aggregation level. Adjust the precision by entering a value between P0-P4. Raw books can be retrieved by using precision R0. Use one of the following values - P0, P1, P2, P3, P4, R0.",
           "x-example" : "P0"
         } ],
-        "tags" : [ "Trading" ],
+        "tags" : [ "Market" ],
         "responses" : {
           "default" : {
             "description" : "Returns a specific order and allows you to keep track of the state of Deversifi order books on a price aggregated basis with customizable precision.",
@@ -2161,7 +2161,7 @@
           "description" : "Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"tMKRETH\", \"fUSD\", \"tETHUSD\"]",
           "x-example" : "tMKRETH"
         } ],
-        "tags" : [ "Trading" ],
+        "tags" : [ "Market" ],
         "responses" : {
           "default" : {
             "description" : "Returns the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
@@ -2279,7 +2279,7 @@
           "description" : "Determines if the results should be sorted. If = 1, it sorts results returned with old > new.",
           "x-example" : 1
         } ],
-        "tags" : [ "Trading" ],
+        "tags" : [ "Market" ],
         "responses" : {
           "default" : {
             "description" : "Returns the last 100 candles by default, but a limit and a start and/or end timestamp can be specified.",
