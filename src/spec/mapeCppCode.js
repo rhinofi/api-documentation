@@ -44,7 +44,7 @@ std::cout << response.str() << std::endl;
 
 function escapeString(str) {
   if (!str) {
-    return ''
+    return '';
   }
   return str
     .replace(/\\/g, '\\\\')
