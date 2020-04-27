@@ -934,7 +934,7 @@
                 },
                 "_id" : {
                   "type" : "string",
-                  "description" : "TODO - Meer/Will input",
+                  "description" : "The internal DeversiFi ID for the deposit",
                   "example" : "5e335f88bdcd70001e52d0a7"
                 },
                 "starkVaultId" : {
@@ -1031,18 +1031,22 @@
             "properties" : {
               "cid" : {
                 "type" : "string",
-                "description" : "TODO - Will/Meer",
-                "example" : "TODO - Will/Meer"
+                "description" : "An optional client id to allow you to track your own orders with a different set of IDs than the ones used by DeversiFi.",
+                "example" : "999"
               },
               "gid" : {
                 "type" : "string",
-                "description" : "TODO - Will/Meer",
-                "example" : "TODO - Will/Meer"
+                "description" : "Optional group ID for the order to help track from client side.",
+                "example" : "50"
               },
               "type" : {
                 "type" : "string",
                 "description" : "The type of order. Currently only “EXCHANGE_LIMIT” is accepted.",
-                "example" : "EXCHANGE LIMIT"
+                "example" : "EXCHANGE LIMIT",
+                "enum" : [
+                  "EXCHANGE LIMIT",
+                  "EXCHANGE MARKET"
+                ]
               },
               "symbol" : {
                 "type" : "string",
@@ -1133,26 +1137,21 @@
               },
               "protocol" : {
                 "type" : "string",
-                "description" : "The protocol used. Currently only \"stark\" is used.",
+                "description" : "The protocol used. Currently only \"stark\" is accepted.",
                 "example" : "stark"
               },
               "partnerId" : {
                 "type" : "string",
-                "description" : "The ID of the partner.",
-                "example" : "TODO - Will/Meer"
+                "description" : "The ID of the partner. An ID can be requested from the DeversiFi team",
+                "example" : "walletPartner1234"
               },
               "feeRate" : {
                 "type" : "string",
-                "description" : "The current fee rate.",
-                "example" : "TODO - Will/Meer"
-              },
-              "dynamicFeeRate" : {
-                "type" : "string",
-                "description" : "The dynamic fee rate.",
-                "example" : "TODO - Will/Meer"
+                "description" : "The worst case fee rate that the order was signed with. Part of this will get rebated at settlement",
+                "example" : "0.0025"
               }
             },
-            "required" : [ "type", "symbol", "amount", "price", "meta", "starkOrder", "vaultIdSell", "vaultIdBuy", "amountSell", "amountBuy", "tokenSell", "tokenBuy", "nonce", "expirationTimestamp", "starkMessage", "ethAddress", "starkKey", "starkSignature", "protocol" ]
+            "required" : [ "type", "symbol", "amount", "price", "meta", "starkOrder", "vaultIdSell", "vaultIdBuy", "amountSell", "amountBuy", "tokenSell", "tokenBuy", "nonce", "expirationTimestamp", "starkMessage", "ethAddress", "starkKey", "starkSignature" ]
           }
         } ],
         "tags" : [ "Trading" ],
@@ -1194,6 +1193,10 @@
                 "description" : "The order ID.",
                 "example" : "d7c8b9"
               },
+              "nonce" : {
+                "type" : "number",
+                "example": 123456
+               },
               "signature" : {
                 "type" : "string",
                 "description" : "The signed hash (signature) received during the pre-registration process.",
@@ -1512,17 +1515,17 @@
               "properties" : {
                 "_id" : {
                   "type" : "string",
-                  "description" : "TODO - Will/Meer",
+                  "description" : "The DeversiFi order ID",
                   "example" : "5b56333fd952c07b351c5940"
                 },
                 "id" : {
                   "type" : "string",
-                  "description" : "TODO - Will/Meer",
+                  "description" : "A secondary ID for the order if passed onto a 3rd party exchange.",
                   "example" : "1151079509"
                 },
                 "type" : {
                   "type" : "string",
-                  "description" : "Type of the order. Currently, \"EXCHANGE LIMIT\" is the only type that is supported.",
+                  "description" : "Type of the order. Currently, \"EXCHANGE LIMIT\" and \"EXCHANGE MARKET\" are the only types that are supported.",
                   "example" : "EXCHANGE LIMIT"
                 },
                 "pair" : {
@@ -1625,13 +1628,8 @@
               "properties" : {
                 "_id" : {
                   "type" : "string",
-                  "description" : "TODO - Will/Meer",
+                  "description" : "Order Id",
                   "example" : "5b56333fd952c07b351c5940"
-                },
-                "id" : {
-                  "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "1151079509"
                 },
                 "type" : {
                   "type" : "string",
@@ -1738,13 +1736,8 @@
               "properties" : {
                 "_id" : {
                   "type" : "string",
-                  "description" : "TODO - Will/Meer",
+                  "description" : "Unique order identifier",
                   "example" : "5b56333fd952c07b351c5940"
-                },
-                "id" : {
-                  "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "1151079509"
                 },
                 "type" : {
                   "type" : "string",
@@ -1796,118 +1789,28 @@
                   "description" : "The exchange through which the order was routed, e.g., Bitfinex (BFX).",
                   "example" : "BFX"
                 },
-                "lockedperiod" : {
-                  "type" : "number",
-                  "description" : "TODO - Will/Meer",
-                  "example" : 0
-                },
-                "trailingprice" : {
-                  "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "0.00000000"
-                },
-                "hidden" : {
-                  "type" : "number",
-                  "description" : "TODO - Will/Meer",
-                  "example" : 0
-                },
-                "vir" : {
-                  "type" : "number",
-                  "description" : "TODO - Will/Meer",
-                  "example" : 0
-                },
-                "maxrate" : {
-                  "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "0.00000000000000000000"
-                },
-                "place_id" : {
-                  "type" : "number",
-                  "description" : "TODO - Will/Meer",
-                  "example" : 0
-                },
-                "placed_trades" : {
-                  "type" : "number",
-                  "description" : "TODO - Will/Meer",
-                  "example" : 0
-                },
-                "nopayback" : {
-                  "type" : "number",
-                  "description" : "TODO - Will/Meer",
-                  "example" : 0
-                },
                 "avg_price" : {
                   "type" : "string",
-                  "description" : "TODO - Will/Meer",
+                  "description" : "The average price that the order was executed at.",
                   "example" : "0.00000000000000000000"
                 },
                 "active" : {
                   "type" : "number",
-                  "description" : "TODO - Will/Meer",
-                  "example" : 0
-                },
-                "fiat_currency" : {
-                  "type" : "string",
-                  "description" : "Chosen fiat currency.",
-                  "example" : "USD"
-                },
-                "cid" : {
-                  "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "58558087372"
-                },
-                "cid_date" : {
-                  "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "2018-07-21"
-                },
-                "mseq" : {
-                  "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "2"
-                },
-                "gid" : {
-                  "type" : "number",
-                  "description" : "TODO - Will/Meer",
-                  "example" : 0
-                },
-                "flags" : {
-                  "type" : "number",
-                  "description" : "TODO - Will/Meer",
-                  "example" : 0
-                },
-                "price_aux_limit" : {
-                  "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "0.00000000"
-                },
-                "type_prev" : {
-                  "type" : "number",
-                  "description" : "TODO - Will/Meer",
+                  "description" : "The current status of the order. 1 signifies that the order is still active and can be filled. 0 means that it has been fully executed or canceled.",
                   "example" : 0
                 },
                 "tif" : {
                   "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "3570"
-                },
-                "vPair" : {
-                  "type" : "string",
-                  "description" : "TODO - Will/Meer",
-                  "example" : "ETHUSD"
+                  "description" : "The time in force for the order, signifying the unix timestamp when it will expire and be removed from the order-book.",
+                  "example" : "2020-01-01 10:45:23"
                 },
                 "meta" : {
                   "type" : "object",
                   "description" : "Contains metadata $F15 and auth.",
                   "properties" : {
-                    "$F15" : {
-                      "type" : "number",
-                      "description" : "TODO - Will/Meer",
-                      "example" : 1
-                    },
                     "auth" : {
                       "type" : "string",
-                      "description" : "TODO - Will/Meer",
+                      "description" : "The ethereum address of the owner of the order",
                       "example" : "0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
                     }
                   }
@@ -2048,7 +1951,7 @@
               "properties" : {
                 "_id" : {
                   "type" : "string",
-                  "description" : "TODO - waiting for Meer",
+                  "description" : "The internal DeversiFi ID for the withdrawal",
                   "example" : "53cb6b9b4f4ddef1ad47f943"
                 },
                 "ethAddress" : {
