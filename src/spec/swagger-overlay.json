@@ -1,815 +1,1157 @@
 {
-  "paths" : {
-    "/v1/trading/r/24HoursVolume" : {
-      "get" : {
-        "title": "Historic Trading Volume",
-        "parameters" : [
-          {
-            "example" : "2020"
-          },
-          {
-            "example" : "01"
-          },
-          {
-            "example" : "01"
-          }          
+  "paths":{
+    "/v1/pub/last24HoursVolume":{
+      "get":{
+        "title":"24hr Trading Volume",
+        "summary":"Request information regarding the trading volume for the last 24 hours. The request returns the overall trading volume details in USD as well as the trading volume per token in USD and the native token.",
+        "operationId":"getV1PubLast24HoursVolume",
+        "tags":[
+          "Market"
         ],
-        "responses": {
-          "default": {
-            "examples" : {
-              "application/json" : {
-                "TotalUSDValue" : 3320.75,
-                "tokens" : {
-                  "USD" : {
-                    "tokenAmount" : 3320.75,
-                    "USDValue" : 3320.75
+        "responses":{
+          "default":{
+            "description":"Returns the trading volume of the last 24 hours.",
+            "schema":{
+              "type":"object",
+              "properties":{
+                "TotalUSDValue":{
+                  "type":"number",
+                  "description":"The total trade volume in terms of USD."
+                },
+                "tokens":{
+                  "type":"object",
+                  "description":"List of tokens."
+                },
+                "tokenAmount":{
+                  "type":"number",
+                  "description":"The trading volume for a particular token."
+                },
+                "USDValue":{
+                  "type":"number",
+                  "description":"The corresponding trading volume in USD for a particular token."
+                },
+                "startDate":{
+                  "type":"string",
+                  "description":"The start date and time for the volume presented."
+                }
+              }
+            },
+            "examples":{
+              "application/json":{
+                "TotalUSDValue":49060.93499764386,
+                "tokens":{
+                  "USD":{
+                    "tokenAmount":2956.895948,
+                    "USDValue":2956.895948
                   },
-                  "ETH" : {
-                    "tokenAmount" : 24.9495,
-                    "USDValue" : 3320.75
+                  "DAI":{
+                    "tokenAmount":16703.14443817488,
+                    "USDValue":16706.132923174882
+                  },
+                  "ETH":{
+                    "tokenAmount":207.84246409836658,
+                    "USDValue":34797.96540446898
+                  },
+                  "NEC":{
+                    "tokenAmount":231870.3805543381,
+                    "USDValue":18523.75403816698
+                  },
+                  "MKR":{
+                    "tokenAmount":48.32582713775642,
+                    "USDValue":25137.12168147688
                   }
                 },
-                "startDate" : "2020-01-01T00:00:00.714Z",
-                "endDate" : "2020-01-02T00:00:00.714Z"
+                "startDate":"2020-01-19T08:09:45.342Z"
               }
             }
           }
         }
       }
     },
-    "/v1/trading/r/30DaysVolume" : {
-      "get" : {
-        "title": "User 30-day volume",
-        "responses": {
-          "default": {
-            "examples" : {
-              "application/json" : {
-                "TotalUSDValue" : 73364.1749445,
-                "tokens" : {
-                  "USD" : {
-                    "tokenAmount" : 85112.899879,
-                    "USDValue" : 85112.899879
-                  },
-                  "ETH" : {
-                    "tokenAmount" : 443.61218170251453,
-                    "USDValue" : 61525.002289
-                  },
-                  "NEC" : {
-                    "tokenAmount" : 1173.0238160813603,
-                    "USDValue" : 90.447721
-                  }
-                },
-                "startDate" : "2019-12-15T19:09:18.668Z"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/USDRanking" : {
-      "get" : {
-        "title": "User ranking by volume",
-        "parameters" : [
+    "/v1/pub/24HoursVolume/{Year}/{Month}/{Day}":{
+      "get":{
+        "title":"Historic Trading Volume",
+        "summary":"Request information regarding the trading volume for a specific date. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token.",
+        "operationId":"getV1Pub24HoursVolume",
+        "parameters":[
           {
-            "x-example" : 1577836800000
+            "in":"path",
+            "name":"Year",
+            "type":"string",
+            "required":true,
+            "description":"The year of the specific trading volume request date - in this case 2020.",
+            "x-example":"2020"
           },
           {
-            "x-example" : 1577923200000
-          }          
-        ],        
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : [ {
-                "address" : "0xfc898b18a70ce49579f8d79a32e29928c15b4bc8",
-                "USDValue" : 119128.566703
-              }, {
-                "address" : "0x05e3fddf871bcba3f0651fb01fd0d621ad087be2",
-                "USDValue" : 32483.4076365177
-              }, {
-                "address" : "0x2d9e7f7887bb496592430ef62400dd9007925b88",
-                "USDValue" : 13434.22703491727
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/estimatedNextBatchTime": {
-      "get" : {
-        "title": "Estimated Next Batch Time"
-      }
-    },
-    "/v1/trading/r/last24HoursVolume": {
-      "get" : {
-        "title": "24hr Trading Volume"
-      }
-    },
-    "/v1/trading/r/tokenRanking": {
-      "get" : {
-        "title": "Volume ranking by token",
-        "parameters" : [ 
+            "in":"path",
+            "name":"Month",
+            "type":"string",
+            "required":true,
+            "description":"The month of the specific trading volume request date - in this case 01 (January).",
+            "x-example":"01"
+          },
           {
-            "example" : "ETH"
-          }, {
-            "example" : 1527836800000
-          }, {
-            "example" : 1577923200000
-          } 
+            "in":"path",
+            "name":"Day",
+            "type":"string",
+            "required":true,
+            "description":"The day of the specific trading volume request date - in this case 01 (1st of a month).",
+            "x-example":"01"
+          }
         ],
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : [ {
-                "address" : "0xfc898b18a70ce49579f8d79a32e29928c15b4bc8",
-                "amount" : 852.9290936325145
-              }, {
-                "address" : "0x05e3fddf871bcba3f0651fb01fd0d621ad087be2",
-                "amount" : 243.9949461819435
-              }, {
-                "address" : "0x2d9e7f7887bb496592430ef62400dd9007925b88",
-                "amount" : 100.03447614758483
-              }, {
-                "address" : "0x239271f50e1461ad9a4f8114b05e48f229f5c1ae",
-                "amount" : 0.1
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/getBalance" : {
-      "post" : {
-        "title": "Balances",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : [ {
-                "balance" : 1,
-                "activeBalance" : 0,
-                "_id" : "5e318fc4948cc789bb5f7bb4",
-                "ethAddress" : "user-01",
-                "token" : "ETH"
-              }, {
-                "balance" : 2,
-                "activeBalance" : 0,
-                "_id" : "5e318fc4948cc789bb5f7bb5",
-                "ethAddress" : "user-02",
-                "token" : "USD"
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/getConf" : {
-      "post" : {
-        "title": "Get Config",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : {
-                "DVF" : {
-                  "exchangeSymbols" : [ "tETHUSD", "tZRXUSD", "tZRXETH" ],
-                  "exchangeAddress" : "0xBd25cD867C304F079E696CBE44D958f3d3B683ba",
-                  "starkExContractAddress" : "0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
-                  "tempStarkVaultId" : 1,
-                  "depositExpiry" : 720,
-                  "depositNonce" : 1
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns the overall trading volume details for all tokens in USD as well as the trading volume per trading pair.",
+            "schema":{
+              "type":"object",
+              "properties":{
+                "TotalUSDValue":{
+                  "type":"number",
+                  "description":"The total trade volume in terms of USD."
                 },
-                "tokenRegistry" : {
-                  "ETH" : {
-                    "decimals" : 18,
-                    "minOrderSize" : 0.1,
-                    "starkTokenId" : "0x1"
-                  },
-                  "USDT" : {
-                    "decimals" : 6,
-                    "tokenAddress" : "0xdac17f958d2ee523a2206206994597c13d831ec7",
-                    "minOrderSize" : 25,
-                    "settleSpread" : -0.026,
-                    "starkTokenId" : "0x2"
-                  },
-                  "ZRX" : {
-                    "decimals" : 16,
-                    "tokenAddress" : "0xe41d2489571d322189246dafa5ebde1f4699f498",
-                    "minOrderSize" : 40,
-                    "starkTokenId" : "0x22e6d888f32dea3c6e8ba64609a314eebbe1eb704e9e9febe368b0bacb21efe"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/getDeposits" : {
-      "post" : {
-        "title": "Historic Deposits",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : [ {
-                "ethAddress" : "0x341E46a49F15785373edE443Df0220DEa6a41Bbc",
-                "starkKey" : "77a3b314db07c45076d11f62b6f9e748a39790441823307743cf00d6597ea43",
-                "starkVaultId" : 123,
-                "starkTokenId" : "0x7",
-                "token" : "NEC",
-                "amount" : 1000,
-                "createdAt" : "2020-01-29T14:02:08.477Z",
-                "isPostedOffchain" : false,
-                "isConfirmedOnChain" : true
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/getOrder" : {
-      "post" : {
-        "title": "Order",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : [ {
-                "_id" : "5b56333fd952c07b351c5940",
-                "id" : "1151079509",
-                "type" : "EXCHANGE LIMIT",
-                "pair" : "ETHUSD",
-                "status" : "CANCELED",
-                "created_at" : "2018-07-21 16:15:58",
-                "updated_at" : "2018-07-23 19:52:51",
-                "user_id" : 5,
-                "amount" : "-0.10000000",
-                "price" : "10000.00000000",
-                "originalamount" : "-0.10000000"
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/getPendingWithdrawals": {
-      "post": {
-        "title": "Pending Withdrawals"
-      }
-    },
-    "/v1/trading/r/getUserConf" : {
-      "post" : {
-        "title": "Get User Config",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : {
-                "DVF" : {
-                  "depositExpiry" : 720,
-                  "depositNonce" : 1,
-                  "deversifiAddress" : "0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
-                  "starkExContractAddress" : "0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
-                  "exchangeSymbols" : [ "tETHUSD", "tZRXUSD", "tZRXETH" ],
-                  "tempStarkVaultId" : 1
+                "tokens":{
+                  "type":"object",
+                  "description":"List of tokens."
                 },
-                "tokenRegistry" : {
-                  "ETH" : {
-                    "decimals" : 18,
-                    "minOrderSize" : 0.1,
-                    "starkTokenId" : "0x1"
-                  },
-                  "USD" : {
-                    "decimals" : 6,
-                    "minOrderSize" : 25,
-                    "settleSpread" : -0.026,
-                    "starkTokenId" : "0x2",
-                    "tokenAddress" : "0xdac17f958d2ee523a2206206994597c13d831ec7"
-                  },
-                  "ZRX" : {
-                    "decimals" : 18,
-                    "minOrderSize" : 40,
-                    "starkTokenId" : "22e6d888f32dea3c6e8ba64609a314eebbe1eb704e9e9febe368b0bacb21efe",
-                    "tokenAddress" : "0xe41d2489571d322189246dafa5ebde1f4699f498"
-                  }
+                "tokenAmount":{
+                  "type":"number",
+                  "description":"The trading volume for a particular token."
                 },
-                "spareStarkVaultId" : 686986452,
-                "ethAddress" : "0x341e46a49f15785373ede443df0220dea6a41bbc"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/getVaultId": {
-      "post": {
-        "title": "Vault Id"
-      }
-    },
-    "/v1/trading/r/getWithdrawal" : {
-      "post" : {
-        "title": "Withdrawal",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : [ {
-                "_id" : "53cb6b9b4f4ddef1ad47f943",
-                "ethAddress" : "0x14d06788090769f669427b6aea1c0240d2321f34",
-                "starkKey" : "77a3b314db07c45076d11f62b6f9e748a39790441823307743cf00d6597ea43",
-                "token" : "NEC",
-                "amount" : 1000,
-                "createdAt" : "2020-01-29T14:13:05.898Z"
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/openOrders" : {
-      "post" : {
-        "title": "All Orders",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : [ {
-                "_id" : "5b56333fd952c07b351c5940",
-                "id" : "1151079509",
-                "type" : "EXCHANGE LIMIT",
-                "pair" : "ETHUSD",
-                "status" : "CANCELED",
-                "created_at" : "2018-07-21 16:15:58",
-                "updated_at" : "2018-07-23 19:52:51",
-                "user_id" : 5,
-                "amount" : "-0.10000000",
-                "price" : "10000.00000000",
-                "originalamount" : "-0.10000000"
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/orderHistory" : {
-      "post" : {
-        "title": "Order History",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : [ {
-                "_id" : "5b56333fd952c07b351c5940",
-                "id" : "1151079509",
-                "type" : "EXCHANGE LIMIT",
-                "pair" : "ETHUSD",
-                "status" : "CANCELED",
-                "created_at" : "2018-07-21 16:15:58",
-                "updated_at" : "2018-07-23 19:52:51",
-                "user_id" : 5,
-                "amount" : "-0.10000000",
-                "price" : "10000.00000000",
-                "originalamount" : "-0.10000000",
-                "routing" : "BFX",
-                "lockedperiod" : 0,
-                "trailingprice" : "0.00000000",
-                "hidden" : 0,
-                "vir" : 0,
-                "maxrate" : "0.00000000000000000000",
-                "placed_id" : null,
-                "placed_trades" : null,
-                "nopayback" : null,
-                "avg_price" : "0.00000000000000000000",
-                "active" : 0,
-                "fiat_currency" : "USD",
-                "cid" : "58558087372",
-                "cid_date" : "2018-07-21",
-                "mseq" : "2",
-                "gid" : null,
-                "flags" : null,
-                "price_aux_limit" : "0.00000000",
-                "type_prev" : null,
-                "tif" : "3570",
-                "v_pair" : "ETHUSD",
-                "meta" : {
-                  "$F15" : 1,
-                  "auth" : "0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
+                "USDValue":{
+                  "type":"number",
+                  "description":"The corresponding trading volume in USD for a particular token."
                 },
-                "symbol" : "tETHUSD",
-                "t" : 1532375571000
-              }, {
-                "_id" : "5b56333fd952c07b351c593f",
-                "id" : "1151079508",
-                "type" : "EXCHANGE LIMIT",
-                "pair" : "ETHUSD",
-                "status" : "CANCELED",
-                "created_at" : "2018-07-21 16:15:53",
-                "updated_at" : "2018-07-23 19:52:51",
-                "user_id" : 5,
-                "amount" : "-0.10000000",
-                "price" : "10000.00000000",
-                "originalamount" : "-0.10000000",
-                "routing" : "BFX",
-                "lockedperiod" : 0,
-                "trailingprice" : "0.00000000",
-                "hidden" : 0,
-                "vir" : 0,
-                "maxrate" : "0.00000000000000000000",
-                "placed_id" : null,
-                "placed_trades" : null,
-                "nopayback" : null,
-                "avg_price" : "0.00000000000000000000",
-                "active" : 0,
-                "fiat_currency" : "USD",
-                "cid" : "58552546110",
-                "cid_date" : "2018-07-21",
-                "mseq" : "2",
-                "gid" : null,
-                "flags" : null,
-                "price_aux_limit" : "0.00000000",
-                "type_prev" : null,
-                "tif" : "3570",
-                "v_pair" : "ETHUSD",
-                "meta" : {
-                  "$F15" : 1,
-                  "auth" : "0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
+                "startDate":{
+                  "type":"string",
+                  "description":"The start date and time for the volume presented."
                 },
-                "symbol" : "tETHUSD",
-                "t" : 1532375571000
-              } ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/withdrawHistory": {
-      "post": {
-        "title": "Withdraw History"
-      }
-    },
-    "/v1/trading/w/cancelOrder" : {
-      "post" : {
-        "title": "Cancel Order",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : {
-                "orderId" : "d7c8b9"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/w/deposit" : {
-      "post" : {
-        "title": "Deposit",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : {
-                "isPostedOffchain" : false,
-                "isConfirmedOnChain" : false,
-                "_id" : "5e335f88bdcd70001e52d0a7",
-                "starkVaultId" : 1000003,
-                "starkKey" : "6d840e6d0ecfcbcfa83c0f704439e16c69383d93f51427feb9a4f2d21fbe075",
-                "starkMessage" : "1d980821dab7adf8f422a4754b031585e663bb1f70d8adb550cde8a628fdbbb",
-                "starkSignature" : {
-                  "r" : "1f38f551d798562c16d28733c7e3ff6850898d82f0ac9ccd39d373303b1778c",
-                  "s" : "518560420e52a37e9f580f024fc0fe8572cb2f5437a839075bbf4b2b123d572",
-                  "recoveryParam" : 1
-                },
-                "starkTokenId" : "0x3",
-                "amount" : 1,
-                "ethAddress" : "0x341e46a49f15785373ede443df0220dea6a41bbc",
-                "createdAt" : "2020-01-30T22:58:16.720Z"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/w/preRegister" : {
-      "post" : {
-        "title": "Pre-register",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : {
-                "deFiSignature" : "0x187d2b7927af5b4902f204e3e1dbe14bb6af28fa30d61d4d9c6a4cf5f4a985547d9150befbd1a4ee82ded653cf7b2988591c28cdaccdbc1e4a6adae7ead759d61b"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/w/register" : {
-      "post" : {
-        "title": "Register",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : {
-                "DVF" : {
-                  "depositExpiry" : 720,
-                  "depositNonce" : 1,
-                  "deversifiAddress" : "0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
-                  "starkExContractAddress" : "0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
-                  "exchangeSymbols" : [ "tETHUSD", "tZRXUSD", "tZRXETH" ],
-                  "tempStarkVaultId" : 1
-                },
-                "tokenRegistry" : {
-                  "ETH" : {
-                    "decimals" : 18,
-                    "minOrderSize" : 0.1,
-                    "starkTokenId" : "0x1"
-                  },
-                  "USD" : {
-                    "decimals" : 6,
-                    "minOrderSize" : 25,
-                    "settleSpread" : -0.026,
-                    "starkTokenId" : "0x2",
-                    "tokenAddress" : "0xdac17f958d2ee523a2206206994597c13d831ec7"
-                  },
-                  "ZRX" : {
-                    "decimals" : 18,
-                    "minOrderSize" : 40,
-                    "starkTokenId" : "22e6d888f32dea3c6e8ba64609a314eebbe1eb704e9e9febe368b0bacb21efe",
-                    "tokenAddress" : "0xe41d2489571d322189246dafa5ebde1f4699f498"
-                  }
-                },
-                "spareStarkVaultId" : 686986452,
-                "ethAddress" : "0x341e46a49f15785373ede443df0220dea6a41bbc"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/w/submitOrder" : {
-      "post" : {
-        "title": "Submit Order",
-        "responses" : {
-          "default" : {
-            "examples" : {
-              "application/json" : {
-                "orderId" : "1a2b3c"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/feeRate": {
-      "get": {
-        "title": "Fee Rate (GET)"
-      },
-      "post": {
-        "title": "Fee Rate (POST)"
-      },
-      "put": {
-        "title": "Fee Rate (PUT)"
-      },
-      "patch": {
-        "title": "Fee Rate (PATCH)"
-      },
-      "delete": {
-        "title": "Fee Rate (DELETE)"
-      }
-    },
-    "/v1/trading/r/settlements": {
-      "get": {
-        "title": "Settlements (GET)"
-      },
-      "post": {
-        "title": "Settlements (POST)"
-      },
-      "put": {
-        "title": "Settlements (PUT)"
-      },
-      "patch": {
-        "title": "Settlements (PATCH)"
-      },
-      "delete": {
-        "title": "Settlements (DELETE)"
-      }
-    },
-    "/bfx/v2/book/{Symbol}/{Precision}" : {
-      "get" : {
-        "title": "Orderbook",
-        "summary" : "This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision. Raw books can be retrieved by using precision R0.",
-        "operationId" : "getBfxV2Book",
-        "parameters" : [ {
-          "in" : "path",
-          "name" : "Symbol",
-          "type" : "string",
-          "required" : true,
-          "description" : "Specifies the trading pair.",
-          "x-example" : "tETHUSD"
-        }, {
-          "in" : "path",
-          "name" : "Precision",
-          "type" : "string",
-          "required" : true,
-          "description" : "Set the price aggregation level. Adjust the precision by entering a value between P0-P4. Raw books can be retrieved by using precision R0. Use one of the following values - P0, P1, P2, P3, P4, R0.",
-          "x-example" : "P0"
-        } ],
-        "tags" : [ "Trading" ],
-        "responses" : {
-          "default" : {
-            "description" : "Returns a specific order and allows you to keep track of the state of Deversifi order books on a price aggregated basis with customizable precision.",
-            "schema" : {
-              "type" : "object",
-              "properties" : {
-                "Price" : {
-                  "type" : "number",
-                  "description" : "Specifies the price level for trading."
-                },
-                "Count" : {
-                  "type" : "number",
-                  "description" : "Number of orders at that price level."
-                },
-                "Amount" : {
-                  "type" : "number",
-                  "description" : "Total amount available at that price level."
+                "endDate":{
+                  "type":"string",
+                  "description":"The end date and time for the volume presented."
                 }
               }
             },
-            "examples" : {
-              "application/json" : [ [ 302, 1, 20 ], [ 168.02, 1, 0.6 ], [ 167.98, 1, 0.6 ], [ 167.94, 1, 0.6 ] ]
+            "examples":{
+              "application/json":{
+                "TotalUSDValue":3320.75,
+                "tokens":{
+                  "USD":{
+                    "tokenAmount":3320.75,
+                    "USDValue":3320.75
+                  },
+                  "ETH":{
+                    "tokenAmount":24.9495,
+                    "USDValue":3320.75
+                  }
+                },
+                "startDate":"2020-01-01T00:00:00.714Z",
+                "endDate":"2020-01-02T00:00:00.714Z"
+              }
             }
           }
         }
       }
     },
-    "/bfx/v2/tickers" : {
-      "get" : {
-        "title": "Tickers",
-        "summary" : "The ticker endpoint provides a high level overview of the state of the market for a specified pair. It shows the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
-        "operationId" : "getBfxV2Tickers",
-        "parameters" : [ {
-          "in" : "query",
-          "name" : "symbols",
-          "type" : "string",
-          "required" : true,
-          "description" : "Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"tMKRETH\", \"fUSD\", \"tETHUSD\"]",
-          "x-example" : "tMKRETH"
-        } ],
-        "tags" : [ "Trading" ],
-        "responses" : {
-          "default" : {
-            "description" : "Returns the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "type" : "object",
-                "properties" : {
-                  "symbol" : {
-                    "type" : "string",
-                    "description" : "The symbol of the requested trading pair."
-                  },
-                  "bid" : {
-                    "type" : "number",
-                    "description" : "Price of the most recent highest bid."
-                  },
-                  "bid_size" : {
-                    "type" : "number",
-                    "description" : "Sum of the 25 highest bid sizes."
-                  },
-                  "ask" : {
-                    "type" : "number",
-                    "description" : "Price of the most recent lowest ask price."
-                  },
-                  "ask_size" : {
-                    "type" : "number",
-                    "description" : "Sum of the 25 lowest ask sizes."
-                  },
-                  "daily_change" : {
-                    "type" : "number",
-                    "description" : "Amount that the last price has changed since yesterday."
-                  },
-                  "daily_change_relative" : {
-                    "type" : "number",
-                    "description" : "Relative price change since yesterday (x 100 for percentage change)."
-                  },
-                  "last_price" : {
-                    "type" : "number",
-                    "description" : "Price of the last trade."
-                  },
-                  "volume" : {
-                    "type" : "number",
-                    "description" : "Daily volume."
-                  },
-                  "high" : {
-                    "type" : "number",
-                    "description" : "Daily high."
-                  },
-                  "low" : {
-                    "type" : "number",
-                    "description" : "Daily low."
-                  }
+    "/v1/pub/tokenRanking/{currency}":{
+      "get":{
+        "title":"Volume ranking by token",
+        "summary":"This returns a user ranking by trading volume for a chosen token. If the parameters startDate and endDate are provided, the ranking includes only trading volume within that window of time. All volumes are quoted in ETH.",
+        "operationId":"getV1PubAllTimeVolumeTokenRanking",
+        "parameters":[
+          {
+            "in":"path",
+            "name":"currency",
+            "type":"string",
+            "required":true,
+            "description":"The currency relating to the requested trading volume information.",
+            "x-example":"ETH"
+          },
+          {
+            "in":"query",
+            "name":"startDate",
+            "type":"string",
+            "required":false,
+            "description":"The start date and time (Unix timestamp in milliseconds) for which the trade volumes are requested. If startDate and endDate are not provided, it returns the volume ranking if all time.",
+            "x-example":1527836800000
+          },
+          {
+            "in":"query",
+            "name":"endDate",
+            "type":"string",
+            "required":false,
+            "description":"The end date and time (Unix timestamp in milliseconds) for which the trade volumes are requested. If startDate and endDate are not provided, it returns the volume ranking if all time.",
+            "x-example":1577923200000
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns a ranked output of all the trading volumes for a given crypto currency. All the Volumes are quoted in ETH.",
+            "schema":{
+              "type":"object",
+              "properties":{
+                "address":{
+                  "type":"string",
+                  "description":"The address of the trader."
+                },
+                "amount":{
+                  "type":"number",
+                  "description":"The trading volume for the address"
                 }
               }
             },
-            "examples" : {
-              "application/json" : [ [ "tBTCUSD", 8719.7, 34.58126956, 8722.2, 32.51991831, 263.3, 0.0311, 8722.3, 3798.87390501, 8750, 8449.3 ], [ "tLTCUSD", 57.875, 1297.95111409, 57.931, 1670.4711322000003, 3.233, 0.0592, 57.854, 33130.37488952, 58.18, 54.053 ] ]
+            "examples":{
+              "application/json":[
+                {
+                  "address":"0xfc898b18a70ce49579f8d79a32e29928c15b4bc8",
+                  "amount":852.9290936325145
+                },
+                {
+                  "address":"0x05e3fddf871bcba3f0651fb01fd0d621ad087be2",
+                  "amount":243.9949461819435
+                },
+                {
+                  "address":"0x2d9e7f7887bb496592430ef62400dd9007925b88",
+                  "amount":100.03447614758483
+                },
+                {
+                  "address":"0x239271f50e1461ad9a4f8114b05e48f229f5c1ae",
+                  "amount":0.1
+                }
+              ]
             }
           }
         }
       }
     },
-    "/bfx/v2/candles/trade:{timeframe}:{symbol}/{section}" : {
-      "get" : {
-        "title": "Candles",
-        "summary" : "The Candles endpoint provides OCHL (Open, Close, High, Low) and volume data for the specified funding currency or trading pair. The endpoint returns the last 100 candles by default, but a limit and a start and/or end timestamp can be specified.",
-        "operationId" : "getBfxV2Candles",
-        "parameters" : [ {
-          "in" : "path",
-          "name" : "timeframe",
-          "type" : "string",
-          "required" : true,
-          "description" : "Specify time frame. Available values are '1m', '5m', '15m', '30m', '1h', '3h', '6h','12h', '1D','7D', '14D', '1M'.",
-          "x-example" : "1m"
-        }, {
-          "in" : "path",
-          "name" : "symbol",
-          "type" : "string",
-          "required" : true,
-          "description" : "Specify the trading pair for which information is required.",
-          "x-example" : "tETHUSD"
-        }, {
-          "in" : "path",
-          "name" : "section",
-          "type" : "string",
-          "required" : true,
-          "description" : "Section for more precise selection. Available values - \"last\" or \"hist\"",
-          "x-example" : "hist"
-        }, {
-          "in" : "query",
-          "name" : "limit",
-          "type" : "number",
-          "required" : false,
-          "description" : "Limits the number of results.",
-          "x-example" : 10
-        }, {
-          "in" : "query",
-          "name" : "start",
-          "type" : "string",
-          "required" : false,
-          "description" : "Filter start (time since epoch in ms).",
-          "x-example" : "1517923200000"
-        }, {
-          "in" : "query",
-          "name" : "end",
-          "type" : "string",
-          "required" : false,
-          "description" : "Filter end (time since epoch in ms).",
-          "x-example" : "1577923200000"
-        }, {
-          "in" : "query",
-          "name" : "sort",
-          "type" : "number",
-          "required" : false,
-          "description" : "Determines if the results should be sorted. If = 1, it sorts results returned with old > new.",
-          "x-example" : 1
-        } ],
-        "tags" : [ "Trading" ],
-        "responses" : {
-          "default" : {
-            "description" : "Returns the last 100 candles by default, but a limit and a start and/or end timestamp can be specified.",
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "type" : "object",
-                "properties" : {
-                  "mts" : {
-                    "type" : "number",
-                    "description" : "Millisecond timestamp.",
-                    "example" : 1573562880000
+    "/v1/pub/USDRanking":{
+      "get":{
+        "title":"User ranking by volume",
+        "summary":"This returns a user ranking by overall trading volume quoted in USD. If the parameters startDate and endDate are provided, the ranking includes only trading volume within that window of time.",
+        "operationId":"getV1PubAllTokensVolumeUSDRanking",
+        "parameters":[
+          {
+            "in":"query",
+            "name":"startDate",
+            "type":"string",
+            "required":false,
+            "description":"The start date and time (Unix timestamp in milliseconds) for which the trade volumes are requested. If startDate and endDate are not provided, it returns the volume ranking if all time.",
+            "x-example":1577836800000
+          },
+          {
+            "in":"query",
+            "name":"endDate",
+            "type":"string",
+            "required":false,
+            "description":"The end date and time (Unix timestamp in milliseconds) for which events are requested.If startDate and endDate are not provided, it returns the volume ranking if all time.",
+            "x-example":1577923200000
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "description":"Ranked output of all trading volumes for all the tokens.",
+            "schema":{
+              "type":"object",
+              "properties":{
+                "address":{
+                  "type":"string",
+                  "description":"The address of the trader."
+                },
+                "USDValue":{
+                  "type":"number",
+                  "description":"The trading volume for the address quoted in USD."
+                }
+              }
+            },
+            "examples":{
+              "application/json":[
+                {
+                  "address":"0xfc898b18a70ce49579f8d79a32e29928c15b4bc8",
+                  "USDValue":119128.566703
+                },
+                {
+                  "address":"0x05e3fddf871bcba3f0651fb01fd0d621ad087be2",
+                  "USDValue":32483.4076365177
+                },
+                {
+                  "address":"0x2d9e7f7887bb496592430ef62400dd9007925b88",
+                  "USDValue":13434.22703491727
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/pub/30DaysVolume/{Address}":{
+      "get":{
+        "title":"User 30-day volume",
+        "summary":"Request information regarding the trading volume of a specific address for the last 30 days. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token. Results are cached for 60 minutes.",
+        "operationId":"getV1Pub30DaysVolumeSpecificAddress",
+        "parameters":[
+          {
+            "in":"path",
+            "name":"Address",
+            "type":"string",
+            "required":true,
+            "description":"This is the specific address for which the  30 day trading volume is requested for.",
+            "x-example":"0xfc898b18a70ce49579f8d79a32e29928c15b4bc8"
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns the trading volume of the last 30 days for a specific address. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per trading pair. Results are cached for 60 minutes.",
+            "schema":{
+              "type":"object",
+              "properties":{
+                "TotalUSDValue":{
+                  "type":"number",
+                  "description":"The total trade volume in terms of USD."
+                },
+                "tokens":{
+                  "type":"object",
+                  "description":"List of tokens."
+                },
+                "tokenAmount":{
+                  "type":"number",
+                  "description":"The trading volume for a particular token."
+                },
+                "USDValue":{
+                  "type":"number",
+                  "description":"The corresponding trading volume in USD for a particular token."
+                },
+                "startDate":{
+                  "type":"string",
+                  "description":"The start date and time for the volume presented."
+                },
+                "endDate":{
+                  "type":"string",
+                  "description":"The end date and time for the volume presented."
+                }
+              }
+            },
+            "examples":{
+              "application/json":{
+                "TotalUSDValue":73364.1749445,
+                "tokens":{
+                  "USD":{
+                    "tokenAmount":85112.899879,
+                    "USDValue":85112.899879
                   },
-                  "open" : {
-                    "type" : "number",
-                    "description" : "First execution during the time frame.",
-                    "example" : 3.0178E-4
+                  "ETH":{
+                    "tokenAmount":443.61218170251453,
+                    "USDValue":61525.002289
                   },
-                  "close" : {
-                    "type" : "number",
-                    "description" : "Last execution during the time frame.",
-                    "example" : 3.3105E-4
+                  "NEC":{
+                    "tokenAmount":1173.0238160813603,
+                    "USDValue":90.447721
+                  }
+                },
+                "startDate":"2019-12-15T19:09:18.668Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/pub/feeRate":{
+      "get":{
+        "title":"Get User Fee Rate",
+        "summary":"Return current fee rate for a given address",
+        "operationId":"getV1TradingRFeerate",
+        "parameters":[
+          {
+            "type":"number",
+            "name":"nonce",
+            "in":"query",
+            "required":true
+          },
+          {
+            "type":"string",
+            "name":"signature",
+            "in":"query",
+            "required":true
+          }
+        ],
+        "tags":[
+          "Trading"
+        ],
+        "responses":{
+          "default":{
+            "schema":{
+              "type":"string"
+            },
+            "description":"Successful"
+          }
+        }
+      }
+    },
+    "/v1/trading/r/feeRate":false,
+    "/v1/trading/r/24HoursVolume":false,
+    "/v1/trading/r/30DaysVolume":false,
+    "/v1/trading/r/USDRanking":false,
+    "/v1/trading/r/estimatedNextBatchTime":false,
+    "/v1/trading/r/last24HoursVolume":false,
+    "/v1/trading/r/tokenRanking":false,
+    "/v1/trading/r/getBalance":{
+      "post":{
+        "title":"Balances",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":[
+                {
+                  "balance":1,
+                  "activeBalance":0,
+                  "_id":"5e318fc4948cc789bb5f7bb4",
+                  "ethAddress":"user-01",
+                  "token":"ETH"
+                },
+                {
+                  "balance":2,
+                  "activeBalance":0,
+                  "_id":"5e318fc4948cc789bb5f7bb5",
+                  "ethAddress":"user-02",
+                  "token":"USD"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/getConf":{
+      "post":{
+        "title":"Get Config",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "DVF":{
+                  "exchangeSymbols":[
+                    "tETHUSD",
+                    "tZRXUSD",
+                    "tZRXETH"
+                  ],
+                  "exchangeAddress":"0xBd25cD867C304F079E696CBE44D958f3d3B683ba",
+                  "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
+                  "tempStarkVaultId":1,
+                  "depositExpiry":720,
+                  "depositNonce":1
+                },
+                "tokenRegistry":{
+                  "ETH":{
+                    "decimals":18,
+                    "minOrderSize":0.1,
+                    "starkTokenId":"0x1"
                   },
-                  "high" : {
-                    "type" : "number",
-                    "description" : "Highest execution during the time frame.",
-                    "example" : 3.3105E-4
+                  "USDT":{
+                    "decimals":6,
+                    "tokenAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7",
+                    "minOrderSize":25,
+                    "settleSpread":-0.026,
+                    "starkTokenId":"0x2"
                   },
-                  "low" : {
-                    "type" : "number",
-                    "description" : "Lowest execution during the time frame.",
-                    "example" : 3.0178E-4
+                  "ZRX":{
+                    "decimals":16,
+                    "tokenAddress":"0xe41d2489571d322189246dafa5ebde1f4699f498",
+                    "minOrderSize":40,
+                    "starkTokenId":"0x22e6d888f32dea3c6e8ba64609a314eebbe1eb704e9e9febe368b0bacb21efe"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/getDeposits":{
+      "post":{
+        "title":"Historic Deposits",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":[
+                {
+                  "ethAddress":"0x341E46a49F15785373edE443Df0220DEa6a41Bbc",
+                  "starkKey":"77a3b314db07c45076d11f62b6f9e748a39790441823307743cf00d6597ea43",
+                  "starkVaultId":123,
+                  "starkTokenId":"0x7",
+                  "token":"NEC",
+                  "amount":1000,
+                  "createdAt":"2020-01-29T14:02:08.477Z",
+                  "isPostedOffchain":false,
+                  "isConfirmedOnChain":true
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/getOrder":{
+      "post":{
+        "title":"Order",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":[
+                {
+                  "_id":"5b56333fd952c07b351c5940",
+                  "id":"1151079509",
+                  "type":"EXCHANGE LIMIT",
+                  "pair":"ETHUSD",
+                  "status":"CANCELED",
+                  "created_at":"2018-07-21 16:15:58",
+                  "updated_at":"2018-07-23 19:52:51",
+                  "user_id":5,
+                  "amount":"-0.10000000",
+                  "price":"10000.00000000",
+                  "originalamount":"-0.10000000"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/getPendingWithdrawals":{
+      "post":{
+        "title":"Pending Withdrawals"
+      }
+    },
+    "/v1/trading/r/getUserConf":{
+      "post":{
+        "title":"Get User Config",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "DVF":{
+                  "depositExpiry":720,
+                  "depositNonce":1,
+                  "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
+                  "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
+                  "exchangeSymbols":[
+                    "tETHUSD",
+                    "tZRXUSD",
+                    "tZRXETH"
+                  ],
+                  "tempStarkVaultId":1
+                },
+                "tokenRegistry":{
+                  "ETH":{
+                    "decimals":18,
+                    "minOrderSize":0.1,
+                    "starkTokenId":"0x1"
                   },
-                  "volume" : {
-                    "type" : "number",
-                    "description" : "Quantity of symbol traded within the time frame.",
-                    "example" : 1840.0074507599998
+                  "USD":{
+                    "decimals":6,
+                    "minOrderSize":25,
+                    "settleSpread":-0.026,
+                    "starkTokenId":"0x2",
+                    "tokenAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7"
+                  },
+                  "ZRX":{
+                    "decimals":18,
+                    "minOrderSize":40,
+                    "starkTokenId":"22e6d888f32dea3c6e8ba64609a314eebbe1eb704e9e9febe368b0bacb21efe",
+                    "tokenAddress":"0xe41d2489571d322189246dafa5ebde1f4699f498"
+                  }
+                },
+                "spareStarkVaultId":686986452,
+                "ethAddress":"0x341e46a49f15785373ede443df0220dea6a41bbc"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/getVaultId":{
+      "post":{
+        "title":"Vault Id"
+      }
+    },
+    "/v1/trading/r/getWithdrawal":{
+      "post":{
+        "title":"Withdrawal",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":[
+                {
+                  "_id":"53cb6b9b4f4ddef1ad47f943",
+                  "ethAddress":"0x14d06788090769f669427b6aea1c0240d2321f34",
+                  "starkKey":"77a3b314db07c45076d11f62b6f9e748a39790441823307743cf00d6597ea43",
+                  "token":"NEC",
+                  "amount":1000,
+                  "createdAt":"2020-01-29T14:13:05.898Z"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/openOrders":{
+      "post":{
+        "title":"All Orders",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":[
+                {
+                  "_id":"5b56333fd952c07b351c5940",
+                  "id":"1151079509",
+                  "type":"EXCHANGE LIMIT",
+                  "pair":"ETHUSD",
+                  "status":"CANCELED",
+                  "created_at":"2018-07-21 16:15:58",
+                  "updated_at":"2018-07-23 19:52:51",
+                  "user_id":5,
+                  "amount":"-0.10000000",
+                  "price":"10000.00000000",
+                  "originalamount":"-0.10000000"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/orderHistory":{
+      "post":{
+        "title":"Order History",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":[
+                {
+                  "_id":"5b56333fd952c07b351c5940",
+                  "id":"1151079509",
+                  "type":"EXCHANGE LIMIT",
+                  "pair":"ETHUSD",
+                  "status":"CANCELED",
+                  "created_at":"2018-07-21 16:15:58",
+                  "updated_at":"2018-07-23 19:52:51",
+                  "user_id":5,
+                  "amount":"-0.10000000",
+                  "price":"10000.00000000",
+                  "originalamount":"-0.10000000",
+                  "routing":"BFX",
+                  "lockedperiod":0,
+                  "trailingprice":"0.00000000",
+                  "hidden":0,
+                  "vir":0,
+                  "maxrate":"0.00000000000000000000",
+                  "placed_id":null,
+                  "placed_trades":null,
+                  "nopayback":null,
+                  "avg_price":"0.00000000000000000000",
+                  "active":0,
+                  "fiat_currency":"USD",
+                  "cid":"58558087372",
+                  "cid_date":"2018-07-21",
+                  "mseq":"2",
+                  "gid":null,
+                  "flags":null,
+                  "price_aux_limit":"0.00000000",
+                  "type_prev":null,
+                  "tif":"3570",
+                  "v_pair":"ETHUSD",
+                  "meta":{
+                    "$F15":1,
+                    "auth":"0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
+                  },
+                  "symbol":"tETHUSD",
+                  "t":1532375571000
+                },
+                {
+                  "_id":"5b56333fd952c07b351c593f",
+                  "id":"1151079508",
+                  "type":"EXCHANGE LIMIT",
+                  "pair":"ETHUSD",
+                  "status":"CANCELED",
+                  "created_at":"2018-07-21 16:15:53",
+                  "updated_at":"2018-07-23 19:52:51",
+                  "user_id":5,
+                  "amount":"-0.10000000",
+                  "price":"10000.00000000",
+                  "originalamount":"-0.10000000",
+                  "routing":"BFX",
+                  "lockedperiod":0,
+                  "trailingprice":"0.00000000",
+                  "hidden":0,
+                  "vir":0,
+                  "maxrate":"0.00000000000000000000",
+                  "placed_id":null,
+                  "placed_trades":null,
+                  "nopayback":null,
+                  "avg_price":"0.00000000000000000000",
+                  "active":0,
+                  "fiat_currency":"USD",
+                  "cid":"58552546110",
+                  "cid_date":"2018-07-21",
+                  "mseq":"2",
+                  "gid":null,
+                  "flags":null,
+                  "price_aux_limit":"0.00000000",
+                  "type_prev":null,
+                  "tif":"3570",
+                  "v_pair":"ETHUSD",
+                  "meta":{
+                    "$F15":1,
+                    "auth":"0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
+                  },
+                  "symbol":"tETHUSD",
+                  "t":1532375571000
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/withdrawHistory":{
+      "post":{
+        "title":"Withdraw History"
+      }
+    },
+    "/v1/trading/w/cancelOrder":{
+      "post":{
+        "title":"Cancel Order",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "orderId":"d7c8b9"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/w/deposit":{
+      "post":{
+        "title":"Deposit",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "isPostedOffchain":false,
+                "isConfirmedOnChain":false,
+                "_id":"5e335f88bdcd70001e52d0a7",
+                "starkVaultId":1000003,
+                "starkKey":"6d840e6d0ecfcbcfa83c0f704439e16c69383d93f51427feb9a4f2d21fbe075",
+                "starkMessage":"1d980821dab7adf8f422a4754b031585e663bb1f70d8adb550cde8a628fdbbb",
+                "starkSignature":{
+                  "r":"1f38f551d798562c16d28733c7e3ff6850898d82f0ac9ccd39d373303b1778c",
+                  "s":"518560420e52a37e9f580f024fc0fe8572cb2f5437a839075bbf4b2b123d572",
+                  "recoveryParam":1
+                },
+                "starkTokenId":"0x3",
+                "amount":1,
+                "ethAddress":"0x341e46a49f15785373ede443df0220dea6a41bbc",
+                "createdAt":"2020-01-30T22:58:16.720Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/w/preRegister":{
+      "post":{
+        "title":"Pre-register",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "deFiSignature":"0x187d2b7927af5b4902f204e3e1dbe14bb6af28fa30d61d4d9c6a4cf5f4a985547d9150befbd1a4ee82ded653cf7b2988591c28cdaccdbc1e4a6adae7ead759d61b"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/w/register":{
+      "post":{
+        "title":"Register",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "DVF":{
+                  "depositExpiry":720,
+                  "depositNonce":1,
+                  "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
+                  "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
+                  "exchangeSymbols":[
+                    "tETHUSD",
+                    "tZRXUSD",
+                    "tZRXETH"
+                  ],
+                  "tempStarkVaultId":1
+                },
+                "tokenRegistry":{
+                  "ETH":{
+                    "decimals":18,
+                    "minOrderSize":0.1,
+                    "starkTokenId":"0x1"
+                  },
+                  "USD":{
+                    "decimals":6,
+                    "minOrderSize":25,
+                    "settleSpread":-0.026,
+                    "starkTokenId":"0x2",
+                    "tokenAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7"
+                  },
+                  "ZRX":{
+                    "decimals":18,
+                    "minOrderSize":40,
+                    "starkTokenId":"22e6d888f32dea3c6e8ba64609a314eebbe1eb704e9e9febe368b0bacb21efe",
+                    "tokenAddress":"0xe41d2489571d322189246dafa5ebde1f4699f498"
+                  }
+                },
+                "spareStarkVaultId":686986452,
+                "ethAddress":"0x341e46a49f15785373ede443df0220dea6a41bbc"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/w/submitOrder":{
+      "post":{
+        "title":"Submit Order",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "orderId":"1a2b3c"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bfx/v2/book/{Symbol}/{Precision}":{
+      "get":{
+        "title":"Orderbook",
+        "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision. Raw books can be retrieved by using precision R0.",
+        "operationId":"getBfxV2Book",
+        "parameters":[
+          {
+            "in":"path",
+            "name":"Symbol",
+            "type":"string",
+            "required":true,
+            "description":"Specifies the trading pair.",
+            "x-example":"tETHUSD"
+          },
+          {
+            "in":"path",
+            "name":"Precision",
+            "type":"string",
+            "required":true,
+            "description":"Set the price aggregation level. Adjust the precision by entering a value between P0-P4. Raw books can be retrieved by using precision R0. Use one of the following values - P0, P1, P2, P3, P4, R0.",
+            "x-example":"P0"
+          }
+        ],
+        "tags":[
+          "Trading"
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns a specific order and allows you to keep track of the state of Deversifi order books on a price aggregated basis with customizable precision.",
+            "schema":{
+              "type":"object",
+              "properties":{
+                "Price":{
+                  "type":"number",
+                  "description":"Specifies the price level for trading."
+                },
+                "Count":{
+                  "type":"number",
+                  "description":"Number of orders at that price level."
+                },
+                "Amount":{
+                  "type":"number",
+                  "description":"Total amount available at that price level."
+                }
+              }
+            },
+            "examples":{
+              "application/json":[
+                [
+                  302,
+                  1,
+                  20
+                ],
+                [
+                  168.02,
+                  1,
+                  0.6
+                ],
+                [
+                  167.98,
+                  1,
+                  0.6
+                ],
+                [
+                  167.94,
+                  1,
+                  0.6
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/bfx/v2/tickers":{
+      "get":{
+        "title":"Tickers",
+        "summary":"The ticker endpoint provides a high level overview of the state of the market for a specified pair. It shows the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
+        "operationId":"getBfxV2Tickers",
+        "parameters":[
+          {
+            "in":"query",
+            "name":"symbols",
+            "type":"string",
+            "required":true,
+            "description":"Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"tMKRETH\", \"fUSD\", \"tETHUSD\"]",
+            "x-example":"tMKRETH"
+          }
+        ],
+        "tags":[
+          "Trading"
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
+            "schema":{
+              "type":"array",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "symbol":{
+                    "type":"string",
+                    "description":"The symbol of the requested trading pair."
+                  },
+                  "bid":{
+                    "type":"number",
+                    "description":"Price of the most recent highest bid."
+                  },
+                  "bid_size":{
+                    "type":"number",
+                    "description":"Sum of the 25 highest bid sizes."
+                  },
+                  "ask":{
+                    "type":"number",
+                    "description":"Price of the most recent lowest ask price."
+                  },
+                  "ask_size":{
+                    "type":"number",
+                    "description":"Sum of the 25 lowest ask sizes."
+                  },
+                  "daily_change":{
+                    "type":"number",
+                    "description":"Amount that the last price has changed since yesterday."
+                  },
+                  "daily_change_relative":{
+                    "type":"number",
+                    "description":"Relative price change since yesterday (x 100 for percentage change)."
+                  },
+                  "last_price":{
+                    "type":"number",
+                    "description":"Price of the last trade."
+                  },
+                  "volume":{
+                    "type":"number",
+                    "description":"Daily volume."
+                  },
+                  "high":{
+                    "type":"number",
+                    "description":"Daily high."
+                  },
+                  "low":{
+                    "type":"number",
+                    "description":"Daily low."
                   }
                 }
               }
             },
-            "examples" : {
-              "application/json" : [ [ 1573562880000, 3.0E-4, 3.0E-4, 3.0E-4, 3.0E-4, 24083.8638948 ], [ 1573562820000, 3.0178E-4, 3.3105E-4, 3.3105E-4, 3.0178E-4, 1840.0074507599998 ] ]
+            "examples":{
+              "application/json":[
+                [
+                  "tBTCUSD",
+                  8719.7,
+                  34.58126956,
+                  8722.2,
+                  32.51991831,
+                  263.3,
+                  0.0311,
+                  8722.3,
+                  3798.87390501,
+                  8750,
+                  8449.3
+                ],
+                [
+                  "tLTCUSD",
+                  57.875,
+                  1297.95111409,
+                  57.931,
+                  1670.4711322000003,
+                  3.233,
+                  0.0592,
+                  57.854,
+                  33130.37488952,
+                  58.18,
+                  54.053
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/bfx/v2/candles/trade:{timeframe}:{symbol}/{section}":{
+      "get":{
+        "title":"Candles",
+        "summary":"The Candles endpoint provides OCHL (Open, Close, High, Low) and volume data for the specified funding currency or trading pair. The endpoint returns the last 100 candles by default, but a limit and a start and/or end timestamp can be specified.",
+        "operationId":"getBfxV2Candles",
+        "parameters":[
+          {
+            "in":"path",
+            "name":"timeframe",
+            "type":"string",
+            "required":true,
+            "description":"Specify time frame. Available values are '1m', '5m', '15m', '30m', '1h', '3h', '6h','12h', '1D','7D', '14D', '1M'.",
+            "x-example":"1m"
+          },
+          {
+            "in":"path",
+            "name":"symbol",
+            "type":"string",
+            "required":true,
+            "description":"Specify the trading pair for which information is required.",
+            "x-example":"tETHUSD"
+          },
+          {
+            "in":"path",
+            "name":"section",
+            "type":"string",
+            "required":true,
+            "description":"Section for more precise selection. Available values - \"last\" or \"hist\"",
+            "x-example":"hist"
+          },
+          {
+            "in":"query",
+            "name":"limit",
+            "type":"number",
+            "required":false,
+            "description":"Limits the number of results.",
+            "x-example":10
+          },
+          {
+            "in":"query",
+            "name":"start",
+            "type":"string",
+            "required":false,
+            "description":"Filter start (time since epoch in ms).",
+            "x-example":"1517923200000"
+          },
+          {
+            "in":"query",
+            "name":"end",
+            "type":"string",
+            "required":false,
+            "description":"Filter end (time since epoch in ms).",
+            "x-example":"1577923200000"
+          },
+          {
+            "in":"query",
+            "name":"sort",
+            "type":"number",
+            "required":false,
+            "description":"Determines if the results should be sorted. If = 1, it sorts results returned with old > new.",
+            "x-example":1
+          }
+        ],
+        "tags":[
+          "Trading"
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns the last 100 candles by default, but a limit and a start and/or end timestamp can be specified.",
+            "schema":{
+              "type":"array",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "mts":{
+                    "type":"number",
+                    "description":"Millisecond timestamp.",
+                    "example":1573562880000
+                  },
+                  "open":{
+                    "type":"number",
+                    "description":"First execution during the time frame.",
+                    "example":3.0178E-4
+                  },
+                  "close":{
+                    "type":"number",
+                    "description":"Last execution during the time frame.",
+                    "example":3.3105E-4
+                  },
+                  "high":{
+                    "type":"number",
+                    "description":"Highest execution during the time frame.",
+                    "example":3.3105E-4
+                  },
+                  "low":{
+                    "type":"number",
+                    "description":"Lowest execution during the time frame.",
+                    "example":3.0178E-4
+                  },
+                  "volume":{
+                    "type":"number",
+                    "description":"Quantity of symbol traded within the time frame.",
+                    "example":1840.0074507599998
+                  }
+                }
+              }
+            },
+            "examples":{
+              "application/json":[
+                [
+                  1573562880000,
+                  3.0E-4,
+                  3.0E-4,
+                  3.0E-4,
+                  3.0E-4,
+                  24083.8638948
+                ],
+                [
+                  1573562820000,
+                  3.0178E-4,
+                  3.3105E-4,
+                  3.3105E-4,
+                  3.0178E-4,
+                  1840.0074507599998
+                ]
+              ]
             }
           }
         }
