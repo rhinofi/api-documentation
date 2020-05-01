@@ -1,18 +1,16 @@
 {
   "swagger":"2.0",
-  "host":"localhost:7777",
+  "host":"api.deversifi.dev",
   "basePath":"/",
   "schemes":[
-    "http"
+    "https"
   ],
   "info":{
     "title":"Deversifi API documentation",
     "version":"1.0.0",
     "description":"dvf-pub-api"
   },
-  "tags":[
-
-  ],
+  "tags":[],
   "paths":{
     "/v1/trading/r/24HoursVolume":{
       "get":{
@@ -118,8 +116,39 @@
     },
     "/v1/trading/r/estimatedNextBatchTime":{
       "get":{
-        "summary":"Return the countdown for next batch time.",
+        "summary":"Returns a countdown until the expected next batch proof is submitted onto the blockchain. The next batch will include all pending withdrawals.",
         "operationId":"getV1TradingREstimatednextbatchtime",
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "schema":{
+              "$ref":"#/definitions/estimatedNextBatchResponse"
+            },
+            "description":"Returns the amount of time remaining until the batch is posted to Ethereum."
+          }
+        }
+      }
+    },
+    "/v1/trading/r/feeRate":{
+      "get":{
+        "summary":"Return current fee rate for a given address. This rate is dependent on user trading volume.",
+        "operationId":"getV1TradingRFeerate",
+        "parameters":[
+          {
+            "type":"number",
+            "name":"nonce",
+            "in":"query",
+            "required":true
+          },
+          {
+            "type":"string",
+            "name":"signature",
+            "in":"query",
+            "required":true
+          }
+        ],
         "tags":[
           "Trading"
         ],
@@ -285,7 +314,7 @@
     },
     "/v1/trading/r/getPendingWithdrawals":{
       "post":{
-        "summary":"An authenticated endpoint used to retrieve a list of withdrawals.",
+        "summary":"This endpoint is used to retrieve all pending withdrawals. If a token is specified, withdrawals pertaining to only that particular token are provided.",
         "operationId":"postV1TradingRGetpendingwithdrawals",
         "parameters":[
           {
@@ -441,7 +470,7 @@
     },
     "/v1/trading/r/withdrawHistory":{
       "post":{
-        "summary":"An authenticated endpoint used to retrieve a list of user's past withdrawals. This includes ready, completed as well as cancelled withdrawals.",
+        "summary":"An authenticated endpoint used to retrieve a list of user's past withdrawals. This includes ready, completed, as well as cancelled withdrawals.",
         "operationId":"postV1TradingRWithdrawhistory",
         "parameters":[
           {
@@ -493,7 +522,7 @@
     },
     "/v1/trading/w/deposit":{
       "post":{
-        "summary":"Submit a notification of a new deposit made.",
+        "summary":"Submit a signed notification of a new deposit made.",
         "operationId":"postV1TradingWDeposit",
         "parameters":[
           {
@@ -562,7 +591,7 @@
         "responses":{
           "default":{
             "schema":{
-              "$ref":"#/definitions/registerResponse"
+              "$ref":"#/definitions/getUserConfResponse"
             },
             "description":"Returns the DeversiFi application as well as the user configuration details."
           }
@@ -595,138 +624,17 @@
         }
       }
     },
-    "/v1/trading/r/feeRate":{
-      "get":{
-        "summary":"Return current fee rate for a given address",
-        "operationId":"getV1TradingRFeerate",
-        "parameters":[
-          {
-            "type":"number",
-            "name":"nonce",
-            "in":"query",
-            "required":true
-          },
-          {
-            "type":"string",
-            "name":"signature",
-            "in":"query",
-            "required":true
-          }
-        ],
-        "tags":[
-          "Trading"
-        ],
-        "responses":{
-          "default":{
-            "schema":{
-              "type":"string"
-            },
-            "description":"Successful"
-          }
-        }
-      },
+    "/v1/trading/w/withdraw":{
       "post":{
-        "summary":"Return current fee rate for a given address",
-        "operationId":"postV1TradingRFeerate",
+        "summary":"Submit a request for a new withdrawal.",
+        "operationId":"postV1TradingWWithdraw",
         "parameters":[
           {
-            "type":"number",
-            "name":"nonce",
-            "in":"query",
-            "required":true
-          },
-          {
-            "type":"string",
-            "name":"signature",
-            "in":"query",
-            "required":true
-          }
-        ],
-        "tags":[
-          "Trading"
-        ],
-        "responses":{
-          "default":{
+            "in":"body",
+            "name":"body",
             "schema":{
-              "type":"string"
-            },
-            "description":"Successful"
-          }
-        }
-      },
-      "put":{
-        "summary":"Return current fee rate for a given address",
-        "operationId":"putV1TradingRFeerate",
-        "parameters":[
-          {
-            "type":"number",
-            "name":"nonce",
-            "in":"query",
-            "required":true
-          },
-          {
-            "type":"string",
-            "name":"signature",
-            "in":"query",
-            "required":true
-          }
-        ],
-        "tags":[
-          "Trading"
-        ],
-        "responses":{
-          "default":{
-            "schema":{
-              "type":"string"
-            },
-            "description":"Successful"
-          }
-        }
-      },
-      "patch":{
-        "summary":"Return current fee rate for a given address",
-        "operationId":"patchV1TradingRFeerate",
-        "parameters":[
-          {
-            "type":"number",
-            "name":"nonce",
-            "in":"query",
-            "required":true
-          },
-          {
-            "type":"string",
-            "name":"signature",
-            "in":"query",
-            "required":true
-          }
-        ],
-        "tags":[
-          "Trading"
-        ],
-        "responses":{
-          "default":{
-            "schema":{
-              "type":"string"
-            },
-            "description":"Successful"
-          }
-        }
-      },
-      "delete":{
-        "summary":"Return current fee rate for a given address",
-        "operationId":"deleteV1TradingRFeerate",
-        "parameters":[
-          {
-            "type":"number",
-            "name":"nonce",
-            "in":"query",
-            "required":true
-          },
-          {
-            "type":"string",
-            "name":"signature",
-            "in":"query",
-            "required":true
+              "$ref":"#/definitions/withdrawalPayload"
+            }
           }
         ],
         "tags":[
@@ -805,6 +713,16 @@
           "type":"number",
           "description":"The trading volume for the address quoted in USD.",
           "example":119128.566703
+        }
+      }
+    },
+    "estimatedNextBatchResponse":{
+      "type":"object",
+      "properties":{
+        "estimatedTime":{
+          "type":"number",
+          "description":"The number of seconds until the batch is estimated to be ready.",
+          "example":608
         }
       }
     },
@@ -897,23 +815,18 @@
     },
     "DVF":{
       "type":"object",
-      "description":"This contains application configuration details per currency that the user has deposited for trade.",
+      "description":"This contains application configuration details to set up for deposits and trading.",
       "example":{
-        "depositExpiry":720,
-        "depositNonce":1,
+        "defaultFeeRate":0.002,
         "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
         "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
         "exchangeSymbols":"[\"tETHUSD\",\"tZRXUSD\",\"tZRXETH\"]",
         "tempStarkVaultId":1
       },
       "properties":{
-        "depositExpiry":{
+        "defaultFeeRate":{
           "type":"number",
-          "description":"Expiry period for deposit. The unit is in hours."
-        },
-        "depositNonce":{
-          "type":"number",
-          "description":"Nonce used for the deposit."
+          "description":"The default fee rate, if no volume or maker discount."
         },
         "deversifiAddress":{
           "type":"string",
@@ -921,15 +834,15 @@
         },
         "starkExContractAddress":{
           "type":"string",
-          "description":"Stark contract address."
+          "description":"Stark deposit contract address."
         },
         "exchangeSymbols":{
           "type":"string",
-          "description":"Currency pairs available at the DeversiFi exchange for trad"
+          "description":"Currency pairs available at the DeversiFi exchange for trading"
         },
         "tempStarkVaultId":{
           "type":"number",
-          "description":"Temporary Stark vault ID"
+          "description":"Transit Stark vault ID used for deposit privacy"
         }
       }
     },
@@ -1123,10 +1036,10 @@
         "tokenRegistry":{
           "$ref":"#/definitions/tokens"
         },
-        "spareStarkVaultId":{
-          "type":"number",
-          "description":"Vault ID of the spare Stark key.",
-          "example":1005108736
+        "isRegistered":{
+          "type":"string",
+          "description":"Registration status.",
+          "example":"true"
         },
         "ethAddress":{
           "type":"string",
@@ -1648,27 +1561,6 @@
         "signature"
       ]
     },
-    "registerResponse":{
-      "type":"object",
-      "properties":{
-        "DVF":{
-          "$ref":"#/definitions/DVF"
-        },
-        "tokenRegistry":{
-          "$ref":"#/definitions/tokens"
-        },
-        "sparkStarkVaultId":{
-          "type":"number",
-          "description":"Vault ID of the spare Stark key.",
-          "example":1005108736
-        },
-        "ethAddress":{
-          "type":"string",
-          "description":"Ethereum address.",
-          "example":"0x278ff3bb25c5b1bb7032e822661974479280fa74"
-        }
-      }
-    },
     "starkOrder":{
       "type":"object",
       "description":"Stark order related meta information.",
@@ -1821,6 +1713,47 @@
           "example":"1a2b3c"
         }
       }
+    },
+    "withdrawalPayload":{
+      "type":"object",
+      "properties":{
+        "token":{
+          "type":"string",
+          "description":"The token for which the withdrawal is requested.",
+          "example":"ZRX"
+        },
+        "amount":{
+          "type":"number",
+          "description":"The withdrawal amount.",
+          "example":1
+        },
+        "nonce":{
+          "type":"number"
+        },
+        "starkPublicKey":{
+          "$ref":"#/definitions/starkPublicKey"
+        },
+        "starkSignature":{
+          "$ref":"#/definitions/starkSignature"
+        },
+        "starkVaultId":{
+          "type":"number",
+          "description":"The Stark vault ID.",
+          "example":1000003
+        },
+        "expireTime":{
+          "type":"number"
+        }
+      },
+      "required":[
+        "token",
+        "amount",
+        "nonce",
+        "starkPublicKey",
+        "starkSignature",
+        "starkVaultId",
+        "expireTime"
+      ]
     }
   }
-}
+}}
