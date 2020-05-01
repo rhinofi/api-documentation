@@ -70,7 +70,7 @@
     },
     "/v1/pub/24HoursVolume/{Year}/{Month}/{Day}":{
       "get":{
-        "title":"Historic Trading Volume",
+        "title":"Trading Volume History",
         "summary":"Request information regarding the trading volume for a specific date. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token.",
         "operationId":"getV1Pub24HoursVolume",
         "parameters":[
@@ -401,7 +401,11 @@
     "/v1/trading/r/24HoursVolume":false,
     "/v1/trading/r/30DaysVolume":false,
     "/v1/trading/r/USDRanking":false,
-    "/v1/trading/r/estimatedNextBatchTime":false,
+    "/v1/trading/r/estimatedNextBatchTime":{
+      "get":{
+        "title": "Estimated Next Batch Time"
+      }
+    },
     "/v1/trading/r/last24HoursVolume":false,
     "/v1/trading/r/tokenRanking":false,
     "/v1/trading/r/getBalance":{
@@ -447,8 +451,7 @@
                   "exchangeAddress":"0xBd25cD867C304F079E696CBE44D958f3d3B683ba",
                   "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
                   "tempStarkVaultId":1,
-                  "depositExpiry":720,
-                  "depositNonce":1
+                  "defaultFeeRate": 0.002,
                 },
                 "tokenRegistry":{
                   "ETH":{
@@ -478,7 +481,7 @@
     },
     "/v1/trading/r/getDeposits":{
       "post":{
-        "title":"Historic Deposits",
+        "title":"Deposit History",
         "responses":{
           "default":{
             "examples":{
@@ -528,7 +531,45 @@
     },
     "/v1/trading/r/getPendingWithdrawals":{
       "post":{
-        "title":"Pending Withdrawals"
+        "title":"Pending Withdrawals",
+        "responses" : {
+          "default" : {
+            "description" : "Returns all the withdrawals.",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "ethAddress" : {
+                  "type" : "string",
+                  "description" : "Ethereum public address of the user.",
+                  "example" : "0x341E46a19F25787373eaE444Df0110DEa6a4127a"
+                },
+                "token" : {
+                  "type" : "string",
+                  "description" : "The token that was withdrawn.",
+                  "example" : "ETH"
+                },
+                "amount" : {
+                  "type" : "number",
+                  "description" : "The amount that was withdrawn.",
+                  "example" : 100
+                },
+                "starkKey" : {
+                  "type" : "string",
+                  "description" : "The Stark public key of the user.",
+                  "example" : "1096391677682140209565436534397888993113230781145932035642834566847897455970"
+                }
+              }
+            },
+            "examples" : {
+              "application/json" : [ {
+                "ethAddress" : "0x341E46a19F25787373eaE444Df0110DEa6a4127a",
+                "token" : "ETH",
+                "amount" : 100,
+                "starkKey" : "1096391677682140209565436534397888993113230781145932035642834566847897455970"
+              } ]
+            }
+          }
+        }
       }
     },
     "/v1/trading/r/getUserConf":{
@@ -539,8 +580,6 @@
             "examples":{
               "application/json":{
                 "DVF":{
-                  "depositExpiry":720,
-                  "depositNonce":1,
                   "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
                   "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
                   "exchangeSymbols":[
@@ -548,7 +587,8 @@
                     "tZRXUSD",
                     "tZRXETH"
                   ],
-                  "tempStarkVaultId":1
+                  "tempStarkVaultId":1,
+                  "defaultFeeRate": 0.002,
                 },
                 "tokenRegistry":{
                   "ETH":{
@@ -570,7 +610,7 @@
                     "tokenAddress":"0xe41d2489571d322189246dafa5ebde1f4699f498"
                   }
                 },
-                "spareStarkVaultId":686986452,
+                "isRegistered":"true",
                 "ethAddress":"0x341e46a49f15785373ede443df0220dea6a41bbc"
               }
             }
@@ -580,12 +620,17 @@
     },
     "/v1/trading/r/getVaultId":{
       "post":{
-        "title":"Vault Id"
+        "title":"Get Vault Id"
+      }
+    },
+    "/v1/trading/w/withdraw":{
+      "post":{
+        "title":"New Withdrawal"
       }
     },
     "/v1/trading/r/getWithdrawal":{
       "post":{
-        "title":"Withdrawal",
+        "title":"Get Withdrawal",
         "responses":{
           "default":{
             "examples":{
@@ -725,7 +770,7 @@
     },
     "/v1/trading/r/withdrawHistory":{
       "post":{
-        "title":"Withdraw History"
+        "title":"Withdrawal History"
       }
     },
     "/v1/trading/w/cancelOrder":{
@@ -744,7 +789,7 @@
     },
     "/v1/trading/w/deposit":{
       "post":{
-        "title":"Deposit",
+        "title":"New Deposit",
         "responses":{
           "default":{
             "examples":{
@@ -869,7 +914,7 @@
           }
         ],
         "tags":[
-          "Trading"
+          "Market"
         ],
         "responses":{
           "default":{
@@ -935,7 +980,7 @@
           }
         ],
         "tags":[
-          "Trading"
+          "Market"
         ],
         "responses":{
           "default":{
@@ -1090,7 +1135,7 @@
           }
         ],
         "tags":[
-          "Trading"
+          "Market"
         ],
         "responses":{
           "default":{
