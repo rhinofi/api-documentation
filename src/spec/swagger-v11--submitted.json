@@ -546,35 +546,9 @@
         }
       }
     },
-    "/v1/trading/w/preRegister":{
-      "post":{
-        "summary":"This method is used to bind a Stark public key to a corresponding Ethereum public address. A signed hash is received as an acknowledgement of the binding. The signed hash is required for the registration process.",
-        "operationId":"postV1TradingWPreregister",
-        "parameters":[
-          {
-            "in":"body",
-            "name":"body",
-            "schema":{
-              "$ref":"#/definitions/preRegisterPayload"
-            }
-          }
-        ],
-        "tags":[
-          "Trading"
-        ],
-        "responses":{
-          "default":{
-            "schema":{
-              "$ref":"#/definitions/preRegisterResponse"
-            },
-            "description":"Returns a signed hash that confirms the binding."
-          }
-        }
-      }
-    },
     "/v1/trading/w/register":{
       "post":{
-        "summary":"This method is used to register a Stark key that corresponds to an Ethereum public address, and retrieve DeversiFi application as well as user configuration details. It is important to perform “Pre-registration” before this step.",
+        "summary":"This method is used to register a Stark key that corresponds to an Ethereum public address. This will return deversifi Signature or DeversiFi application and user configuration details.",
         "operationId":"postV1TradingWRegister",
         "parameters":[
           {
@@ -591,9 +565,9 @@
         "responses":{
           "default":{
             "schema":{
-              "$ref":"#/definitions/getUserConfResponse"
+              "$ref":"#/definitions/registerResponse"
             },
-            "description":"Returns the DeversiFi application as well as the user configuration details."
+            "description":"Returns a Deversifi Signature (defiSignature) which is required to register on StarkEx Smart Contract. Returns the DeversiFi application as well as the user configuration details if use is already registered."
           }
         }
       }
@@ -1507,35 +1481,6 @@
         "starkSignature"
       ]
     },
-    "preRegisterPayload":{
-      "type":"object",
-      "properties":{
-        "starkKey":{
-          "type":"string",
-          "description":"The Stark public key.",
-          "example":"6d840e6d0ecfcbcfa83c0f704439e16c69383d93f51427feb9a4f2d21fbe075"
-        },
-        "ethAddress":{
-          "type":"string",
-          "description":"The Ethereum public address required for the pre-registration.",
-          "example":"0x341E46a49F15785373edE443Df0220DEa6a41Bbc"
-        }
-      },
-      "required":[
-        "starkKey",
-        "ethAddress"
-      ]
-    },
-    "preRegisterResponse":{
-      "type":"object",
-      "properties":{
-        "deFiSignature":{
-          "type":"string",
-          "description":"This signature hash is required in order to complete the registration process. This signature states that DeversiFi is aware of the binding between a Stark key and ethereum address.",
-          "example":"0x187d2b7927af5b4902f204e3e1dbe14bb6af28fa30d61d4d9c6a4cf5f4a985547d9150befbd1a4ee82ded653cf7b2988591c28cdaccdbc1e4a6adae7ead759d61b"
-        }
-      }
-    },
     "registerPayload":{
       "type":"object",
       "properties":{
@@ -1560,6 +1505,32 @@
         "nonce",
         "signature"
       ]
+    },
+    "registerResponse":{
+      "type":"object",
+      "properties":{
+        "DVF":{
+          "$ref":"#/definitions/DVF"
+        },
+        "tokenRegistry":{
+          "$ref":"#/definitions/tokens"
+        },
+        "isRegistered":{
+          "type":"string",
+          "description":"Registration status.",
+          "example":"true"
+        },
+        "ethAddress":{
+          "type":"string",
+          "description":"Ethereum address.",
+          "example":"0x278ff3bb25c5b1bb7032e822661974479280fa74"
+        },
+        "deFiSignature":{
+          "type":"string",
+          "description":"Deversifi Signature",
+          "example":"0x0277b6e85ffdfb8cdc34c89b8d7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+        }
+      }
     },
     "starkOrder":{
       "type":"object",

@@ -365,39 +365,35 @@
         }
       }
     },
-    "/v1/pub/feeRate":{
+    "/v1/trading/r/feeRate":{
       "get":{
         "title":"Get User Fee Rate",
-        "summary":"Return current fee rate for a given address",
-        "operationId":"getV1TradingRFeerate",
-        "parameters":[
-          {
-            "type":"number",
-            "name":"nonce",
-            "in":"query",
-            "required":true
-          },
-          {
-            "type":"string",
-            "name":"signature",
-            "in":"query",
-            "required":true
-          }
-        ],
-        "tags":[
-          "Trading"
-        ],
         "responses":{
           "default":{
+            "description":"Returns the current maker and taker fee rate that will be applied on matched trades when executed.",
             "schema":{
-              "type":"string"
+              "type":"object",
+              "properties":{
+                "maker":{
+                  "type":"number",
+                  "description":"The fee basis points for maker orders (adding bids or offers to the order book)."
+                },
+                "taker":{
+                  "type":"number",
+                  "description":"The fee basis points for taker orders (removing liquidity from the order book)."
+                },
+              }
             },
-            "description":"Successful"
+            "examples":{
+              "application/json":{
+                "maker": 20,
+                "taker": 15
+              }
+            }
           }
         }
       }
     },
-    "/v1/trading/r/feeRate":false,
     "/v1/trading/r/24HoursVolume":false,
     "/v1/trading/r/30DaysVolume":false,
     "/v1/trading/r/USDRanking":false,
@@ -809,20 +805,6 @@
                 "amount":1,
                 "ethAddress":"0x341e46a49f15785373ede443df0220dea6a41bbc",
                 "createdAt":"2020-01-30T22:58:16.720Z"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/w/preRegister":{
-      "post":{
-        "title":"Pre-register",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":{
-                "deFiSignature":"0x187d2b7927af5b4902f204e3e1dbe14bb6af28fa30d61d4d9c6a4cf5f4a985547d9150befbd1a4ee82ded653cf7b2988591c28cdaccdbc1e4a6adae7ead759d61b"
               }
             }
           }
