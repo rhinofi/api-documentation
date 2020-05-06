@@ -1,6 +1,6 @@
 {
   "swagger":"2.0",
-  "host":"api.deversifi.dev",
+  "host":"api.stg.deversifi.com",
   "basePath":"/",
   "schemes":[
     "https"
