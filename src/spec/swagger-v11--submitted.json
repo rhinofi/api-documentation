@@ -430,28 +430,22 @@
         }
       }
     },
-    "/v1/trading/r/orderHistory":{
-      "post":{
-        "summary":"This method is used to retrieve a list of all past orders for a user. This includes executed trades, as well as expired and cancelled orders.",
-        "operationId":"postV1TradingROrderhistory",
-        "parameters":[
+    "/v1/trading/r/orderHistory": {
+      "post": {
+        "summary": "This method is used to retrieve a list of all past orders for a user. This includes executed trades, as well as expired and cancelled orders.",
+        "operationId": "postV1TradingROrderhistory",
+        "parameters": [
           {
-            "in":"body",
-            "name":"body",
-            "schema":{
-              "$ref":"#/definitions/orderHistoryPayload"
-            }
+            "in": "body",
+            "name": "body",
+            "schema": { "$ref": "#/definitions/orderHistoryPayload" }
           }
         ],
-        "tags":[
-          "Trading"
-        ],
-        "responses":{
-          "default":{
-            "schema":{
-              "$ref":"#/definitions/orderHistoryResponse"
-            },
-            "description":"Returns a list of all a user's past orders."
+        "tags": ["Trading"],
+        "responses": {
+          "default": {
+            "schema": { "$ref": "#/definitions/orderHistoryResponse" },
+            "description": "Returns a list of all a user's past orders."
           }
         }
       }
@@ -887,52 +881,35 @@
     "getOrderResponse": {
       "type": "object",
       "properties": {
-        "_id": { "type": "string", "example": "5b56333fd952c07b351c5940" },
-        "id": { "type": "string", "example": "1151079509" },
-        "type": {
+        "_id": {
           "type": "string",
-          "description": "Type of the order. Currently, \"EXCHANGE LIMIT\" is the only type that is supported.",
-          "example": "EXCHANGE LIMIT"
-        },
-        "pair": {
-          "type": "string",
-          "description": "The trading pair that was used for this order.",
-          "example": "ETHUSD"
-        },
-        "status": {
-          "type": "string",
-          "description": "The status of the order.",
-          "example": "CANCELED"
-        },
-        "created_at": {
-          "type": "string",
-          "description": "The date and time when the order was created.",
-          "example": "2018-07-21 16:15:58"
-        },
-        "updated_at": {
-          "type": "string",
-          "description": "The date and time when the order was last updated.",
-          "example": "2018-07-23 19:52:51"
-        },
-        "user_id": {
-          "type": "number",
-          "description": "ID of the user who placed the order.",
-          "example": 5
+          "description": "Id for the order. This can be used for orderId when calling cancelOrder or getOrder",
+          "example": "L1tarX5wUem"
         },
         "amount": {
-          "type": "string",
+          "type": "number",
           "description": "Actual order amount.",
-          "example": "-0.10000000"
+          "example": "-0.15"
         },
         "price": {
-          "type": "string",
+          "type": "number",
           "description": "Cost per unit.",
-          "example": "10000.00000000"
+          "example": "250"
         },
-        "originalamount": {
+        "symbol": {
           "type": "string",
-          "description": "Original amount specified.",
-          "example": "-0.10000000"
+          "description": "Trading symbol for the order",
+          "example": "ETH:USDT"
+        },
+        "canceled": {
+          "type": "string",
+          "description": "Canceled status true or false.",
+          "example": "ACTIVE"
+        },
+        "pending": {
+          "type": "string",
+          "description": "Pending status true or false.",
+          "example": "ACTIVE"
         }
       }
     },
@@ -1074,13 +1051,72 @@
       },
       "required": ["nonce", "signature"]
     },
+    "openOrdersObject": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Id for the order. This can be used for orderId when calling cancelOrder or getOrder",
+          "example": "L1tarX5wUem"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the order. Currently, \"EXCHANGE LIMIT\" is the only type that is supported.",
+          "example": "EXCHANGE LIMIT"
+        },
+        "pair": {
+          "type": "string",
+          "description": "The trading pair that was used for this order.",
+          "example": "ETHUSD"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Actual order amount.",
+          "example": "-0.5"
+        },
+        "totalFilled": {
+          "type": "number",
+          "description": "Total of all fills executed.",
+          "example": "-0.5"
+        },
+        "price": {
+          "type": "number",
+          "description": "Cost per unit.",
+          "example": "250"
+        },
+        "status": {
+          "type": "string",
+          "description": "The status of the order.",
+          "example": "CANCELED"
+        },
+        "mtsTIF": {
+          "type": "number",
+          "description": "Milliseconds till order expires.",
+          "example": "250"
+        },
+        "id": { "type": "string", "example": "1151079509" },
+        "created_at": {
+          "type": "string",
+          "description": "The date and time when the order was created.",
+          "example": "2018-07-21 16:15:58"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "The date and time when the order was last updated.",
+          "example": "2018-07-23 19:52:51"
+        }
+      }
+    },
     "openOrdersResponse": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "_id": { "type": "string", "example": "5b56333fd952c07b351c5940" },
-          "id": { "type": "string", "example": "1151079509" },
+          "_id": {
+            "type": "string",
+            "description": "Id for the order. This can be used for orderId when calling cancelOrder or getOrder",
+            "example": "L1tarX5wUem"
+          },
           "type": {
             "type": "string",
             "description": "Type of the order. Currently, \"EXCHANGE LIMIT\" is the only type that is supported.",
@@ -1091,11 +1127,32 @@
             "description": "The trading pair that was used for this order.",
             "example": "ETHUSD"
           },
+          "amount": {
+            "type": "number",
+            "description": "Actual order amount.",
+            "example": "-0.5"
+          },
+          "totalFilled": {
+            "type": "number",
+            "description": "Total of all fills executed.",
+            "example": "-0.5"
+          },
+          "price": {
+            "type": "number",
+            "description": "Cost per unit.",
+            "example": "250"
+          },
           "status": {
             "type": "string",
             "description": "The status of the order.",
             "example": "CANCELED"
           },
+          "mtsTIF": {
+            "type": "number",
+            "description": "Milliseconds till order expires.",
+            "example": "250"
+          },
+          "id": { "type": "string", "example": "1151079509" },
           "created_at": {
             "type": "string",
             "description": "The date and time when the order was created.",
@@ -1105,222 +1162,140 @@
             "type": "string",
             "description": "The date and time when the order was last updated.",
             "example": "2018-07-23 19:52:51"
-          },
-          "user_id": {
-            "type": "number",
-            "description": "ID of the user who placed the order.",
-            "example": 5
-          },
-          "amount": {
-            "type": "string",
-            "description": "Actual order amount.",
-            "example": "-0.10000000"
-          },
-          "price": {
-            "type": "string",
-            "description": "Cost per unit.",
-            "example": "10000.00000000"
-          },
-          "originalamount": {
-            "type": "string",
-            "description": "Original amount specified.",
-            "example": "-0.10000000"
           }
         }
       }
     },
-    "orderHistoryPayload":{
-      "type":"object",
-      "properties":{
-        "nonce":{
-          "type":"number",
-          "description":"This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example":1580138291.781
+    "orderHistoryPayload": {
+      "type": "object",
+      "properties": {
+        "nonce": {
+          "type": "number",
+          "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+          "example": 1580138291.781
         },
-        "signature":{
-          "type":"string",
-          "description":"The signature obtained by signing the nonce with your private ethereum key.",
-          "example":"0x20b57db1333c62b71bd1fd3a9eee7fc7ee411641f549149803ac33741d0b29e43783de1518c030a36553a65f15065ef3de11f23dffa33ced9988357daf7c62bf01"
+        "signature": {
+          "type": "string",
+          "description": "The signature obtained by signing the nonce with your private ethereum key.",
+          "example": "0x20b57db1333c62b71bd1fd3a9eee7fc7ee411641f549149803ac33741d0b29e43783de1518c030a36553a65f15065ef3de11f23dffa33ced9988357daf7c62bf01"
         },
-        "symbol":{
-          "type":"string",
-          "description":"Specifies the trading pair.",
-          "example":"ETH:USD"
+        "symbol": {
+          "type": "string",
+          "description": "Specifies the trading pair.",
+          "example": "ETH:USD"
         }
       },
-      "required":[
-        "nonce",
-        "signature"
-      ]
+      "required": ["nonce", "signature"]
     },
-    "meta":{
-      "type":"object",
-      "description":"Contains metadata $F15 and auth.",
-      "properties":{
-        "$F15":{
-          "type":"number",
-          "example":1
+    "meta": {
+      "type": "object",
+      "description": "Contains metadata $F15 and auth.",
+      "properties": {
+        "orderId": {
+          "type": "string",
+          "description": "Id for the order. This can be used for orderId when calling cancelOrder or getOrder",
+          "example": "L1tarX5wUem"
         },
-        "auth":{
-          "type":"string",
-          "example":"0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
+        "auth": {
+          "type": "string",
+          "example": "0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
+        },
+        "user": {
+          "type": "string",
+          "example": "0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
         }
       }
     },
-    "orderHistoryResponse":{
-      "type":"object",
-      "properties":{
-        "_id":{
-          "type":"string",
-          "example":"5b56333fd952c07b351c5940"
+    "orderHistoryResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "Id for the order. This can be used for orderId when calling cancelOrder or getOrder",
+          "example": "L1tarX5wUem"
         },
-        "id":{
-          "type":"string",
-          "example":"1151079509"
+        "type": {
+          "type": "string",
+          "description": "Type of the order. Currently, \"EXCHANGE LIMIT\" is the only type that is supported.",
+          "example": "EXCHANGE LIMIT"
         },
-        "type":{
-          "type":"string",
-          "description":"Type of the order. Currently, \"EXCHANGE LIMIT\" is the only type that is supported.",
-          "example":"EXCHANGE LIMIT"
+        "pair": {
+          "type": "string",
+          "description": "The trading pair that was used for this order.",
+          "example": "ETHUSD"
         },
-        "pair":{
-          "type":"string",
-          "description":"The trading pair that was used for this order.",
-          "example":"ETHUSD"
+        "amount": {
+          "type": "number",
+          "description": "Actual order amount.",
+          "example": "-0.5"
         },
-        "status":{
-          "type":"string",
-          "description":"The status of the order.",
-          "example":"CANCELED"
+        "totalFilled": {
+          "type": "number",
+          "description": "Total of all fills executed.",
+          "example": "-0.5"
         },
-        "created_at":{
-          "type":"string",
-          "description":"The date and time when the order was created.",
-          "example":"2018-07-21 16:15:58"
+        "price": {
+          "type": "number",
+          "description": "Cost per unit.",
+          "example": "250"
         },
-        "updated_at":{
-          "type":"string",
-          "description":"The date and time when the order was last updated.",
-          "example":"2018-07-23 19:52:51"
+        "status": {
+          "type": "string",
+          "description": "The status of the order.",
+          "example": "CANCELED"
         },
-        "user_id":{
-          "type":"number",
-          "description":"ID of the user who placed the order.",
-          "example":5
+        "mtsTIF": {
+          "type": "number",
+          "description": "Milliseconds till order expires.",
+          "example": "250"
         },
-        "amount":{
-          "type":"string",
-          "description":"Actual order amount.",
-          "example":"-0.10000000"
+        "t": {
+          "type": "number",
+          "description": "Unix timestamp.",
+          "example": 1532375571000
         },
-        "price":{
-          "type":"string",
-          "description":"Cost per unit.",
-          "example":"10000.00000000"
+        "id": { "type": "string", "example": "1151079509" },
+        "created_at": {
+          "type": "string",
+          "description": "The date and time when the order was created.",
+          "example": "2018-07-21 16:15:58"
         },
-        "originalamount":{
-          "type":"string",
-          "description":"Original amount specified.",
-          "example":"-0.10000000"
+        "updated_at": {
+          "type": "string",
+          "description": "The date and time when the order was last updated.",
+          "example": "2018-07-23 19:52:51"
         },
-        "routing":{
-          "type":"string",
-          "description":"The exchange through which the order was routed, e.g., Bitfinex (BFX).",
-          "example":"BFX"
+        "symbol": {
+          "type": "string",
+          "description": "The trading pair that was used for this order.",
+          "example": "ETH:USDT"
         },
-        "lockedperiod":{
-          "type":"number",
-          "example":0
+        "routing": {
+          "type": "string",
+          "description": "The exchange through which the order was routed, e.g., Bitfinex (BFX).",
+          "example": "API>BFX"
         },
-        "trailingprice":{
-          "type":"string",
-          "example":"0.00000000"
-        },
-        "hidden":{
-          "type":"number",
-          "example":0
-        },
-        "vir":{
-          "type":"number",
-          "example":0
-        },
-        "maxrate":{
-          "type":"string",
-          "example":"0.00000000000000000000"
-        },
-        "place_id":{
-          "type":"number",
-          "example":0
-        },
-        "placed_trades":{
-          "type":"number",
-          "example":0
-        },
-        "nopayback":{
-          "type":"number",
-          "example":0
-        },
-        "avg_price":{
-          "type":"string",
-          "example":"0.00000000000000000000"
-        },
-        "active":{
-          "type":"number",
-          "example":0
-        },
-        "fiat_currency":{
-          "type":"string",
-          "description":"Chosen fiat currency.",
-          "example":"USD"
-        },
-        "cid":{
-          "type":"string",
-          "example":"58558087372"
-        },
-        "cid_date":{
-          "type":"string",
-          "example":"2018-07-21"
-        },
-        "mseq":{
-          "type":"string",
-          "example":"2"
-        },
-        "gid":{
-          "type":"number",
-          "example":0
-        },
-        "flags":{
-          "type":"number",
-          "example":0
-        },
-        "price_aux_limit":{
-          "type":"string",
-          "example":"0.00000000"
-        },
-        "type_prev":{
-          "type":"number",
-          "example":0
-        },
-        "tif":{
-          "type":"string",
-          "example":"3570"
-        },
-        "vPair":{
-          "type":"string",
-          "example":"ETHUSD"
-        },
-        "meta":{
-          "$ref":"#/definitions/meta"
-        },
-        "symbol":{
-          "type":"string",
-          "description":"Selected trading pair.",
-          "example":"tETHUSD"
-        },
-        "t":{
-          "type":"number",
-          "description":"Unix timestamp.",
-          "example":1532375571000
+        "active": { "type": "number", "example": 0 },
+        "cid": { "type": "string", "example": "58558087372" },
+        "gid": { "type": "number", "example": 0 },
+        "meta": {
+          "type": "object",
+          "description": "Contains metadata $F15 and auth.",
+          "properties": {
+            "orderId": {
+              "type": "string",
+              "description": "Id for the order. This can be used for orderId when calling cancelOrder or getOrder",
+              "example": "L1tarX5wUem"
+            },
+            "auth": {
+              "type": "string",
+              "example": "0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
+            },
+            "user": {
+              "type": "string",
+              "example": "0x97ebb3391b30f495ce8cb97857db9b72d3e9dbcb"
+            }
+          }
         }
       }
     },
@@ -1550,41 +1525,38 @@
         }
       }
     },
-    "starkOrder":{
-      "type":"object",
-      "description":"Stark order related meta information.",
-      "properties":{
-        "vaultIdSell":{
-          "type":"number",
-          "description":"The vault ID of the seller."
+    "starkOrder": {
+      "type": "object",
+      "description": "Stark order related meta information.",
+      "properties": {
+        "vaultIdSell": {
+          "type": "number",
+          "description": "The vault ID of the seller."
         },
-        "vaultIdBuy":{
-          "type":"number",
-          "description":"The vault ID of the buyer."
+        "vaultIdBuy": {
+          "type": "number",
+          "description": "The vault ID of the buyer."
         },
-        "amountSell":{
-          "type":"string",
-          "description":"The total amount to be sold."
+        "amountSell": {
+          "type": "string",
+          "description": "The total amount to be sold."
         },
-        "amountBuy":{
-          "type":"string",
-          "description":"The total amount to be bought."
+        "amountBuy": {
+          "type": "string",
+          "description": "The total amount to be bought."
         },
-        "tokenSell":{
-          "type":"string",
-          "description":"The Stark token ID for the token being sold."
+        "tokenSell": {
+          "type": "string",
+          "description": "The Stark token ID for the token being sold."
         },
-        "tokenBuy":{
-          "type":"string",
-          "description":"The Stark token ID for the token being bought."
+        "tokenBuy": {
+          "type": "string",
+          "description": "The Stark token ID for the token being bought."
         },
-        "nonce":{
-          "type":"number",
-          "description":"Nonce value."
-        },
-        "expirationTimestamp":{
-          "type":"number",
-          "description":"Expiration timestamp of the order."
+        "nonce": { "type": "number", "description": "Nonce value." },
+        "expirationTimestamp": {
+          "type": "number",
+          "description": "Expiration timestamp of the order."
         }
       }
     },
@@ -1659,7 +1631,46 @@
           "description": "The cost per unit.",
           "example": 1000
         },
-        "meta": { "$ref": "#/definitions/submitOrderMeta" },
+        "meta": {
+          "type": "object",
+          "description": "A set of meta values.",
+          "example": {
+            "starkOrder": {
+              "vaultIdSell": 1000002,
+              "vaultIdBuy": 1000001,
+              "amountSell": "97400000",
+              "amountBuy": "100000000000000000",
+              "tokenSell": "0x2",
+              "tokenBuy": "0x1",
+              "nonce": 0,
+              "expirationTimestamp": 438947
+            },
+            "starkMessage": "597f31e19f2273413833ed1408edd7a2c60e9f82422852a1be7d11049be3268",
+            "ethAddress": "0x341E46a49F15785373edE443Df0220DEa6a41Bbc",
+            "starkPublicKey": {
+              "x": "6d840e6d0ecfcbcfa83c0f704439e16c69383d93f51427feb9a4f2d21fbe075",
+              "y": "58f7ce5eb6eb5bd24f70394622b1f4d2c54ebca317a3e61bf9f349dccf166cf"
+            },
+            "starkSignature": {
+              "r": "5d14357fcf8f489218de0855267c6f64bc463135debf62680ad796e63cd6d3b",
+              "s": "786ab874d91e3a5871134955fcb768914754760a0ada326af67f758f32819cf",
+              "recoveryParam": 0
+            }
+          },
+          "properties": {
+            "starkOrder": { "$ref": "#/definitions/starkOrder" },
+            "starkMessage": {
+              "type": "string",
+              "description": "Stark Message ID."
+            },
+            "ethAddress": {
+              "type": "string",
+              "description": "The Ethereum public address."
+            },
+            "starkPublicKey": { "$ref": "#/definitions/tokens" },
+            "starkSignature": { "$ref": "#/definitions/tokens" }
+          }
+        },
         "protocol": { "type": "string", "enum": ["stark"] },
         "partnerId": { "type": "string" },
         "feeRate": { "type": "string" }
@@ -1723,6 +1734,46 @@
           "type": "string",
           "description": "The date and time when the order was activated.",
           "example": "2020-05-09T18:29:56.944Z"
+        },
+        "meta": {
+          "type": "object",
+          "description": "A set of meta values.",
+          "example": {
+            "starkOrder": {
+              "vaultIdSell": 1000002,
+              "vaultIdBuy": 1000001,
+              "amountSell": "97400000",
+              "amountBuy": "100000000000000000",
+              "tokenSell": "0x2",
+              "tokenBuy": "0x1",
+              "nonce": 0,
+              "expirationTimestamp": 438947
+            },
+            "starkMessage": "597f31e19f2273413833ed1408edd7a2c60e9f82422852a1be7d11049be3268",
+            "ethAddress": "0x341E46a49F15785373edE443Df0220DEa6a41Bbc",
+            "starkPublicKey": {
+              "x": "6d840e6d0ecfcbcfa83c0f704439e16c69383d93f51427feb9a4f2d21fbe075",
+              "y": "58f7ce5eb6eb5bd24f70394622b1f4d2c54ebca317a3e61bf9f349dccf166cf"
+            },
+            "starkSignature": {
+              "r": "5d14357fcf8f489218de0855267c6f64bc463135debf62680ad796e63cd6d3b",
+              "s": "786ab874d91e3a5871134955fcb768914754760a0ada326af67f758f32819cf",
+              "recoveryParam": 0
+            }
+          },
+          "properties": {
+            "starkOrder": { "$ref": "#/definitions/starkOrder" },
+            "starkMessage": {
+              "type": "string",
+              "description": "Stark Message ID."
+            },
+            "ethAddress": {
+              "type": "string",
+              "description": "The Ethereum public address."
+            },
+            "starkPublicKey": { "$ref": "#/definitions/tokens" },
+            "starkSignature": { "$ref": "#/definitions/tokens" }
+          }
         }
       }
     },
