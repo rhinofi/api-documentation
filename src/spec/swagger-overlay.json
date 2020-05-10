@@ -653,17 +653,60 @@
             "examples":{
               "application/json":[
                 {
-                  "_id":"5b56333fd952c07b351c5940",
-                  "id":"1151079509",
-                  "type":"EXCHANGE LIMIT",
-                  "pair":"ETHUSD",
-                  "status":"CANCELED",
-                  "created_at":"2018-07-21 16:15:58",
-                  "updated_at":"2018-07-23 19:52:51",
-                  "user_id":5,
-                  "amount":"-0.10000000",
-                  "price":"10000.00000000",
-                  "originalamount":"-0.10000000"
+                  "_id": "L1tarX5wUem",
+                  "_sl": 6,
+                  "amount": -0.3,
+                  "cid": 1589036430386,
+                  "gid": null,
+                  "hidden": 0,
+                  "id": 1187541968,
+                  "meta": {
+                    "user": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
+                    "orderId": "L1tarX5wUem",
+                    "trustless": true,
+                    "auth": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547"
+                  },
+                  "mtsCreate": 1589048996882,
+                  "mtsTIF": 1800000000000,
+                  "mtsUpdate": 1589048996893,
+                  "price": 200,
+                  "priceAvg": 0,
+                  "routing": "API>BFX",
+                  "status": "ACTIVE",
+                  "symbol": "tETHUSD",
+                  "type": "EXCHANGE LIMIT",
+                  "created_at": "2020-05-09T18:29:56.882Z",
+                  "updated_at": "2020-05-09T18:29:56.893Z",
+                  "amount_orig": -0.3,
+                  "pair": "tETHUSD"
+                },
+                {
+                  "_id": "DfHeLkAJTUZ",
+                  "_sl": 6,
+                  "amount": -0.3,
+                  "cid": 1588921358555,
+                  "gid": null,
+                  "hidden": 0,
+                  "id": 1187474568,
+                  "meta": {
+                    "auth": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
+                    "user": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
+                    "orderId": "DfHeLkAJTUZ",
+                    "trustless": true
+                  },
+                  "mtsCreate": 1588948548000,
+                  "mtsTIF": 1800000000000,
+                  "mtsUpdate": 1588948549000,
+                  "price": 250,
+                  "priceAvg": 0,
+                  "routing": "API>BFX",
+                  "status": "ACTIVE",
+                  "symbol": "tETHUSD",
+                  "type": "EXCHANGE LIMIT",
+                  "created_at": "2020-05-08T14:35:48.000Z",
+                  "updated_at": "2020-05-08T14:35:49.000Z",
+                  "amount_orig": -0.3,
+                  "pair": "tETHUSD"
                 }
               ]
             }
@@ -858,14 +901,55 @@
         }
       }
     },
-    "/v1/trading/w/submitOrder":{
-      "post":{
-        "title":"Submit Order",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":{
-                "orderId":"1a2b3c"
+    "/v1/trading/w/submitOrder": {
+      "post": {
+        "title": "Submit Order",
+        "responses": {
+          "default": {
+            "examples": {
+              "application/json": {
+                "pending": false,
+                "canceled": false,
+                "totalSold": "0",
+                "totalBought": "0",
+                "totalFilled": 0,
+                "_id": "L1tarX5wUem",
+                "user": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
+                "symbol": "ETH:USDT",
+                "amount": -0.3,
+                "type": "EXCHANGE LIMIT",
+                "price": 200,
+                "feeRate": 0.002,
+                "meta": {
+                  "ethAddress": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
+                  "starkPublicKey": {
+                    "x": "011fa6fb299fb4e15a1dc34eea7f88409a9ec6b2f65a6e452dbd97069a446316",
+                    "y": "f27424f981f2a5ce730a4d3ee5ad56e3017f540fa765d8a92af595a09e35e5"
+                  },
+                  "starkOrder": {
+                    "vaultIdSell": 626818268,
+                    "vaultIdBuy": 1347515587,
+                    "amountSell": "30000000",
+                    "amountBuy": "59880000",
+                    "tokenSell": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba6",
+                    "tokenBuy": "0x180bef8ae3462e919489763b84dc1dc700c45a249dec4d1136814a639f2dd7b",
+                    "nonce": 974794186,
+                    "expirationTimestamp": 442122
+                  },
+                  "starkMessage": "71af6cd21a0fb88a4f10203db563406334eb1f8f196079be6be13cb84fb24e2",
+                  "starkSignature": {
+                    "r": "597763ff1e4730a09416fd09953c3c859f57d0de34e4505ea933ce07cff7290",
+                    "s": "79ac899c23971b85046eacb9ad1ab5b03f3adb1526da5e146b8f5fd1d549ffe",
+                    "recoveryParam": 1
+                  }
+                },
+                "tokenSell": "ETH",
+                "tokenSellLockedBalance": "30000000",
+                "tokenBuy": "USDT",
+                "createdAt": "2020-05-09T18:29:56.603Z",
+                "updatedAt": "2020-05-09T18:29:56.945Z",
+                "activatedAt": "2020-05-09T18:29:56.944Z",
+                "fills": []
               }
             }
           }
