@@ -399,7 +399,16 @@
     "/v1/trading/r/USDRanking":false,
     "/v1/trading/r/estimatedNextBatchTime":{
       "get":{
-        "title": "Estimated Next Batch Time"
+        "title": "Estimated Next Batch Time",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "estimatedTime": 600
+              }
+            }
+          }
+        }
       }
     },
     "/v1/trading/r/last24HoursVolume":false,
@@ -438,38 +447,50 @@
           "default":{
             "examples":{
               "application/json":{
-                "DVF":{
-                  "exchangeSymbols":[
+                "DVF": {
+                  "defaultFeeRate": 0.002,
+                  "deversifiAddress": "0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
+                  "starkExContractAddress": "0x94E84779D79E34b9166C850c3123d42C273F8843",
+                  "exchangeSymbols": [
                     "tETHUSD",
                     "tZRXUSD",
-                    "tZRXETH"
+                    "tZRXETH",
+                    "tBTCUSD"
                   ],
-                  "exchangeAddress":"0xBd25cD867C304F079E696CBE44D958f3d3B683ba",
-                  "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
-                  "tempStarkVaultId":1,
-                  "defaultFeeRate": 0.002,
+                  "tempStarkVaultId": 1
                 },
-                "tokenRegistry":{
-                  "ETH":{
-                    "decimals":18,
-                    "minOrderSize":0.1,
-                    "starkTokenId":"0x1"
+                "tokenRegistry": {
+                  "ETH": {
+                    "decimals": 18,
+                    "quantization": 10000000000,
+                    "minOrderSize": 0.05,
+                    "starkTokenId": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba6"
                   },
-                  "USDT":{
-                    "decimals":6,
-                    "tokenAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7",
-                    "minOrderSize":25,
-                    "settleSpread":-0.026,
-                    "starkTokenId":"0x2"
+                  "USDT": {
+                    "decimals": 6,
+                    "quantization": 1,
+                    "minOrderSize": 10,
+                    "settleSpread": 0,
+                    "starkTokenId": "0x180bef8ae3462e919489763b84dc1dc700c45a249dec4d1136814a639f2dd7b",
+                    "tokenAddress": "0x4c5f66596197a86fb30a2435e2ef4ddcb39342c9"
                   },
-                  "ZRX":{
-                    "decimals":16,
-                    "tokenAddress":"0xe41d2489571d322189246dafa5ebde1f4699f498",
-                    "minOrderSize":40,
-                    "starkTokenId":"0x22e6d888f32dea3c6e8ba64609a314eebbe1eb704e9e9febe368b0bacb21efe"
+                  "ZRX": {
+                    "decimals": 18,
+                    "quantization": 10000000000,
+                    "minOrderSize": 20,
+                    "starkTokenId": "0x3901ee6a6c5ac0f6e284f4273b961b7e9f29d25367d31d90b75820473a202f7",
+                    "tokenAddress": "0xcd077abedd831a3443ffbe24fb76661bbb17eb69"
+                  },
+                  "BTC": {
+                    "decimals": 18,
+                    "quantization": 10000000000,
+                    "minOrderSize": 0.0004,
+                    "starkTokenId": "0x21ef21d6b234cd669edd702dd3d1d017be888337010b950ae3679eb4194b4bc",
+                    "tokenAddress": "0x40d8978500bf68324a51533cd6a21e3e59be324a"
                   }
                 }
               }
+              
             }
           }
         }
@@ -573,40 +594,55 @@
           "default":{
             "examples":{
               "application/json":{
-                "DVF":{
-                  "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
-                  "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
-                  "exchangeSymbols":[
+                "DVF": {
+                  "defaultFeeRate": 0.002,
+                  "deversifiAddress": "0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
+                  "starkExContractAddress": "0x94E84779D79E34b9166C850c3123d42C273F8843",
+                  "exchangeSymbols": [
                     "tETHUSD",
                     "tZRXUSD",
-                    "tZRXETH"
+                    "tZRXETH",
+                    "tBTCUSD"
                   ],
-                  "tempStarkVaultId":1,
-                  "defaultFeeRate": 0.002,
+                  "tempStarkVaultId": 1
                 },
-                "tokenRegistry":{
-                  "ETH":{
-                    "decimals":18,
-                    "minOrderSize":0.1,
-                    "starkTokenId":"0x1"
+                "tokenRegistry": {
+                  "ETH": {
+                    "decimals": 18,
+                    "quantization": 10000000000,
+                    "minOrderSize": 0.05,
+                    "starkTokenId": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba6",
+                    "starkVaultId": 1937164364
                   },
-                  "USD":{
-                    "decimals":6,
-                    "minOrderSize":25,
-                    "settleSpread":-0.026,
-                    "starkTokenId":"0x2",
-                    "tokenAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7"
+                  "USDT": {
+                    "decimals": 6,
+                    "quantization": 1,
+                    "minOrderSize": 10,
+                    "settleSpread": 0,
+                    "starkTokenId": "0x180bef8ae3462e919489763b84dc1dc700c45a249dec4d1136814a639f2dd7b",
+                    "tokenAddress": "0x4c5f66596197a86fb30a2435e2ef4ddcb39342c9",
+                    "starkVaultId": 4937154363
                   },
-                  "ZRX":{
-                    "decimals":18,
-                    "minOrderSize":40,
-                    "starkTokenId":"22e6d888f32dea3c6e8ba64609a314eebbe1eb704e9e9febe368b0bacb21efe",
-                    "tokenAddress":"0xe41d2489571d322189246dafa5ebde1f4699f498"
+                  "ZRX": {
+                    "decimals": 18,
+                    "quantization": 10000000000,
+                    "minOrderSize": 20,
+                    "starkTokenId": "0x3901ee6a6c5ac0f6e284f4273b961b7e9f29d25367d31d90b75820473a202f7",
+                    "tokenAddress": "0xcd077abedd831a3443ffbe24fb76661bbb17eb69"
+                  },
+                  "BTC": {
+                    "decimals": 18,
+                    "quantization": 10000000000,
+                    "minOrderSize": 0.0004,
+                    "starkTokenId": "0x21ef21d6b234cd669edd702dd3d1d017be888337010b950ae3679eb4194b4bc",
+                    "tokenAddress": "0x40d8978500bf68324a51533cd6a21e3e59be324a",
+                    "starkVaultId": 18264364
                   }
                 },
-                "isRegistered":"true",
+                "isRegistered":true,
                 "ethAddress":"0x341e46a49f15785373ede443df0220dea6a41bbc"
               }
+              
             }
           }
         }
@@ -619,7 +655,35 @@
     },
     "/v1/trading/w/withdraw":{
       "post":{
-        "title":"New Withdrawal"
+        "title":"New Withdrawal",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "readyToWithdrawOnChain": false,
+                "user": "0x52d92399dfb73df49383614170880ba09b66338e",
+                "token": "ETH",
+                "amount": "210000000",
+                "meta": {
+                  "starkKey": "00e0326547480bc8bf0fb143f08d23d3ff85aa450e6253bb721dee1410a83b73",
+                  "starkVaultId": 1937164364,
+                  "starkTokenId": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba6",
+                  "expireTime": 442438,
+                  "starkMessage": "6873517319dc0130cc6910da4bb81ed4cbb800ace9ea759bb46652f0ec21093",
+                  "starkSignature": {
+                    "r": "59609e8bd25f3a434734b73a28bf581d7bfa211dc8288c235361a9833988272",
+                    "s": "5ea8e9bce747bc40ac9b20b38b5905cdd610d5a18145f830d97b2dbcce573a2",
+                    "recoveryParam": 1
+                  },
+                  "nonce": 895561747
+                },
+                "_id": "JUJRGVb3Wib",
+                "createdAt": "2020-05-22T22:23:36.592Z",
+                "updatedAt": "2020-05-22T22:23:36.592Z"
+              }
+            }
+          }
+        }
       }
     },
     "/v1/trading/r/getWithdrawal":{
@@ -790,21 +854,27 @@
           "default":{
             "examples":{
               "application/json":{
-                "isPostedOffchain":false,
-                "isConfirmedOnChain":false,
-                "_id":"5e335f88bdcd70001e52d0a7",
-                "starkVaultId":1000003,
-                "starkKey":"6d840e6d0ecfcbcfa83c0f704439e16c69383d93f51427feb9a4f2d21fbe075",
-                "starkMessage":"1d980821dab7adf8f422a4754b031585e663bb1f70d8adb550cde8a628fdbbb",
-                "starkSignature":{
-                  "r":"1f38f551d798562c16d28733c7e3ff6850898d82f0ac9ccd39d373303b1778c",
-                  "s":"518560420e52a37e9f580f024fc0fe8572cb2f5437a839075bbf4b2b123d572",
-                  "recoveryParam":1
+                "pending": true,
+                "user": "0x52d92399dfb73df49383614170880ba09b66338e",
+                "token": "ETH",
+                "amount": "1020400",
+                "meta": {
+                  "ethAddress": "0x52d92399dfb73df49383614170880ba09b66338e",
+                  "starkKey": "00e0326547480bc8bf0fb143f08d23d3ff85aa450e6253bb721dee1410a83b73",
+                  "starkVaultId": 1937164364,
+                  "starkTokenId": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba6",
+                  "expireTime": 442425,
+                  "starkMessage": "598f0f08033ca8bf16552d460b2510715c689d630ef5480d50c17ada5541821",
+                  "starkSignature": {
+                    "r": "5a00d9ebdfac03fdbe55f393b34fd252447cdee79179c8c0a5227b2fe2e577",
+                    "s": "58e2d3972f1d482b26440197b518bb0bdeb50d03750e731118bafe3a819989d",
+                    "recoveryParam": 1
+                  },
+                  "nonce": 162543006
                 },
-                "starkTokenId":"0x3",
-                "amount":1,
-                "ethAddress":"0x341e46a49f15785373ede443df0220dea6a41bbc",
-                "createdAt":"2020-01-30T22:58:16.720Z"
+                "_id": "FyqJSSXFXPU",
+                "createdAt": "2020-05-22T09:43:36.348Z",
+                "updatedAt": "2020-05-22T09:43:36.348Z"
               }
             }
           }
@@ -850,7 +920,7 @@
                     "tokenAddress":"0xe41d2489571d322189246dafa5ebde1f4699f498"
                   }
                 },
-                "spareStarkVaultId":686986452,
+                "isRegistered":true,
                 "ethAddress":"0x341e46a49f15785373ede443df0220dea6a41bbc"
               }
             }
@@ -860,54 +930,61 @@
     },
     "/v1/trading/w/submitOrder": {
       "post": {
-        "title": "Submit Order",
+        "summary": "This authenticated endpoint is used to submit an order.",
+        "operationId": "postV1TradingWSubmitorder",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Model2"
+            }
+          }
+        ],
+        "tags": ["Trading"],
         "responses": {
           "default": {
             "examples": {
-              "application/json": {
-                "pending": false,
-                "canceled": false,
-                "totalSold": "0",
-                "totalBought": "0",
-                "totalFilled": 0,
-                "_id": "L1tarX5wUem",
-                "user": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
-                "symbol": "ETH:USDT",
-                "amount": -0.3,
+              "application/json":{
+                "pending": true,
+                "_id": "",
+                "user": "0xc2fff68dbdb8c0dcceb2b84a921cc2c8004104fa",
+                "symbol": "ZRX:ETH",
+                "amount": 50,
                 "type": "EXCHANGE LIMIT",
-                "price": 200,
+                "price": 0.005,
                 "feeRate": 0.002,
+                "partnerId": "P1",
                 "meta": {
-                  "ethAddress": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
+                  "ethAddress": "0xc2fff68dbdb8c0dcceb2b84a921cc2c8004104fa",
                   "starkPublicKey": {
-                    "x": "011fa6fb299fb4e15a1dc34eea7f88409a9ec6b2f65a6e452dbd97069a446316",
-                    "y": "f27424f981f2a5ce730a4d3ee5ad56e3017f540fa765d8a92af595a09e35e5"
+                    "x": "07fc758ce6d8591c46b34c4c94f37c81f9a2763cf7b4abce7779bfeea582a754",
+                    "y": "12e340b350a82322bae0106b952d5b9a3a80265dfa4228acb8c4e309bacd826"
                   },
                   "starkOrder": {
-                    "vaultIdSell": 626818268,
-                    "vaultIdBuy": 1347515587,
-                    "amountSell": "30000000",
-                    "amountBuy": "59880000",
+                    "vaultIdSell": 1845686579,
+                    "vaultIdBuy": 1671627635,
+                    "amountSell": "25000000",
+                    "amountBuy": "4990000000",
                     "tokenSell": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba6",
-                    "tokenBuy": "0x180bef8ae3462e919489763b84dc1dc700c45a249dec4d1136814a639f2dd7b",
-                    "nonce": 974794186,
-                    "expirationTimestamp": 442122
+                    "tokenBuy": "0x3901ee6a6c5ac0f6e284f4273b961b7e9f29d25367d31d90b75820473a202f7",
+                    "nonce": 143600912,
+                    "expirationTimestamp": 442384
                   },
-                  "starkMessage": "71af6cd21a0fb88a4f10203db563406334eb1f8f196079be6be13cb84fb24e2",
+                  "starkMessage": "6157ce5d1df3572f43cfae5742454988218e4106797f0fcbe820a984215803e",
                   "starkSignature": {
-                    "r": "597763ff1e4730a09416fd09953c3c859f57d0de34e4505ea933ce07cff7290",
-                    "s": "79ac899c23971b85046eacb9ad1ab5b03f3adb1526da5e146b8f5fd1d549ffe",
-                    "recoveryParam": 1
+                    "r": "34fbf0f9eab6b26388e96abfaa9903c257e64f268ab0a3246ac2bcbfc3f5154",
+                    "s": "4836111bf1cb0683b6145ebf667ec01030d7e25d3832f28fadb0dfcd9522b43",
+                    "recoveryParam": 0
                   }
                 },
                 "tokenSell": "ETH",
-                "tokenSellLockedBalance": "30000000",
-                "tokenBuy": "USDT",
-                "createdAt": "2020-05-09T18:29:56.603Z",
-                "updatedAt": "2020-05-09T18:29:56.945Z",
-                "activatedAt": "2020-05-09T18:29:56.944Z",
-                "fills": []
+                "tokenSellLockedBalance": "25000000",
+                "tokenBuy": "ZRX",
+                "createdAt": "2020-05-20T16:24:36.452Z",
+                "updatedAt": "2020-05-20T16:24:36.452Z"
               }
+              
             }
           }
         }
