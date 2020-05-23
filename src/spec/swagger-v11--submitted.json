@@ -153,11 +153,11 @@
           "Trading"
         ],
         "responses":{
-          "default":{
-            "schema":{
-              "type":"string"
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/feeRateResponse"
             },
-            "description":"Successful"
+            "description": "Returns the fee rate for the user based on past trading volume."
           }
         }
       }
@@ -364,10 +364,10 @@
         "operationId":"postV1TradingRGetvaultid",
         "parameters":[
           {
-            "in":"body",
-            "name":"body",
-            "schema":{
-              "$ref":"#/definitions/getPendingWithdrawalsPayload"
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/getVaultIdPayload"
             }
           }
         ],
@@ -375,11 +375,11 @@
           "Trading"
         ],
         "responses":{
-          "default":{
-            "schema":{
-              "type":"string"
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/getVaultIdResponse"
             },
-            "description":"Successful"
+            "description": "Returns a the vault id allocated for the requested token."
           }
         }
       }
@@ -605,6 +605,37 @@
     "tokens":{
       "type":"object"
     },
+    "getVaultIdPayload": {
+      "type": "object",
+      "properties": {
+        "nonce": {
+          "type": "number",
+          "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+          "example": 1776156902.058
+        },
+        "signature": {
+          "type": "string",
+          "description": "The signature obtained by signing the nonce with your private ethereum key.",
+          "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+        },
+        "token": {
+          "type": "string",
+          "description": "The new token for which a new vault Id needs to be allocated.",
+          "example": "DAI"
+        }
+      },
+      "required": ["nonce", "signature"]
+    },
+    "getVaultIdResponse": {
+      "type":"object",
+      "properties":{
+        "":{
+          "type": "number",
+          "description": "The vault id for the requested vault.",
+          "example": 1851736
+        }
+      }
+    },
     "24HoursVolumeResponse":{
       "type":"object",
       "properties":{
@@ -625,6 +656,36 @@
           "type":"string",
           "description":"The end date and time for the volume presented.",
           "example":"2020-01-01T00:00:00.714Z"
+        }
+      }
+    },
+    "feeRateResponse": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "The Ethereum address of the user verified by nonce and signature.",
+          "example": "0x116f494a2ce567067f319fea1c9f294f23d2fe68"
+        },
+        "timestamp": {
+          "type": "number",
+          "description": "Timestamp in milliseconds since epoch.",
+          "example": 1590263332427
+        },
+        "fees": {
+          "type": "object",
+          "properties": {
+            "maker": {
+              "type": "number",
+              "description": "The fee basis points for maker orders (adding bids or offers to the order book).",
+              "example": 15
+            },
+            "taker": {
+              "type": "number",
+              "description": "The fee basis points for taker orders (removing liquidity from the order book).",
+              "example": 20
+            }
+          }
         }
       }
     },
@@ -672,7 +733,7 @@
         "estimatedTime":{
           "type":"number",
           "description":"The number of seconds until the batch is estimated to be ready.",
-          "example":608
+          "example":600
         }
       }
     },
