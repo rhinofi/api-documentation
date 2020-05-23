@@ -1,13 +1,8 @@
 {
   "paths":{
-    "/v1/pub/last24HoursVolume":{
+    "/v1/trading/r/last24HoursVolume":{
       "get":{
         "title":"24hr Trading Volume",
-        "summary":"Request information regarding the trading volume for the last 24 hours. The request returns the overall trading volume details in USD as well as the trading volume per token in USD and the native token.",
-        "operationId":"getV1PubLast24HoursVolume",
-        "tags":[
-          "Market"
-        ],
         "responses":{
           "default":{
             "description":"Returns the trading volume of the last 24 hours.",
@@ -22,9 +17,17 @@
                   "type":"object",
                   "description":"List of tokens."
                 },
+                "symbols":{
+                  "type":"object",
+                  "description":"List of trading pairs."
+                },
                 "tokenAmount":{
                   "type":"number",
                   "description":"The trading volume for a particular token."
+                },
+                "lastUSDPrice":{
+                  "type":"number",
+                  "description":"The price in USD of the token at the most recent trade."
                 },
                 "USDValue":{
                   "type":"number",
@@ -38,9 +41,23 @@
             },
             "examples":{
               "application/json":{
-                "TotalUSDValue":49060.93499764386,
+                "TotalUSDValue": 143437000,
+                "symbols":{
+                  "ETH:USDT": {
+                    "tokenAmount": 9612.45,
+                    "USDVolume": 20437000,
+                    "lastUSDPrice": 1145.9,
+                    "lastTrade": "2020-05-22T16:37:37.441Z"
+                  },
+                  "BTC:USDT": {
+                    "tokenAmount": 12244.89,
+                    "USDVolume": 123000000,
+                    "lastUSDPrice": 10045,
+                    "lastTrade": "2020-05-22T16:37:37.441Z"
+                  }
+                },
                 "tokens":{
-                  "USD":{
+                  "USDT":{
                     "tokenAmount":2956.895948,
                     "USDValue":2956.895948
                   },
@@ -68,7 +85,7 @@
         }
       }
     },
-    "/v1/pub/24HoursVolume/{Year}/{Month}/{Day}":{
+    "/v1/trading/r/24HoursVolume/{Year}/{Month}/{Day}":{
       "get":{
         "title":"Trading Volume History",
         "summary":"Request information regarding the trading volume for a specific date. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token.",
@@ -411,7 +428,6 @@
         }
       }
     },
-    "/v1/trading/r/last24HoursVolume":false,
     "/v1/trading/r/tokenRanking":false,
     "/v1/trading/r/getBalance":{
       "post":{
@@ -930,6 +946,7 @@
     },
     "/v1/trading/w/submitOrder": {
       "post": {
+        "title": "Submit Order",
         "summary": "This authenticated endpoint is used to submit an order.",
         "operationId": "postV1TradingWSubmitorder",
         "parameters": [
