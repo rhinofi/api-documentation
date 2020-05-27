@@ -28,7 +28,7 @@ export const Intro = (props) => (
           alt="articles"
           text="Articles"
         />
-        <a target="blank" href="https://github.com/">
+        <a target="blank" href="https://github.com/deversifi">
           <BigButton>
             <img src={github} alt="github"/>
             <LinkButtonText>Github</LinkButtonText>
