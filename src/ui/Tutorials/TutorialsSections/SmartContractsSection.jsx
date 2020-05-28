@@ -21,18 +21,12 @@ export const SmartContractsSection = () => (
     </Text>
 
     <Text>
-      ETH Deposit Contract - 0x00…. - Etherscan link  <br/>
-      USDT Deposit Contract - 0x00…. - Etherscan link <br/>
-      DAI Deposit Contract - 0x00…. - Etherscan link <br/>
       Exchange Contract - 0x00…. - Etherscan link <br/>
     </Text>
   </SubSection>
   <SubSection id="RopstenContracts" className="section">
     <SubTitle>Ropsten Contracts</SubTitle>
     <Text>
-      ETH Deposit Contract - 0x00…. - Etherscan link  <br/>
-      USDT Deposit Contract - 0x00…. - Etherscan link <br/>
-      DAI Deposit Contract - 0x00…. - Etherscan link <br/>
       Exchange Contract - 0x00…. - Etherscan link <br/>
     </Text>
   </SubSection>

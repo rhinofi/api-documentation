@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from '../common/Link';
+import {Link, GreenLink} from '../common/Link';
 import {Text} from '../common/Text';
 import {Code} from '../common/Code';
 import {Title} from '../common/Title';
@@ -13,8 +13,8 @@ export const Description = ({method, title, link, description}) => (
         <StyledTitle>{title}</StyledTitle>
       </HeaderRow>
       <HeaderRow>
-        <Text>Contribute to this endpoint on <Link href="#">Github</Link></Text>
-        <TutorialsLink href="#">Related articles</TutorialsLink>
+        <Text>Contribute to this endpoint on <Link href="https://github.com/deversifi/api-documentation">Github</Link></Text>
+        <TutorialsLink href="/articles#LibrariesandExamples">Related articles</TutorialsLink>
       </HeaderRow>
     </Header>
     <LinkWrapper>
