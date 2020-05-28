@@ -90,6 +90,11 @@ export const TutorialsLinks = () => {
       <TutorialsLink
         currentSection={currentSection}
         setCurrentSection={setCurrentSection}
+        text="Websocket Market Data"
+      />
+      <TutorialsLink
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
         text="USD Tether Markets"
       />
     </ul>
