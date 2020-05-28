@@ -12,6 +12,7 @@ import {DevelopmentEnvironmentsSection} from './TutorialsSections/DevelopmentEnv
 import {StarkWareSettlementSection} from './TutorialsSections/StarkWareSettlementSection';
 import {USDTetherMarketsSection} from './TutorialsSections/USDTetherMarketsSection';
 import {WebsocketMarketDataSection} from './TutorialsSections/WebsocketMarketDataSection';
+import {TradingKeysSection} from './TutorialsSections/TradingKeysSection';
 import {DocsLink} from './DocsLink';
 import {ArticlesSearch} from './ArticlesSearch';
 

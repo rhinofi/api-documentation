@@ -67,6 +67,11 @@ export const TutorialsLinks = () => {
       <TutorialsLink
         currentSection={currentSection}
         setCurrentSection={setCurrentSection}
+        text="Trading Keys"
+      />
+      <TutorialsLink
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
         text="StarkWare Settlement Layer"
       >
         <SubList>
