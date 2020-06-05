@@ -21,13 +21,13 @@ export const SmartContractsSection = () => (
     </Text>
 
     <Text>
-      Exchange Contract - 0x00…. - Etherscan link <br/>
+      Exchange Contract - 0x5d22045DAcEAB03B158031eCB7D9d06Fad24609b <br/>
     </Text>
   </SubSection>
   <SubSection id="RopstenContracts" className="section">
     <SubTitle>Ropsten Contracts</SubTitle>
     <Text>
-      Exchange Contract - 0x00…. - Etherscan link <br/>
+      Exchange Contract - 0x5783323064dDa4A1ebe62defFeF46750BD2C560c <br/>
     </Text>
   </SubSection>
   </>
