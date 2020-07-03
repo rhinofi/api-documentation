@@ -12,6 +12,7 @@ import {DevelopmentEnvironmentsSection} from './TutorialsSections/DevelopmentEnv
 import {StarkWareSettlementSection} from './TutorialsSections/StarkWareSettlementSection';
 import {USDTetherMarketsSection} from './TutorialsSections/USDTetherMarketsSection';
 import {WebsocketMarketDataSection} from './TutorialsSections/WebsocketMarketDataSection';
+import {RestMarketDataSection} from './TutorialsSections/RestMarketDataSection';
 import {DocsLink} from './DocsLink';
 import {ArticlesSearch} from './ArticlesSearch';
 
@@ -36,6 +37,7 @@ export const TutorialsScreen = () => {
           <DevelopmentEnvironmentsSection/>
           <StarkWareSettlementSection/>
           <WebsocketMarketDataSection/>
+          <RestMarketDataSection/>
           <USDTetherMarketsSection/>
         </Main>
       </Content>
