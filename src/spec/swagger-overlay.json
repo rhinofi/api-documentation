@@ -1022,7 +1022,25 @@
                 "createdAt": "2020-05-20T16:24:36.452Z",
                 "updatedAt": "2020-05-20T16:24:36.452Z"
               }
-              
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/getGasPrice": {
+      "post": {
+        "title": "Get Gas Price",
+        "responses": {
+          "default": {
+            "examples": {
+              "application/json": {
+                "fast": 70000000000,
+                "fastWait": 0.5,
+                "average": 67000000000,
+                "averageWait": 1.4,
+                "cheap": 66000000000,
+                "cheapWait": 10.5
+              }
             }
           }
         }
