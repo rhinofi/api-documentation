@@ -602,7 +602,7 @@
     },
     "/v1/trading/r/getGasPrice":{
       "post":{
-        "summary":"Returns a range of gas prices to use with on chain transactions.",
+        "summary":"Returns a range of gas prices in Wei to use with on chain transactions.",
         "operationId":"getV1TradingRGetGasPrice",
         "tags":[
           "Trading"
@@ -1853,32 +1853,32 @@
       "properties":{
         "fast":{
           "type":"number",
-          "description":"Gas price for quickest onchain transaction confirmation.",
+          "description":"Gas price in Wei for quickest onchain transaction confirmation.",
           "example":70000000000
         },
         "average":{
           "type":"number",
-          "description":"Average gas price for average onchain transaction speed.",
+          "description":"Average gas price in Wei for average onchain transaction speed.",
           "example":67000000000
         },
         "cheap":{
           "type":"number",
-          "description":"Low gas price and very slow transaction speed.",
+          "description":"Low gas price in Wei and very slow transaction speed.",
           "example":66000000000
         },
         "fastWait":{
           "type":"number",
-          "description":"The approximate time for a transaction confirmation (fast option).",
+          "description":"The approximate time for a transaction confirmation when using fast as the gas price.",
           "example":0.5
         },
         "averageWait":{
           "type":"number",
-          "description":"The approximate time for a transaction confirmation (average option).",
+          "description":"The approximate time for a transaction confirmation when using average as the gas price.",
           "example":1.4
         },
         "cheapWait":{
           "type":"number",
-          "description":"The approximate time for a transaction confirmation (cheap option).",
+          "description":"The approximate time for a transaction confirmation when using cheap as the gas price.",
           "example":10.5
         }
       }
