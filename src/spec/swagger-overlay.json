@@ -89,7 +89,7 @@
       "get":{
         "title":"Trading Volume History",
         "summary":"Request information regarding the trading volume for a specific date. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token.",
-        "operationId":"getV1Pub24HoursVolume",
+        "operationId":"getV1TradingR24hoursvolume",
         "parameters":[
           {
             "in":"path",
@@ -172,14 +172,14 @@
         }
       }
     },
-    "/v1/pub/tokenRanking/{currency}":{
+    "/v1/trading/r/tokenRanking":{
       "get":{
         "title":"Volume ranking by token",
         "summary":"This returns a user ranking by trading volume for a chosen token. If the parameters startDate and endDate are provided, the ranking includes only trading volume within that window of time. All volumes are quoted in ETH.",
         "operationId":"getV1PubAllTimeVolumeTokenRanking",
         "parameters":[
           {
-            "in":"path",
+            "in":"query",
             "name":"currency",
             "type":"string",
             "required":true,
@@ -246,7 +246,7 @@
         }
       }
     },
-    "/v1/pub/USDRanking":{
+    "/v1/trading/r/USDRanking":{
       "get":{
         "title":"User ranking by volume",
         "summary":"This returns a user ranking by overall trading volume quoted in USD. If the parameters startDate and endDate are provided, the ranking includes only trading volume within that window of time.",
@@ -308,19 +308,73 @@
         }
       }
     },
-    "/v1/pub/30DaysVolume/{Address}":{
+    "/v1/trading/r/feeRate": {
+      "get": {
+        "title":"Get Fee Rate",
+        "summary": "Return current fee rate for a given address. This rate is dependent on the trading volume of the user.",
+        "operationId": "getV1TradingRFeerate",
+        "parameters": [
+          {
+            "type": "number",
+            "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+            "name": "nonce",
+            "in": "query",
+            "required": true,
+            "x-example": 1579901055575
+          },
+          {
+            "type": "string",
+            "description": "The signature obtained by signing the nonce with your private ethereum key.",
+            "name": "signature",
+            "in": "query",
+            "required": true,
+            "x-example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+          },
+          {
+            "type": "string",
+            "name": "token",
+            "in": "query",
+            "x-example": "ETH"
+          }
+        ],
+        "tags": ["Trading"],
+        "responses": {
+          "default": {
+            "examples": {
+              "application/json": {
+                "address": "0x116f494a2ce567067f319fea1c9f294f23d2fe68",
+                "timestamp": 1590263332427,
+                "fees": {
+                  "maker": 15,
+                  "taker": 20
+                }
+              }  
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/30DaysVolume": {
       "get":{
         "title":"User 30-day volume",
         "summary":"Request information regarding the trading volume of a specific address for the last 30 days. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token. Results are cached for 60 minutes.",
         "operationId":"getV1Pub30DaysVolumeSpecificAddress",
         "parameters":[
           {
-            "in":"path",
-            "name":"Address",
-            "type":"string",
-            "required":true,
-            "description":"This is the specific address for which the  30 day trading volume is requested for.",
-            "x-example":"0xfc898b18a70ce49579f8d79a32e29928c15b4bc8"
+            "type": "number",
+            "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+            "name": "nonce",
+            "in": "query",
+            "required": true,
+            "x-example": 1579901055575
+          },
+          {
+            "type": "string",
+            "description": "The signature obtained by signing the nonce with your private ethereum key.",
+            "name": "signature",
+            "in": "query",
+            "required": true,
+            "x-example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
           }
         ],
         "tags":[
@@ -332,7 +386,7 @@
             "schema":{
               "type":"object",
               "properties":{
-                "TotalUSDValue":{
+                "totalUSDValue":{
                   "type":"number",
                   "description":"The total trade volume in terms of USD."
                 },
@@ -382,53 +436,6 @@
         }
       }
     },
-    "/v1/trading/r/feeRate": {
-      
-      "get": {
-        "title":"Get Fee Rate",
-        "summary": "Return current fee rate for a given address. This rate is dependent on the trading volume of the user.",
-        "operationId": "getV1TradingRFeerate",
-        "parameters": [
-          {
-            "type": "number",
-            "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-            "name": "nonce",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "string",
-            "description": "The signature obtained by signing the nonce with your private ethereum key.",
-            "name": "signature",
-            "in": "query",
-            "required": true
-          },
-          {
-            "type": "string",
-            "name": "token",
-            "in": "query"
-          }
-        ],
-        "tags": ["Trading"],
-        "responses": {
-          "default": {
-            "examples": {
-              "application/json": {
-                "address": "0x116f494a2ce567067f319fea1c9f294f23d2fe68",
-                "timestamp": 1590263332427,
-                "fees": {
-                  "maker": 15,
-                  "taker": 20
-                }
-              }  
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/24HoursVolume":false,
-    "/v1/trading/r/30DaysVolume":false,
-    "/v1/trading/r/USDRanking":false,
     "/v1/trading/r/estimatedNextBatchTime":{
       "get":{
         "title": "Estimated Next Batch Time",
@@ -443,7 +450,6 @@
         }
       }
     },
-    "/v1/trading/r/tokenRanking":false,
     "/v1/trading/r/getBalance":{
       "post":{
         "title":"Balances",
@@ -887,6 +893,7 @@
     "/v1/trading/w/deposit":{
       "post":{
         "title":"New Deposit",
+        "operationId": "postV1TradingWDeposit",
         "responses":{
           "default":{
             "examples":{

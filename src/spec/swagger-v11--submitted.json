@@ -12,7 +12,7 @@
   },
   "tags":[],
   "paths":{
-    "/v1/trading/r/24HoursVolume":{
+    "/v1/trading/r/24HoursVolume/{Year}/{Month}/{Day}":{
       "get":{
         "summary":"Request information regarding the trading volume for a specific date. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token.",
         "operationId":"getV1TradingR24hoursvolume",
@@ -61,13 +61,15 @@
             "type":"number",
             "name":"nonce",
             "in":"query",
-            "required":true
+            "required":true,
+            "example": 1579901055575
           },
           {
             "type":"string",
             "name":"signature",
             "in":"query",
-            "required":true
+            "required":true,
+            "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
           }
         ],
         "tags":[
@@ -139,14 +141,24 @@
           {
             "type":"number",
             "name":"nonce",
+            "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
             "in":"query",
-            "required":true
+            "required":true,
+            "example": 1579901055575
           },
           {
             "type":"string",
             "name":"signature",
             "in":"query",
-            "required":true
+            "required":true,
+            "description": "The signature obtained by signing the nonce with your private ethereum key.",
+            "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+          },
+          {
+            "type":"string",
+            "name":"token",
+            "in":"query",
+            "example": "ETH"
           }
         ],
         "tags":[
@@ -793,12 +805,12 @@
         "nonce":{
           "type":"number",
           "description":"This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example":1576156902.058
+          "example":1579901055575
         },
         "signature":{
           "type":"string",
           "description":"The signature obtained by signing the nonce with your private ethereum key.",
-          "example":"0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+          "example":"0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
         },
         "token":{
           "type":"string",
@@ -946,7 +958,7 @@
         "nonce": {
           "type": "number",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1580138601.893
+          "example": 1579901055575
         },
         "signature": {
           "type": "string",
@@ -994,14 +1006,20 @@
     "getPendingWithdrawalsPayload":{
       "type":"object",
       "properties":{
-        "nonce":{
-          "type":"number"
+        "nonce": {
+          "type": "number",
+          "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+          "example": 1579901055575
         },
-        "signature":{
-          "type":"string"
+        "signature": {
+          "type": "string",
+          "description": "The signature obtained by signing the nonce with your private ethereum key.",
+          "example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001",
         },
         "token":{
-          "type":"string"
+          "type":"string",
+          "description":"The token that will be withdrawn.",
+          "example":"ETH"
         }
       },
       "required":[
@@ -1060,12 +1078,12 @@
         "nonce":{
           "type":"number",
           "description":"This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example":1576156902.05
+          "example":1579901055575
         },
         "signature":{
           "type":"string",
           "description":"The signature obtained by signing the nonce with your private ethereum key.",
-          "example":"0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+          "example":"0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
         }
       },
       "required":[
@@ -1114,12 +1132,12 @@
         "nonce": {
           "type": "number",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1580138601.893
+          "example": 1579901055575
         },
         "signature": {
           "type": "string",
           "description": "The signature obtained by signing the nonce with your private ethereum key.",
-          "example": "0xec3606b6b0ee3e28b66803f65aafec4dfe9d4e49be68270fa7275dd8435349c45574c0476edd99641bc13523985ad0b29924f0d4204ce56bc6af00874a0126dc00"
+          "example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
         },
         "symbol": {
           "type": "string",
@@ -1250,12 +1268,12 @@
         "nonce": {
           "type": "number",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1580138291.781
+          "example": 1579901055575
         },
         "signature": {
           "type": "string",
           "description": "The signature obtained by signing the nonce with your private ethereum key.",
-          "example": "0x20b57db1333c62b71bd1fd3a9eee7fc7ee411641f549149803ac33741d0b29e43783de1518c030a36553a65f15065ef3de11f23dffa33ced9988357daf7c62bf01"
+          "example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
         },
         "symbol": {
           "type": "string",
@@ -1377,8 +1395,10 @@
           "description":"The order ID.",
           "example":"d7c8b9"
         },
-        "nonce":{
-          "type":"number"
+        "nonce": {
+          "type": "number",
+          "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+          "example": 1579901055575
         },
         "signature":{
           "type":"string",
@@ -1446,6 +1466,12 @@
     "depositPayload":{
       "type":"object",
       "properties":{
+        "nonce": {
+          "type": "number",
+          "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+          "example": 1579901055575,
+          "required":true
+        },
         "token":{
           "type":"string",
           "description":"The token for which the deposit was made.",
@@ -1456,14 +1482,46 @@
           "description":"The deposit amount.",
           "example":1
         },
-        "nonce":{
-          "type":"number"
-        },
         "starkPublicKey":{
-          "$ref":"#/definitions/starkPublicKey"
+          "type":"object",
+          "description":"The Stark public key. Both the \"x\" and \"y\" part are required.",
+          "example":{
+            "x":"6d840e6d0ecfcbcfa83c0f704439e16c69383d93f51427feb9a4f2d21fbe075",
+            "y":"58f7ce5eb6eb5bd24f70394622b1f4d2c54ebca317a3e61bf9f349dccf166cf"
+          },
+          "properties":{
+            "x":{
+              "type":"string",
+              "description":"The \"x\" part of the Stark public key."
+            },
+            "y":{
+              "type":"string",
+              "description":"The \"y\" part of the Stark public key."
+            }
+          }
         },
         "starkSignature":{
-          "$ref":"#/definitions/starkSignature"
+          "type":"object",
+          "description":"Stark signature consisting of consisting of \"r\", \"s\" and the recovery parameter.",
+          "example":{
+            "r":"1f38f551d798562c16d28733c7e3ff6850898d82f0ac9ccd39d373303b1778c",
+            "s":"518560420e52a37e9f580f024fc0fe8572cb2f5437a839075bbf4b2b123d572",
+            "recoveryParam":1
+          },
+          "properties":{
+            "r":{
+              "type":"string",
+              "description":"The \"r\" part of the Stark signature."
+            },
+            "s":{
+              "type":"string",
+              "description":"The \"s\" part of the Stark signature."
+            },
+            "recoveryParam":{
+              "type":"number",
+              "description":"The recovery parameter of the Stark signature."
+            }
+          }
         },
         "starkVaultId":{
           "type":"number",
@@ -1471,7 +1529,8 @@
           "example":1000003
         },
         "expireTime":{
-          "type":"number"
+          "type":"number",
+          "example": 1
         }
       },
       "required":[
@@ -1743,7 +1802,7 @@
         },
         "protocol": { "type": "string", "enum": ["stark"] },
         "partnerId": { "type": "string" },
-        "feeRate": { "type": "string" }
+        "feeRate": { "type": "string", "example": 0.1 }
       },
       "required": ["type", "symbol", "amount", "price", "meta"]
     },
@@ -1821,13 +1880,50 @@
           "example":1
         },
         "nonce":{
-          "type":"number"
+          "type":"number",
+          "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+          "example": 1579901055575
         },
         "starkPublicKey":{
-          "$ref":"#/definitions/starkPublicKey"
+          "type":"object",
+          "description":"The Stark public key. Both the \"x\" and \"y\" part are required.",
+          "example":{
+            "x":"6d840e6d0ecfcbcfa83c0f704439e16c69383d93f51427feb9a4f2d21fbe075",
+            "y":"58f7ce5eb6eb5bd24f70394622b1f4d2c54ebca317a3e61bf9f349dccf166cf"
+          },
+          "properties":{
+            "x":{
+              "type":"string",
+              "description":"The \"x\" part of the Stark public key."
+            },
+            "y":{
+              "type":"string",
+              "description":"The \"y\" part of the Stark public key."
+            }
+          }
         },
         "starkSignature":{
-          "$ref":"#/definitions/starkSignature"
+          "type":"object",
+          "description":"Stark signature consisting of consisting of \"r\", \"s\" and the recovery parameter.",
+          "example":{
+            "r":"1f38f551d798562c16d28733c7e3ff6850898d82f0ac9ccd39d373303b1778c",
+            "s":"518560420e52a37e9f580f024fc0fe8572cb2f5437a839075bbf4b2b123d572",
+            "recoveryParam":1
+          },
+          "properties":{
+            "r":{
+              "type":"string",
+              "description":"The \"r\" part of the Stark signature."
+            },
+            "s":{
+              "type":"string",
+              "description":"The \"s\" part of the Stark signature."
+            },
+            "recoveryParam":{
+              "type":"number",
+              "description":"The recovery parameter of the Stark signature."
+            }
+          }
         },
         "starkVaultId":{
           "type":"number",
@@ -1835,7 +1931,8 @@
           "example":1000003
         },
         "expireTime":{
-          "type":"number"
+          "type":"number",
+          "example": 442438
         }
       },
       "required":[

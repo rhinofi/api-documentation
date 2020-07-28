@@ -17,7 +17,7 @@ export function getExampleFromSchema(schema) {
 function mapValues(obj, map) {
   const res = {};
   for (const key of Object.keys(obj)) {
-    res[key] = map(obj[key]);
+    res[key] = obj[key].example;
   }
   return res;
 }
