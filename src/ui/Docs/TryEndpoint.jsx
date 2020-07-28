@@ -45,7 +45,7 @@ export const TryEndpoint = ({endpoint}) => {
                   isRequired={required}
                   type={type}
                   value={parameterValues[name]}
-                  onChange={value => setParameterValues(old => ({...old, [name]: value}))}
+                  onChange={value => setParameterValues(old => ({...old, [name]: value !== '' ? value : null}))}
                   description={description}
                   placeholder={parameter['x-example']}
                 />
