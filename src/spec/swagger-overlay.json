@@ -441,10 +441,33 @@
         "title": "Estimated Next Batch Time",
         "responses":{
           "default":{
-            "examples":{
-              "application/json":{
-                "estimatedTime": 600
+            "description" : "Returns the amount of time remaining until the batch is posted to Ethereum.",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "estimatedTime" : {
+                  "type" : "number",
+                  "description" : "The number of seconds until the batch is sent to be processed and broadcast to the blockchain.",
+                  "example" : 608
+                },
+                "averageTime" : {
+                  "type" : "number",
+                  "description" : "The configured number of seconds between batches.",
+                  "example" : 608
+                },
+                "finalisedBatchPendingConfirmation" : {
+                  "type" : "bool",
+                  "description" : "True if the previous batch has been created but still pending confirmation on the blockchain.'",
+                  "example" : true
+                }
               }
+            },
+            "examples" : {
+              "application/json" : [ {
+                "estimatedTime" : 608,
+                "token" : 608,
+                "finalisedBatchPendingConfirmation" : true
+              } ]
             }
           }
         }
@@ -536,6 +559,7 @@
     "/v1/trading/r/getDeposits":{
       "post":{
         "title":"Deposit History",
+        "operationId":"postV1TradingRGetdeposits",
         "responses":{
           "default":{
             "examples":{
@@ -873,7 +897,29 @@
     },
     "/v1/trading/r/withdrawHistory":{
       "post":{
-        "title":"Withdrawal History"
+        "title":"Withdrawal History",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":[
+                {
+                  "_id":"5e318fc4948cc789bb5f7bb4",
+                  "token":"ETH",
+                  "amount":100,
+                  "createdAt":"2020-01-29T14:13:05.898Z",
+                  "readyToWithdrawOnChain": false
+                },
+                {
+                  "_id":"5e318fc4948cc789bb5f7bb5",
+                  "token":"USD",
+                  "amount":27,
+                  "createdAt":"2020-01-30T14:13:05.898Z",
+                  "readyToWithdrawOnChain": true
+                }
+              ]
+            }
+          }
+        }
       }
     },
     "/v1/trading/w/cancelOrder":{
@@ -1048,6 +1094,107 @@
                 "cheap": 66000000000,
                 "cheapWait": 10.5
               }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/trades/{Symbol}": {
+      "get": {
+        "title": "Trades History",
+        "operationId":"getV1TradingRTrades",
+        "parameters":[
+          {
+            "in":"path",
+            "name":"Symbol",
+            "type":"string",
+            "required":true,
+            "description":"The market trading pair in deversifi format i.e BASE:QUOTE",
+            "x-example":"ETH:USDT"
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":[
+                {
+                  "trade_id":1,
+                  "price":275.23,
+                  "base_volume":1.5,
+                  "quote_volume":347.81,
+                  "timestamp": 1527836800000,
+                  "type": "buy"
+                },
+                {
+                  "trade_id":2,
+                  "price":183.5,
+                  "base_volume":1.8,
+                  "quote_volume":381.28,
+                  "timestamp": 1577923200000,
+                  "type": "buy"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/tradesSince/{Symbol}/{StartDate}/{EndDate}": {
+      "get": {
+        "title": "Trades Since Date History",
+        "operationId":"getV1TradingRTradessince",
+        "parameters":[
+          {
+            "in":"path",
+            "name":"Symbol",
+            "type":"string",
+            "required":true,
+            "description":"The market trading pair in deversifi format i.e BASE:QUOTE",
+            "x-example":"ETH:USDT"
+          },
+          {
+            "in":"path",
+            "name":"StartDate",
+            "type":"number",
+            "description":"The Unix timestamp in milliseconds for the start period for the query.",
+            "x-example":1547384800
+          },
+          {
+            "in":"path",
+            "name":"EndDate",
+            "type":"number",
+            "required":true,
+            "description":"Optional, current Unix timestamp in milliseconds is used if this parameter is not provided. The Unix timestamp in milliseconds for the end period for the query.",
+            "x-example":1577836800
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":[
+                {
+                  "trade_id":1,
+                  "price":275.23,
+                  "base_volume":1.5,
+                  "quote_volume":347.81,
+                  "timestamp": 1548028800,
+                  "type": "buy"
+                },
+                {
+                  "trade_id":2,
+                  "price":183.5,
+                  "base_volume":1.8,
+                  "quote_volume":381.28,
+                  "timestamp": 1558396800,
+                  "type": "buy"
+                }
+              ]
             }
           }
         }
