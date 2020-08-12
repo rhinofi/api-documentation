@@ -118,7 +118,7 @@
     },
     "/v1/trading/r/estimatedNextBatchTime":{
       "get":{
-        "summary":"Returns a countdown until the expected next batch proof is submitted onto the blockchain. The next batch will include all pending withdrawals.",
+        "summary":"Returns a countdown until the expected next batch proof is submitted onto the blockchain and the average time of previous batches. The next batch will include all pending withdrawals.",
         "operationId":"getV1TradingREstimatednextbatchtime",
         "tags":[
           "Market"
@@ -274,7 +274,7 @@
     },
     "/v1/trading/r/getDeposits":{
       "post":{
-        "summary":"This is an authenticated endpoint used to retrieve deposits. A token can be specified to get deposits for a specific token.",
+        "summary":"This is an authenticated endpoint used to retrieve deposits. A token can be specified to get deposits for a specific token. The limit of deposits returned is 1000.",
         "operationId":"postV1TradingRGetdeposits",
         "parameters":[
           {
@@ -283,6 +283,20 @@
             "schema":{
               "$ref":"#/definitions/getBalancePayload"
             }
+          },
+          {
+            "type":"number",
+            "description":"Date of the last deposit returned.",
+            "name":"startDate",
+            "in":"query",
+            "x-example":1595337548241
+          },
+          {
+            "type":"number",
+            "description":"Limit of deposits that will be returned. With a maximum limit of 1000.",
+            "name":"limit",
+            "in":"query",
+            "x-example":60
           }
         ],
         "tags":[
@@ -444,13 +458,27 @@
     },
     "/v1/trading/r/orderHistory": {
       "post": {
-        "summary": "This method is used to retrieve a list of all past orders for a user. This includes executed trades, as well as expired and cancelled orders.",
+        "summary": "This method is used to retrieve a list of all past orders for a user. This includes executed trades, as well as expired and cancelled orders. The limit of orders returned is 1000.",
         "operationId": "postV1TradingROrderhistory",
         "parameters": [
           {
             "in": "body",
             "name": "body",
             "schema": { "$ref": "#/definitions/orderHistoryPayload" }
+          },
+          {
+            "type":"number",
+            "description":"Date of the last order returned.",
+            "name":"startDate",
+            "in":"query",
+            "x-example":1595337548241
+          },
+          {
+            "type":"number",
+            "description":"Limit of orders that will be returned. With a maximum limit of 1000.",
+            "name":"limit",
+            "in":"query",
+            "x-example":60
           }
         ],
         "tags": ["Trading"],
@@ -464,7 +492,7 @@
     },
     "/v1/trading/r/withdrawHistory":{
       "post":{
-        "summary":"An authenticated endpoint used to retrieve a list of user's past withdrawals. This includes ready, completed, as well as cancelled withdrawals.",
+        "summary":"An authenticated endpoint used to retrieve a list of user's past withdrawals. This includes ready, completed, as well as cancelled withdrawals. The limit of withdrawals returned is 1000.",
         "operationId":"postV1TradingRWithdrawhistory",
         "parameters":[
           {
@@ -473,6 +501,20 @@
             "schema":{
               "$ref":"#/definitions/getPendingWithdrawalsPayload"
             }
+          },
+          {
+            "type":"number",
+            "description":"Date of the last withdraw returned.",
+            "name":"startDate",
+            "in":"query",
+            "x-example":1595337548241
+          },
+          {
+            "type":"number",
+            "description":"Limit of withdraws that will be returned. With a maximum limit of 1000.",
+            "name":"limit",
+            "in":"query",
+            "x-example":60
           }
         ],
         "tags":[
@@ -481,9 +523,9 @@
         "responses":{
           "default":{
             "schema":{
-              "type":"string"
+              "$ref":"#/definitions/withdrawHistoryResponse"
             },
-            "description":"Successful"
+            "description":"Returns a list of user's past withdrawals."
           }
         }
       }
@@ -628,12 +670,78 @@
           }
         }
       }
+    },
+    "/v1/trading/r/trades/{Symbol}":{
+      "get":{
+        "summary":"Request information regarding all recently completed trades for a given market pair.",
+        "operationId":"getV1TradingRTrades",
+        "parameters":[
+          {
+            "in":"path",
+            "name":"Symbol",
+            "type":"string",
+            "required":true,
+            "description":"The market trading pair in deversifi format i.e BASE:QUOTE",
+            "x-example":"ETH:USDT"
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "schema":{
+              "$ref":"#/definitions/tradesResponse"
+            },
+            "description":"The trades endpoint returns data on all recently completed trades for a given market pair for the past 24 hours."
+          }
+        }
+      }
+    },
+    "/v1/trading/r/tradesSince/{Symbol}/{StartDate}/{EndDate}": {
+      "get": {
+        "summary": "Request information regarding all completed trades in a time range for a given market pair",
+        "operationId":"getV1TradingRTradessince",
+        "parameters":[
+          {
+            "in":"path",
+            "name":"Symbol",
+            "type":"string",
+            "required":true,
+            "description":"The market trading pair in deversifi format i.e BASE:QUOTE",
+            "x-example":"ETH:USDT"
+          },
+          {
+            "in":"path",
+            "name":"StartDate",
+            "type":"number",
+            "description":"The Unix timestamp in milliseconds for the start period for the query.",
+            "x-example":1547384800
+          },
+          {
+            "in":"path",
+            "name":"EndDate",
+            "type":"number",
+            "required":true,
+            "description":"Optional, current Unix timestamp in milliseconds is used if this parameter is not provided. The Unix timestamp in milliseconds for the end period for the query.",
+            "x-example":1577836800
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "schema":{
+              "$ref":"#/definitions/tradesResponse"
+            },
+            "description":"Returns data on all recently completed trades for a given market pair during a time range."
+          }
+        }
+      }
     }
   },
   "definitions":{
-    "tokens":{
-      "type":"object"
-    },
     "getVaultIdPayload": {
       "type": "object",
       "properties": {
@@ -759,10 +867,20 @@
     "estimatedNextBatchResponse":{
       "type":"object",
       "properties":{
-        "estimatedTime":{
-          "type":"number",
-          "description":"The number of seconds until the batch is estimated to be ready.",
-          "example":600
+        "estimatedTime": {
+          "type": "number",
+          "description": "The number of seconds until the batch is sent to be processed and broadcast to the blockchain.",
+          "example": 608
+        },
+        "averageTime": {
+          "type": "number",
+          "description": "The configured number of seconds between batches.",
+          "example": 608
+        },
+        "finalisedBatchPendingConfirmation": {
+          "type": "bool",
+          "description": "True if the previous batch has been created but still pending confirmation on the blockchain.'",
+          "example": true
         }
       }
     },
@@ -853,36 +971,33 @@
         }
       }
     },
-    "DVF":{
+    "withdrawHistoryResponse": {
       "type":"object",
-      "description":"This contains application configuration details to set up for deposits and trading.",
-      "example":{
-        "defaultFeeRate":0.002,
-        "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
-        "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
-        "exchangeSymbols":"[\"tETHUSD\",\"tZRXUSD\",\"tZRXETH\"]",
-        "tempStarkVaultId":1
-      },
       "properties":{
-        "defaultFeeRate":{
+        "_id":{
+          "type":"string",
+          "description":"Withdrawal ID.",
+          "example":"53cb6b9b4f4ddef1ad47f943"
+        },
+        "token":{
+          "type":"string",
+          "description":"The token that was withdrawn.",
+          "example":"NEC"
+        },
+        "amount":{
           "type":"number",
-          "description":"The default fee rate, if no volume or maker discount."
+          "description":"The amount that was withdrawn.",
+          "example":100
         },
-        "deversifiAddress":{
+        "createdAt":{
           "type":"string",
-          "description":"The address of the DeversiFi exchange."
+          "description":"The date and time of the withdrawal.",
+          "example":"2020-01-29T14:13:05.898Z"
         },
-        "starkExContractAddress":{
-          "type":"string",
-          "description":"Stark deposit contract address."
-        },
-        "exchangeSymbols":{
-          "type":"string",
-          "description":"Currency pairs available at the DeversiFi exchange for trading"
-        },
-        "tempStarkVaultId":{
-          "type":"number",
-          "description":"Transit Stark vault ID used for deposit privacy"
+        "readyToWithdrawOnChain":{
+          "type":"bool",
+          "description":"The withdrawal is ready to be requested.",
+          "example":true
         }
       }
     },
@@ -890,10 +1005,41 @@
       "type":"object",
       "properties":{
         "DVF":{
-          "$ref":"#/definitions/DVF"
+          "type":"object",
+          "description":"This contains application configuration details to set up for deposits and trading.",
+          "example":{
+            "defaultFeeRate":0.002,
+            "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
+            "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
+            "exchangeSymbols":"[\"tETHUSD\",\"tZRXUSD\",\"tZRXETH\"]",
+            "tempStarkVaultId":1
+          },
+          "properties":{
+            "defaultFeeRate":{
+              "type":"number",
+              "description":"The default fee rate, if no volume or maker discount."
+            },
+            "deversifiAddress":{
+              "type":"string",
+              "description":"The address of the DeversiFi exchange."
+            },
+            "starkExContractAddress":{
+              "type":"string",
+              "description":"Stark deposit contract address."
+            },
+            "exchangeSymbols":{
+              "type":"array",
+              "description":"Currency pairs available at the DeversiFi exchange for trading"
+            },
+            "tempStarkVaultId":{
+              "type":"number",
+              "description":"Transit Stark vault ID used for deposit privacy"
+            }
+          }
         },
         "tokenRegistry":{
-          "$ref":"#/definitions/tokens"
+          "type":"object",
+          "description": "Detailed information related to each available token."
         }
       }
     },
@@ -1050,10 +1196,41 @@
       "type":"object",
       "properties":{
         "DVF":{
-          "$ref":"#/definitions/DVF"
+          "type":"object",
+          "description":"This contains application configuration details to set up for deposits and trading.",
+          "example":{
+            "defaultFeeRate":0.002,
+            "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
+            "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
+            "exchangeSymbols":"[\"tETHUSD\",\"tZRXUSD\",\"tZRXETH\"]",
+            "tempStarkVaultId":1
+          },
+          "properties":{
+            "defaultFeeRate":{
+              "type":"number",
+              "description":"The default fee rate, if no volume or maker discount."
+            },
+            "deversifiAddress":{
+              "type":"string",
+              "description":"The address of the DeversiFi exchange."
+            },
+            "starkExContractAddress":{
+              "type":"string",
+              "description":"Stark deposit contract address."
+            },
+            "exchangeSymbols":{
+              "type":"string",
+              "description":"Currency pairs available at the DeversiFi exchange for trading"
+            },
+            "tempStarkVaultId":{
+              "type":"number",
+              "description":"Transit Stark vault ID used for deposit privacy"
+            }
+          }
         },
         "tokenRegistry":{
-          "$ref":"#/definitions/tokens"
+          "type":"object",
+          "description": "Detailed information related to each available token."
         },
         "isRegistered":{
           "type":"string",
@@ -1632,10 +1809,41 @@
       "type":"object",
       "properties":{
         "DVF":{
-          "$ref":"#/definitions/DVF"
+          "type":"object",
+          "description":"This contains application configuration details to set up for deposits and trading.",
+          "example":{
+            "defaultFeeRate":0.002,
+            "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
+            "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
+            "exchangeSymbols":"[\"tETHUSD\",\"tZRXUSD\",\"tZRXETH\"]",
+            "tempStarkVaultId":1
+          },
+          "properties":{
+            "defaultFeeRate":{
+              "type":"number",
+              "description":"The default fee rate, if no volume or maker discount."
+            },
+            "deversifiAddress":{
+              "type":"string",
+              "description":"The address of the DeversiFi exchange."
+            },
+            "starkExContractAddress":{
+              "type":"string",
+              "description":"Stark deposit contract address."
+            },
+            "exchangeSymbols":{
+              "type":"string",
+              "description":"Currency pairs available at the DeversiFi exchange for trading"
+            },
+            "tempStarkVaultId":{
+              "type":"number",
+              "description":"Transit Stark vault ID used for deposit privacy"
+            }
+          }
         },
         "tokenRegistry":{
-          "$ref":"#/definitions/tokens"
+          "type":"object",
+          "description": "Detailed information related to each available token."
         },
         "isRegistered":{
           "type":"string",
@@ -1725,8 +1933,14 @@
           "type": "string",
           "description": "The Ethereum public address."
         },
-        "starkPublicKey": { "$ref": "#/definitions/tokens" },
-        "starkSignature": { "$ref": "#/definitions/tokens" }
+        "starkPublicKey": { 
+          "type":"object",
+          "description": "Detailed information related to each available token." 
+        },
+        "starkSignature": { 
+          "type":"object",
+          "description": "Detailed information related to each available token."
+        }
       }
     },
     "Model1": {
@@ -1796,8 +2010,14 @@
               "type": "string",
               "description": "The Ethereum public address."
             },
-            "starkPublicKey": { "$ref": "#/definitions/tokens" },
-            "starkSignature": { "$ref": "#/definitions/tokens" }
+            "starkPublicKey": { 
+              "type":"object",
+              "description": "Detailed information related to each available token."
+            },
+            "starkSignature": { 
+              "type":"object",
+              "description": "Detailed information related to each available token."
+            }
           }
         },
         "protocol": { "type": "string", "enum": ["stark"] },
@@ -1977,6 +2197,41 @@
           "type":"number",
           "description":"The approximate time for a transaction confirmation when using cheap as the gas price.",
           "example":10.5
+        }
+      }
+    },
+    "tradesResponse":{
+      "type":"object",
+      "properties":{
+        "trade_id":{
+          "type":"number",
+          "description":"A unique ID associated with the trade for the currency pair transaction",
+          "example":1
+        },
+        "price":{
+          "type":"number",
+          "description":"Last transacted price of base currency based on given quote currency.",
+          "example":275.23
+        },
+        "base_volume":{
+          "type":"number",
+          "description":"Transaction amount in BASE currency.",
+          "example":1.5
+        },
+        "quote_volume":{
+          "type":"number",
+          "description":"Transaction amount in QUOTE currency.",
+          "example":347.81
+        },
+        "timestamp":{
+          "type":"number",
+          "description":"Unix timestamp in milliseconds for when the transaction occurred.",
+          "example":1548028800
+        },
+        "type":{
+          "type":"number",
+          "description":"Used to determine whether or not the transaction originated as a buy or sell.",
+          "example":"buy"
         }
       }
     }
