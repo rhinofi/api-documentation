@@ -1142,7 +1142,7 @@
         }
       }
     },
-    "/v1/trading/r/tradesSince/{Symbol}/{StartDate}/{EndDate}": {
+    "/v1/trading/r/tradesSince/{Symbol}/{StartDate}/{Limit}": {
       "get": {
         "title": "Trades Since Date History",
         "operationId":"getV1TradingRTradessince",
@@ -1159,16 +1159,16 @@
             "in":"path",
             "name":"StartDate",
             "type":"number",
-            "description":"The Unix timestamp in milliseconds for the start period for the query.",
+            "description":"Date of the last trade returned.",
             "x-example":1547384800
           },
           {
             "in":"path",
-            "name":"EndDate",
+            "name":"Limit",
             "type":"number",
-            "required":true,
-            "description":"Optional, current Unix timestamp in milliseconds is used if this parameter is not provided. The Unix timestamp in milliseconds for the end period for the query.",
-            "x-example":1577836800
+            "required":false,
+            "description":"Limit of trades that will be returned. With a maximum limit of 1000.",
+            "x-example":60
           }
         ],
         "tags":[
