@@ -18,7 +18,7 @@ export const StarkWareSettlementSection = () => (
     </SubSection>
     <SubSection id="Signatures" className="section">
       <SubTitle>Signatures</SubTitle>
-      <Text>For maximal efficiency of the the smart contract, the trader orders signature uses a special ECDSA flavor, boosting the onchain STARK proof verification efficiency, allowing more trades with lower fees. More details on the orders signature format and code examples, can be found at <GreenLink>https://github.com/starkware-libs/starkex-resources/tree/master/crypto/starkware/crypto/signature</GreenLink></Text>
+      <Text>For maximal efficiency of the smart contract, the trader orders signature uses a special ECDSA flavor, boosting the onchain STARK proof verification efficiency, allowing more trades with lower fees. More details on the orders signature format and code examples, can be found at <GreenLink>https://github.com/starkware-libs/starkex-resources/tree/master/crypto/starkware/crypto/signature</GreenLink></Text>
     </SubSection>
     <SubSection id="TokenAccounts" className="section">
       <SubTitle>Token accounts</SubTitle>
