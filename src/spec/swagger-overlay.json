@@ -936,6 +936,35 @@
         }
       }
     },
+    "/v1/trading/w/cancelWithdrawal":{
+      "post":{
+        "title":"Cancel Withdrawal",
+        "responses":{
+          "default":{
+            "examples":{
+              "application/json":{
+                "_id": "LCafcGC6tBH",
+                "token": "NEC",
+                "amount": "100",
+                "createdAt": "2020-01-01T22:57:47.323Z",
+                "readyToWithdrawOnChain": false,
+                "canceled": true
+              }
+            }
+          },
+          "withdrawal not found": {
+            "examples": {
+              "application/json":{
+                "statusCode": 422,
+                "error": "WITHDRAWAL_NOT_FOUND",
+                "message": "WITHDRAWAL_NOT_FOUND",
+                "type": "DVFError"
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/trading/w/deposit":{
       "post":{
         "title":"New Deposit",
