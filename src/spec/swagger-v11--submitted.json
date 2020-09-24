@@ -556,6 +556,59 @@
         }
       }
     },
+    "/v1/trading/w/cancelWithdrawal":{
+      "post":{
+        "summary":"This endpoint allows to cancel a specific withdrawal with a given id.",
+        "operationId":"postV1TradingWCancelwithdrawal",
+        "parameters":[
+          {
+            "in":"body",
+            "name":"body",
+            "schema":{
+              "$ref":"#/definitions/cancelWithdrawalPayload"
+            }
+          }
+        ],
+        "tags":[
+          "Trading"
+        ],
+        "responses":{
+          "default":{
+            "schema":{
+              "$ref":"#/definitions/cancelWithdrawalResponse"
+            },
+            "description":"Returns the cancelled withdrawal."
+          },
+          "withdrawal not found": {
+             "schema": {
+              "type":"object",
+              "properties":{
+                "statusCode":{
+                  "type":"number",
+                  "description":"The request code status.",
+                  "example":422
+                },
+                "error":{
+                  "type":"string",
+                  "description":"What was the error.",
+                  "example":"WITHDRAWAL_NOT_FOUND"
+                },
+                "message":{
+                  "type":"string",
+                  "description":"Message returned.",
+                  "example":"WITHDRAWAL_NOT_FOUND"
+                },
+                "type":{
+                  "type":"string",
+                  "description":"The error type.",
+                  "example":"DVFError"
+                }
+              }
+             }
+          }
+        }
+      }
+    },
     "/v1/trading/w/deposit":{
       "post":{
         "summary":"Submit a signed notification of a new deposit made.",
@@ -1597,6 +1650,64 @@
           "description":"The order ID.",
           "example":"d7c8b9"
         }
+      }
+    },
+    "cancelWithdrawalPayload":{
+      "type":"object",
+      "properties":{
+        "id":{
+          "type":"string",
+          "description":"The withdrawal ID.",
+          "example":"q7w8e9"
+        },
+        "nonce": {
+          "type": "number",
+          "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+          "example": 1579901055575
+        },
+        "signature":{
+          "type":"string",
+          "description":"The signed hash (signature) received during the pre-registration process.",
+          "example":"0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+        }
+      },
+      "required":[
+        "id"
+      ]
+    },
+    "cancelWithdrawalResponse":{
+      "type":"object",
+      "properties":{
+        "_id":{
+          "type":"string",
+          "description":"The withdrawal ID.",
+          "example":"q7w8e9"
+        },
+        "token":{
+          "type":"string",
+          "description":"The token for which the withdrawal was requested.",
+          "example":"NEC"
+        },
+        "amount":{
+          "type":"number",
+          "description":"The withdrawal amount.",
+          "example":1
+        },
+        "createdAt":{
+          "type":"string",
+          "description":"The date and time of the withdrawal.",
+          "example":"2020-01-01T22:57:47.323Z"
+        },
+        "readyToWithdrawOnChain":{
+          "type":"bool",
+          "description":"IF the withdrawal is ready to be requested.",
+          "example":false
+        },
+        "canceled": {
+          "type": "string",
+          "description": "Canceled status.",
+          "example": true
+        },
       }
     },
     "starkPublicKey":{
