@@ -85,6 +85,39 @@
         }
       }
     },
+    "/v1/trading/r/User24HoursVolume":{
+      "get":{
+        "summary": "Request information regarding the trading volume of a specific address for the last 24 hours. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token. Results are cached for 2 minutes.",
+        "operationId":"getV1Pub24HoursVolumeSpecificAddress",
+        "parameters":[
+          {
+            "type":"number",
+            "name":"nonce",
+            "in":"query",
+            "required":true,
+            "example": 1579901055575
+          },
+          {
+            "type":"string",
+            "name":"signature",
+            "in":"query",
+            "required":true,
+            "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "schema":{
+              "$ref":"#/definitions/User24HoursVolumeResponse"
+            },
+            "description": "Returns the overall trading volume details of a specific address for all tokens in USD as well as the trading volume per trading pair fot the last 24 hours.",
+          }
+        }
+      }
+    },
     "/v1/trading/r/USDRanking":{
       "get":{
         "summary":"This returns a user ranking by overall trading volume quoted in USD. If the parameters startDate and endDate are provided, the ranking includes only trading volume within that window of time.",
@@ -776,7 +809,7 @@
     "24HoursVolumeResponse":{
       "type":"object",
       "properties":{
-        "TotalUSDValue":{
+        "totalUSDVolume":{
           "type":"number",
           "description":"The total trade volume in terms of USD.",
           "example":3320.75
@@ -829,7 +862,7 @@
     "30DaysVolumeResponse":{
       "type":"object",
       "properties":{
-        "TotalUSDValue":{
+        "totalUSDVolume":{
           "type":"number",
           "description":"The total trade volume in terms of USD.",
           "example":73364.1749445
@@ -846,6 +879,19 @@
           "type":"string",
           "description":"The end date and time for the volume presented.",
           "example":"2020-01-01T00:00:00.714Z"
+        }
+      }
+    },
+    "User24HoursVolumeResponse": {
+      "type":"object",
+      "properties":{
+        "totalUSDVolume":{
+          "type":"number",
+          "description":"The total trade volume in terms of USD.",
+          "example":73364.1749445
+        },
+        "tokens":{
+          "$ref":"#/definitions/tokens"
         }
       }
     },
@@ -887,7 +933,7 @@
     "last24HoursVolumeResponse":{
       "type":"object",
       "properties":{
-        "TotalUSDValue":{
+        "totalUSDVolume":{
           "type":"number",
           "description":"The total trade volume in terms of USD.",
           "example":3320.75

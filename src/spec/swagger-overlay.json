@@ -9,7 +9,7 @@
             "schema":{
               "type":"object",
               "properties":{
-                "TotalUSDValue":{
+                "totalUSDVolume":{
                   "type":"number",
                   "description":"The total trade volume in terms of USD."
                 },
@@ -41,7 +41,7 @@
             },
             "examples":{
               "application/json":{
-                "TotalUSDValue": 143437000,
+                "totalUSDVolume": 143437000,
                 "symbols":{
                   "ETH:USDT": {
                     "tokenAmount": 9612.45,
@@ -125,7 +125,7 @@
             "schema":{
               "type":"object",
               "properties":{
-                "TotalUSDValue":{
+                "totalUSDVolume":{
                   "type":"number",
                   "description":"The total trade volume in terms of USD."
                 },
@@ -153,7 +153,7 @@
             },
             "examples":{
               "application/json":{
-                "TotalUSDValue":3320.75,
+                "totalUSDVolume":3320.75,
                 "tokens":{
                   "USD":{
                     "tokenAmount":3320.75,
@@ -386,7 +386,7 @@
             "schema":{
               "type":"object",
               "properties":{
-                "totalUSDValue":{
+                "totalUSDVolume":{
                   "type":"number",
                   "description":"The total trade volume in terms of USD."
                 },
@@ -414,7 +414,7 @@
             },
             "examples":{
               "application/json":{
-                "TotalUSDValue":73364.1749445,
+                "totalUSDVolume":73364.1749445,
                 "tokens":{
                   "USD":{
                     "tokenAmount":85112.899879,
@@ -430,6 +430,79 @@
                   }
                 },
                 "startDate":"2019-12-15T19:09:18.668Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/User24HoursVolume": {
+      "get":{
+        "title":"User 24-hours volume",
+        "summary": "Request information regarding the trading volume of a specific address for the last 24 hours. The request returns the overall trading volume details for all tokens in USD as well as the trading volume per token. Results are cached for 2 minutes.",
+        "operationId":"getV1Pub24HoursVolumeSpecificAddress",
+        "parameters":[
+          {
+            "type": "number",
+            "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+            "name": "nonce",
+            "in": "query",
+            "required": true,
+            "x-example": 1579901055575
+          },
+          {
+            "type": "string",
+            "description": "The signature obtained by signing the nonce with your private ethereum key.",
+            "name": "signature",
+            "in": "query",
+            "required": true,
+            "x-example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "description": "Returns the overall trading volume details of a specific address for all tokens in USD as well as the trading volume per trading pair fot the last 24 hours.",
+            "schema":{
+              "type":"object",
+              "properties":{
+                "totalUSDVolume":{
+                  "type":"number",
+                  "description":"The total trade volume in terms of USD."
+                },
+                "tokens":{
+                  "type":"object",
+                  "description":"List of tokens."
+                },
+                "tokenAmount":{
+                  "type":"number",
+                  "description":"The trading volume for a particular token."
+                },
+                "USDValue":{
+                  "type":"number",
+                  "description":"The corresponding trading volume in USD for a particular token."
+                }
+              }
+            },
+            "examples":{
+              "application/json":{
+                "totalUSDVolume":73364.1749445,
+                "tokens":{
+                  "USD":{
+                    "tokenAmount":85112.899879,
+                    "USDValue":85112.899879
+                  },
+                  "ETH":{
+                    "tokenAmount":443.61218170251453,
+                    "USDValue":61525.002289
+                  },
+                  "NEC":{
+                    "tokenAmount":1173.0238160813603,
+                    "USDValue":90.447721
+                  }
+                }
               }
             }
           }
