@@ -10,7 +10,6 @@ import {LibrariesExamplesSection} from './TutorialsSections/LibrariesExamplesSec
 import {SmartContractsSection} from './TutorialsSections/SmartContractsSection';
 import {DevelopmentEnvironmentsSection} from './TutorialsSections/DevelopmentEnvironmentsSection';
 import {StarkWareSettlementSection} from './TutorialsSections/StarkWareSettlementSection';
-import {USDTetherMarketsSection} from './TutorialsSections/USDTetherMarketsSection';
 import {WebsocketMarketDataSection} from './TutorialsSections/WebsocketMarketDataSection';
 import {RestMarketDataSection} from './TutorialsSections/RestMarketDataSection';
 import {DocsLink} from './DocsLink';
@@ -38,7 +37,6 @@ export const TutorialsScreen = () => {
           <StarkWareSettlementSection/>
           <WebsocketMarketDataSection/>
           <RestMarketDataSection/>
-          <USDTetherMarketsSection/>
         </Main>
       </Content>
     </Screen>
