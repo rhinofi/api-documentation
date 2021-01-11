@@ -1613,6 +1613,328 @@
           }
         }
       }
+    },
+    "{ws-uid-1}/market-data/ws": {
+      "ws":{
+        "title":"WS Candles",
+        "summary":"The Candles websocket provides OCHL (Open, Close, High, Low) and volume data for the specified trading pair. The endpoint returns initially a snapshot of candles and subsequently sends candle updates.",
+        "operationId":"WsCandles",
+        "parameters":[
+          {
+            "in":"subscribeMsg",
+            "name":"timeframe",
+            "type":"string",
+            "required":true,
+            "description":"Specify time frame. Available values are '1m', '5m', '15m', '30m', '1h', '3h', '6h','12h', '1D','7D', '14D', '1M'.",
+            "x-example":"1m"
+          },
+          {
+            "in":"subscribeMsg",
+            "name":"symbol",
+            "type":"string",
+            "required":true,
+            "description":"Specify the trading pair for which information is required.",
+            "x-example":"ETH:USDT"
+          },
+          {
+            "in":"subscribeMsg",
+            "name":"type",
+            "type":"string",
+            "required":true,
+            "description":"Section for more precise selection. Available values - \"trade\"",
+            "x-example":"trade"
+          },
+          {
+            "in":"subscribeMsg",
+            "name":"event",
+            "type":"string",
+            "required":true,
+            "description":"Specify client event type. Available values - \"subscribe\"",
+            "x-example":"subscribe"
+          },
+          {
+            "in":"subscribeMsg",
+            "name":"channel",
+            "type":"string",
+            "required":true,
+            "description":"Type of channel to subscribe to. Available values - \"candles\"",
+            "x-example":"candles"
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns the last 100 candles by default, but a limit and a start and/or end timestamp can be specified.",
+            "schema":{
+              "type":"array",
+              "items":{
+                "type":"object",
+                "properties": {
+                  "chanId":{
+                    "type":"number",
+                    "description":"Number representing subscription. (First element of root array)",
+                    "example":1
+                  },
+                  "mts":{
+                    "type":"number",
+                    "description":"Millisecond timestamp.",
+                    "example":1573562880000
+                  },
+                  "open":{
+                    "type":"number",
+                    "description":"First execution during the time frame.",
+                    "example":3.0178E-4
+                  },
+                  "close":{
+                    "type":"number",
+                    "description":"Last execution during the time frame.",
+                    "example":3.3105E-4
+                  },
+                  "high":{
+                    "type":"number",
+                    "description":"Highest execution during the time frame.",
+                    "example":3.3105E-4
+                  },
+                  "low":{
+                    "type":"number",
+                    "description":"Lowest execution during the time frame.",
+                    "example":3.0178E-4
+                  },
+                  "volume":{
+                    "type":"number",
+                    "description":"Quantity of symbol traded within the time frame.",
+                    "example":1840.0074507599998
+                  }
+                }
+              }
+            },
+            "examples":{
+              "application/json":[
+                1,
+                [
+                  [
+                    1573562880000,
+                    3.0E-4,
+                    3.0E-4,
+                    3.0E-4,
+                    3.0E-4,
+                    24083.8638948
+                  ],
+                  [
+                    1573562820000,
+                    3.0178E-4,
+                    3.3105E-4,
+                    3.3105E-4,
+                    3.0178E-4,
+                    1840.0074507599998
+                  ]
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "{ws-uid-2}/market-data/ws":{
+      "ws":{
+        "title":"WS Ticker",
+        "summary":"The ticker endpoint provides a high level overview of the state of the market for a specified pair. It shows the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
+        "operationId":"WsTicker",
+        "parameters":[
+          {
+            "in":"subscribeMsg",
+            "name":"symbol",
+            "type":"string",
+            "required":true,
+            "description":"Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"MKR:ETH\", \"ETH:USDT\"]",
+            "x-example":"ETH:USDT"
+          },
+          {
+            "in":"subscribeMsg",
+            "name":"event",
+            "type":"string",
+            "required":true,
+            "description":"Specify client event type. Available values - \"subscribe\"",
+            "x-example":"subscribe"
+          },
+          {
+            "in":"subscribeMsg",
+            "name":"channel",
+            "type":"string",
+            "required":true,
+            "description":"Type of channel to subscribe to. Available values - \"ticker\"",
+            "x-example":"ticker"
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
+            "schema":{
+              "type":"array",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "chanId":{
+                    "type":"number",
+                    "description":"Number representing subscription. (First element of root array)",
+                    "example":1
+                  },
+                  "bid":{
+                    "type":"number",
+                    "description":"Price of the most recent highest bid."
+                  },
+                  "bid_size":{
+                    "type":"number",
+                    "description":"Sum of the 25 highest bid sizes."
+                  },
+                  "ask":{
+                    "type":"number",
+                    "description":"Price of the most recent lowest ask price."
+                  },
+                  "ask_size":{
+                    "type":"number",
+                    "description":"Sum of the 25 lowest ask sizes."
+                  },
+                  "daily_change":{
+                    "type":"number",
+                    "description":"Amount that the last price has changed since yesterday."
+                  },
+                  "daily_change_relative":{
+                    "type":"number",
+                    "description":"Relative price change since yesterday (x 100 for percentage change)."
+                  },
+                  "last_price":{
+                    "type":"number",
+                    "description":"Price of the last trade."
+                  },
+                  "volume":{
+                    "type":"number",
+                    "description":"Daily volume."
+                  },
+                  "high":{
+                    "type":"number",
+                    "description":"Daily high."
+                  },
+                  "low":{
+                    "type":"number",
+                    "description":"Daily low."
+                  }
+                }
+              }
+            },
+            "examples":{
+              "application/json":[
+                1,
+                [
+                  8719.7,
+                  34.58126956,
+                  8722.2,
+                  32.51991831,
+                  263.3,
+                  0.0311,
+                  8722.3,
+                  3798.87390501,
+                  8750,
+                  8449.3
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "{ws-uid-3}/market-data/ws":{
+      "ws":{
+        "title":"WS Orderbook",
+        "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks.",
+        "operationId":"WsBook",
+        "parameters":[
+          {
+            "in":"subscribeMsg",
+            "name":"symbol",
+            "type":"string",
+            "required":true,
+            "description":"Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"MKR:ETH\", \"ETH:USDT\"]",
+            "x-example":"ETH:USDT"
+          },
+          {
+            "in":"subscribeMsg",
+            "name":"event",
+            "type":"string",
+            "required":true,
+            "description":"Specify client event type. Available values - \"subscribe\"",
+            "x-example":"subscribe"
+          },
+          {
+            "in":"subscribeMsg",
+            "name":"channel",
+            "type":"string",
+            "required":true,
+            "description":"Type of channel to subscribe to. Available values - \"book\"",
+            "x-example":"book"
+          }
+        ],
+        "tags":[
+          "Market"
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns a specific order and allows you to keep track of the state of Deversifi order books on a price aggregated basis with customizable precision.",
+            "schema":{
+              "type":"object",
+              "properties":{
+                "chanId":{
+                  "type":"number",
+                  "description":"Number representing subscription. (First element of root array)",
+                  "example":1
+                },
+                "Price":{
+                  "type":"number",
+                  "description":"Specifies the price level for trading."
+                },
+                "Count":{
+                  "type":"number",
+                  "description":"Number of orders at that price level."
+                },
+                "Amount":{
+                  "type":"number",
+                  "description":"Total amount available at that price level."
+                }
+              }
+            },
+            "examples":{
+              "application/json":[
+                1,
+                [
+                  302,
+                  1,
+                  20
+                ],
+                [
+                  168.02,
+                  1,
+                  0.6
+                ],
+                [
+                  167.98,
+                  1,
+                  0.6
+                ],
+                [
+                  167.94,
+                  1,
+                  0.6
+                ]
+              ]
+            }
+          }
+        }
+      }
     }
   }
 }

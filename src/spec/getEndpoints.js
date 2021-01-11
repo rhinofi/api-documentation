@@ -1,25 +1,29 @@
 import {forEachEndpoint} from './forEachEndpoint';
 import {getBodyExample} from './getBodyExample';
-import {makeJsCode} from './makeJsCode';
-import {makePythonCode} from './makePythonCode';
+import {makeJsCode, makeWsJsCode} from './makeJsCode';
+import {makePythonCode, makeWsPythonCode} from './makePythonCode';
 import {makeCppCode} from './mapeCppCode';
 import {makeCurlCode} from './makeCurlCode';
 
 export function getEndpoints(spec) {
   const endpoints = [];
-  forEachEndpoint(spec, (entry, path, method) => {
+  forEachEndpoint(spec, (entry, orgPath, method) => {
+    // workaround for unique ws socket endpoint
+    const path = orgPath.replace(/{ws-uid-\d+}/g, '');
+
     const responses = getResponses(entry);
     const calls = getCalls(spec, entry, path, method);
     const curl = makeCurlCode(spec, entry, path, method);
     const parameters = getParameters(entry);
     const body = getBodyExample(entry);
     const responsesDetails = getResponsesDetails(entry);
+    const protocol = method === 'ws' ? 'wss' : 'https';
     endpoints.push({
       method: method.toUpperCase(),
       title: entry.title,
       name: entry.operationId,
       link: '#' + entry.operationId,
-      path: `https://${spec.host}${path}`,
+      path: `${protocol}://${spec.host}${path}`,
       description: entry.summary, // TODO: markdown?
       calls,
       curl,
@@ -42,12 +46,16 @@ function getCalls(spec, entry, path, method) {
     {
       language: 'js',
       name: 'JavaScript',
-      content: makeJsCode(spec, entry, path, method),
+      content: method === 'ws'
+        ? makeWsJsCode(spec, entry, path, method)
+        : makeJsCode(spec, entry, path, method)
     },
     {
       language: 'py',
       name: 'Python 3',
-      content: makePythonCode(spec, entry, path, method),
+      content: method === 'ws'
+        ? makeWsPythonCode(spec, entry, path, method)
+        : makePythonCode(spec, entry, path, method),
     },
     {
       language: 'cpp',

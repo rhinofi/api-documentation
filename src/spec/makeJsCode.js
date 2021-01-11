@@ -17,6 +17,27 @@ export function makeJsCode(spec, entry, path, method) {
   );
 }
 
+export function makeWsJsCode(spec, entry, path, method) {
+  const queryLine = getQueryLine(entry.parameters);
+  const subParams = getWsSubscribeParams(entry.parameters, entry.operationId);
+  return (
+    'const WebSocket = require(\'ws\')\n' +
+    'function subscribe () {\n' +
+    getParams(entry.parameters) +
+    getUrlLine(queryLine, spec.host, path) +
+    queryLine +
+    `  const ws = new WebSocket(url)\n` +
+    `  ws.on('message', (msg) => console.log(msg))\n` +
+    '\n' +
+    '  const subscribeMsg = JSON.stringify({\n' +
+    subParams.map((p) => `    ${p.name}: ${p.value},\n`).join('') +
+    '  } \n' +
+    '\n' +
+    `  ws.on('open', () => ws.send(subscribeMsg))\n` +
+    '}'
+  );
+}
+
 function getParams(parameters) {
   const variables = (parameters || [])
     .map(x => {
@@ -68,6 +89,35 @@ function getBody(parameters) {
   return param
     ? `    body: JSON.stringify(params.${param.name}),\n`
     : '';
+}
+
+export function getWsSubscribeParams(parameters, operationId) {
+  const param = (parameters || []).filter(x => x.in === 'subscribeMsg');
+  console.log('getWsSubscribeMsg ~ parameters', parameters);
+  const channel = (param.find(x => x.name === 'channel') || {})['x-example'];
+  const subParams = [
+    {name: 'event', value: '\'subscribe\''},
+    {name: 'channel', value: `'${channel}'`},
+  ];
+  const symbol = (param.find(x => x.name === 'symbol') || {})['x-example'];
+
+  switch (operationId) {
+    case 'WsCandles':
+      const type = (param.find(x => x.name === 'type') || {})['x-example'];
+      const timeInterval = (param.find(x => x.name === 'timeframe') || {})['x-example'];
+      subParams.push({name: 'key', value: `'${type}:${timeInterval}:${symbol}'`});
+      break;
+    case 'WsBook':
+      subParams.push({name: 'symbol', value: `'${symbol}'`});
+      break;
+    case 'WsTicker':
+      subParams.push({name: 'symbol', value: `'${symbol}'`});
+      break;
+    default:
+      throw new Error('Unknown ws operation');
+  }
+
+  return subParams;
 }
 
 function getHeaders() {

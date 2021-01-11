@@ -1,4 +1,5 @@
 import {getExampleFromSchema} from './getBodyExample';
+import {getWsSubscribeParams} from './makeJsCode';
 
 export function makePythonCode(spec, entry, path, method) {
   const queryLine = getQueryLine(entry.parameters);
@@ -22,6 +23,18 @@ export function makePythonCode(spec, entry, path, method) {
   );
 }
 
+export function makeWsPythonCode(spec, entry, path, method) {
+  const url = `'wss://${spec.host}/${path}'`;
+  const subParams = getWsSubscribeParams(entry.parameters, entry.operationId);
+  return (
+    `ws = websocket.WebSocketApp(${url})\n` +
+    'ws.on_open = lambda self: self.send(\n' +
+    subParams.map((p) => `  ${p.name}: ${p.value},\n`).join('') +
+    ')\n' +
+    'ws.on_message = lambda self, evt:  print (evt)'
+  );
+}
+
 function getParams(parameters) {
   const variables = (parameters || [])
     .map(x => {
@@ -42,7 +55,7 @@ function getParams(parameters) {
 
 function getUrlLine(host, path) {
   const pathWithParams = path.replace(/\{([^}]*)\}/g, '{params["$1"]}');
-  return `url = f"https://${host}${pathWithParams}"\n`;
+  return `url = "https://${host}${pathWithParams}"\n`;
 }
 
 function getQueryLine(parameters) {
@@ -52,7 +65,7 @@ function getQueryLine(parameters) {
     .join('&');
 
   return queryParams
-    ? `url += f"?${queryParams}"\n`
+    ? `url += "?${queryParams}"\n`
     : '';
 }
 
