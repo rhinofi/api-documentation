@@ -22,23 +22,20 @@ export const WebsocketMarketDataSection = () => (
           language="js"
           code={`
             const ws = require('ws')
-const w = new ws('wss://api.deversifi.com/bfx/ws/2')
+const w = new ws('wss://api.deversifi.com/market-data/ws')
 
 w.on('message', (msg) => console.log(msg))
 
 let msg = JSON.stringify({
   event: 'subscribe',
   channel: 'book',
-  symbol: 'tMKRETH'
+  symbol: 'MKR:ETH'
 })
 
 w.on('open', () => w.send(msg))
 `}
         />
       </CodeWrapper>
-      <Text>
-      The fields 'frequency', and 'precision' can also be set when subscribing, with the default being real time and a precision of 5 significant figures.
-      </Text>
       <CodeWrapper>
       <PrismCode
         code={`

@@ -33,7 +33,7 @@ export const Endpoint = ({endpoint}) => {
         <Row isContentFullWidth={isContentFullWidth}>
           <RowItem>
             <ExampleCall calls={calls}/>
-            <TryEndpoint endpoint={endpoint}/>
+            { method !== 'WS' && <TryEndpoint endpoint={endpoint}/> }
           </RowItem>
           <RowItem>
             <ResponseExample responses={responses}/>
