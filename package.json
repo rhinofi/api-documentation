@@ -18,7 +18,8 @@
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "styled-components": "^5.0.1",
-    "swagger-ui": "^3.25.0"
+    "swagger-ui": "^3.25.0",
+    "websocket": "^1.0.33"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

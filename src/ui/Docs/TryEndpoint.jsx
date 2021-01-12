@@ -3,13 +3,14 @@ import {SectionTitle} from '../common/SectionTitle';
 import {ButtonFullWidth} from '../common/Buttons/Button';
 import {Body} from './Body';
 import {tryEndpoint} from '../../spec/tryEndpoint';
+import {tryWsEndpoint} from '../../spec/tryWsEndpoint';
 import {Parameter} from './Parameter';
 import {ResponseError, Response} from './Response';
 import styled from 'styled-components';
 import {useLayout} from '../common/Layout/LayoutProvider';
 import {PrismCode} from './PrismCode';
 
-export const TryEndpoint = ({endpoint}) => {
+export const TryEndpoint = ({endpoint, method}) => {
   const [parameterValues, setParameterValues] = useState({});
   const [body, setBody] = useState(endpoint.body);
   const [response, setResponse] = useState();
@@ -20,7 +21,12 @@ export const TryEndpoint = ({endpoint}) => {
     setResponse(undefined);
     setError(undefined);
     setLoading(true);
-    const [error, response] = await tryEndpoint(endpoint, parameterValues, body);
+    let error, response;
+    if (method === 'WS') {
+      ([error, response] = await tryWsEndpoint(endpoint, parameterValues, body));
+    } else {
+      ([error, response] = await tryEndpoint(endpoint, parameterValues, body));
+    }
     error && setError(error);
     response && setResponse(response);
     setLoading(false);
@@ -59,13 +65,28 @@ export const TryEndpoint = ({endpoint}) => {
         {response && <Response response={response}/>}
       </Section>
       <div>
-        <Title>cURL</Title>
-        <Pre>
-          <PrismCode
-            language="bash"
-            code={endpoint.curl}
-          />
-        </Pre>
+        { endpoint.curl &&
+          <>
+            <Title>cURL</Title>
+            <Pre>
+              <PrismCode
+                language="bash"
+                code={endpoint.curl}
+              />
+            </Pre>
+          </>
+        }
+        { endpoint.wscat &&
+          <>
+            <Title>wscat</Title>
+            <Pre>
+              <PrismCode
+                language="bash"
+                code={endpoint.wscat}
+              />
+            </Pre>
+          </>
+        }
       </div>
     </Row>
   );
