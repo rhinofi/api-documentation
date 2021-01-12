@@ -2,13 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import {TutorialSection} from './TutorialSection';
 import {Text} from '../../common/Text';
-import {Code} from '../../common/Code';
+import {CodeInText} from '../../common/CodeInText';
 import {GreenLink} from '../../common/Link';
 import {List, ListItem} from '../../common/List';
-
-const CodeInText = styled(Code)`
-  margin-left: 8px;
-`;
 
 export const LibrariesExamplesSection = () => (
   <TutorialSection title="Libraries and Examples">

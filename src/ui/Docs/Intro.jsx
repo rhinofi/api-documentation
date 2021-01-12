@@ -5,8 +5,8 @@ import docs from '../../assets/docs.svg';
 import tutorials from '../../assets/tutorials.svg';
 import angleIcon from '../../assets/icons/angle-bright.svg';
 import github from '../../assets/github.svg';
-import {Link, GreenLink} from '../common/Link';
-import {Code} from '../common/Code';
+import {GreenLink} from '../common/Link';
+import {CodeInText} from '../common/CodeInText';
 import {List, ListItem} from '../common/List';
 
 export const Intro = (props) => (
@@ -169,18 +169,4 @@ const Text = styled.p`
   font-size: 14px;
   line-height: 150%;
   margin-top: 16px;
-`;
-
-const Note = styled.p`
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 140%;
-  color: #C8C9DA;
-  margin-top: 8px;
-`;
-
-const CodeInText = styled(Code)`
-  margin-left: 8px;
 `;
