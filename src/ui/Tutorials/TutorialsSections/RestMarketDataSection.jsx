@@ -6,13 +6,19 @@ import {SubTitle} from '../../common/SubTitle';
 import {List, ListItem} from '../../common/List';
 import {SubSection} from '../../common/SubSection';
 import {PrismCode} from '../../Docs/PrismCode';
-import {Code} from '../../common/Code';
+import {CodeInText} from '../../common/CodeInText';
+import {Bold} from '../../common/Bold';
 import styled from 'styled-components';
 
 export const RestMarketDataSection = () => (
   <>
     <TutorialSection title="Rest API Market Data">
-      <Text>Deversifi currently places orders with Bitfinex and market data can be retrieved using Bitfinex public end points. Available symbols for trading are available in in the client config file under: DVF.exchangeSymbols</Text>
+      <Text>
+        Deversifi currently places orders with Bitfinex and market data can be retrieved using Bitfinex public end points.
+        Available symbols for trading are available in in the client config file under: DVF.exchangeSymbols
+        <Bold> Currently market data APIs both websocket and REST are transitioning to a new implementation,
+          thus endpoints are gradually switching to endpoint <CodeInText>/market-data/ws</CodeInText> which use different symbol format</Bold>
+      </Text>
     </TutorialSection>
     <SubSection id="Rest API Market Data" className="section">
       <SubTitle>Deversifi Client Config</SubTitle>
@@ -44,9 +50,9 @@ export const RestMarketDataSection = () => (
       </CodeWrapper>
       <br></br>
       <SubTitle>Converting Symbol format between Bitfinex and Deversifi:</SubTitle>
-      <Text>Trading symbols in exchangeSymbols are in Deversifi format. Deversifi symbol format is different than Bitfinex symbol format. 
-To make a call to Bitfinex API for Tickers, Candles and Orderbook symbols should be specified in Bitfinex format. 
-The exchange symbols in Deversifi config file use Deversifi format. 
+      <Text>Trading symbols in exchangeSymbols are in Deversifi format. Deversifi symbol format is different than Bitfinex symbol format.
+To make a call to Bitfinex API for Tickers, Candles and Orderbook symbols should be specified in Bitfinex format.
+The exchange symbols in Deversifi config file use Deversifi format.
 <GreenLink href="https://github.com/DeversiFi/dvf-client-js">https://github.com/DeversiFi/dvf-client-js</GreenLink>  can be used to convert between formats.
 <br></br>
 <Text>For example:</Text>
