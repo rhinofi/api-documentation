@@ -29,7 +29,7 @@ export function makeWsPythonCode(spec, entry, path) {
   return (
     `ws = websocket.WebSocketApp(${url})\n` +
     'ws.on_open = lambda self: self.send(\n' +
-    subParams.map((p) => `  ${p.name}: ${p.value},\n`).join('') +
+      `  '{${subParams.map((p) => `${p.name}:${p.value}`).join(',')}}'\n` +
     ')\n' +
     'ws.on_message = lambda self, evt:  print (evt)'
   );

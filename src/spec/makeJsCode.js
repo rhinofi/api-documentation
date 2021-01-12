@@ -30,8 +30,8 @@ export function makeWsJsCode(spec, entry, path) {
     `  ws.on('message', (msg) => console.log(msg))\n` +
     '\n' +
     '  const subscribeMsg = JSON.stringify({\n' +
-    subParams.map((p) => `    ${p.name}: ${p.value},\n`).join('') +
-    '  } \n' +
+    `${subParams.map((p) => `    ${p.name}: ${p.value}`).join(',\n')}\n` +
+    '  }) \n' +
     '\n' +
     `  ws.on('open', () => ws.send(subscribeMsg))\n` +
     '}'
