@@ -44,7 +44,7 @@ std::cout << response.str() << std::endl;
 }
 
 export function makeWsCppCode(spec, entry, path) {
-  const url = `'wss://${spec.host}/${path}'`;
+  const url = `wss://${spec.host}/${path}`;
   const subParams = getWsSubscribeParams(entry.parameters, entry.operationId);
   return `// Required on Windows
 ix::initNetSystem();
@@ -64,7 +64,7 @@ webSocket.setOnMessageCallback([](const ix::WebSocketMessagePtr& msg)
 // Now that our callback is setup, we can start our background thread and receive messages
 webSocket.start();
 // Send a message to the server (default to TEXT mode)
-webSocket.send("{${subParams.map((p) => ` '${p.name}':${p.value}`)} }");`;
+webSocket.send("{${subParams.map((p) => ` ${p.name}:${p.value}`).toString().replace(/"/g, '\\"')} }");`;
 }
 
 function escapeString(str) {
