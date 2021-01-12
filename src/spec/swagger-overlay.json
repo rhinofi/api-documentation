@@ -1376,7 +1376,7 @@
         }
       }
     },
-    "/bfx/v2/tickers":{
+    "/market-data/tickers":{
       "get":{
         "title":"Tickers",
         "summary":"The ticker endpoint provides a high level overview of the state of the market for a specified pair. It shows the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
@@ -1387,8 +1387,8 @@
             "name":"symbols",
             "type":"string",
             "required":true,
-            "description":"Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"tMKRETH\", \"fUSD\", \"tETHUSD\"]",
-            "x-example":"tMKRETH"
+            "description":"Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"ZRX:USDT\", \"ETH:USDT\"]",
+            "x-example":"ETH:USDT"
           }
         ],
         "tags":[
