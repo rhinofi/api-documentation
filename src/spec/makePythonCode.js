@@ -23,7 +23,7 @@ export function makePythonCode(spec, entry, path, method) {
   );
 }
 
-export function makeWsPythonCode(spec, entry, path, method) {
+export function makeWsPythonCode(spec, entry, path) {
   const url = `'wss://${spec.host}/${path}'`;
   const subParams = getWsSubscribeParams(entry.parameters, entry.operationId);
   return (

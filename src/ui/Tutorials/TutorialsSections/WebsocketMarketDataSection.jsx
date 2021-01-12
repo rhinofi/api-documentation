@@ -17,7 +17,7 @@ export const WebsocketMarketDataSection = () => (
         The fastest way to access market data when trading is to subscribe via websocket feeds.
         This is the same way that the DeversiFi UI shows and updates the order books.
         <Bold> Currently market data APIs both websocket and REST are transitioning to a new implementation,
-          thus endpoints are gradually switching to endpoint <CodeInText>/market-data/ws</CodeInText> which uses different symbol format</Bold>
+          thus endpoints are gradually switching to endpoint <CodeInText>/market-data/ws</CodeInText> which uses different symbol format.</Bold>
       </Text>
     </TutorialSection>
     <SubSection id="Order Book" className="section">
