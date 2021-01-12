@@ -4,6 +4,7 @@ import {makeJsCode, makeWsJsCode} from './makeJsCode';
 import {makePythonCode, makeWsPythonCode} from './makePythonCode';
 import {makeCppCode, makeWsCppCode} from './mapeCppCode';
 import {makeCurlCode} from './makeCurlCode';
+import {makeWscatCode} from './makeWscatCode';
 
 export function getEndpoints(spec) {
   const endpoints = [];
@@ -13,12 +14,12 @@ export function getEndpoints(spec) {
 
     const responses = getResponses(entry);
     const calls = getCalls(spec, entry, path, method);
-    const curl = makeCurlCode(spec, entry, path, method);
     const parameters = getParameters(entry);
     const body = getBodyExample(entry);
     const responsesDetails = getResponsesDetails(entry);
     const protocol = method === 'ws' ? 'wss' : 'https';
-    endpoints.push({
+
+    const endpoint = {
       method: method.toUpperCase(),
       title: entry.title,
       name: entry.operationId,
@@ -26,12 +27,21 @@ export function getEndpoints(spec) {
       path: `${protocol}://${spec.host}${path}`,
       description: entry.summary, // TODO: markdown?
       calls,
-      curl,
       responses,
       parameters,
       body: body ? JSON.stringify(body, null, 4) : undefined,
       responsesDetails,
-    });
+    };
+
+    if (method === 'ws') {
+      const wscat = makeWscatCode(spec, entry, path);
+      endpoint.wscat = wscat;
+    } else {
+      const curl = makeCurlCode(spec, entry, path, method);
+      endpoint.curl = curl;
+    }
+
+    endpoints.push(endpoint);
   });
   return endpoints;
 }

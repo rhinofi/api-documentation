@@ -95,8 +95,8 @@ export function getWsSubscribeParams(parameters, operationId) {
   const param = (parameters || []).filter(x => x.in === 'subscribeMsg');
   const channel = (param.find(x => x.name === 'channel') || {})['x-example'];
   const subParams = [
-    {name: 'event', value: '\'subscribe\''},
-    {name: 'channel', value: `'${channel}'`},
+    {name: '"event"', value: '"subscribe"'},
+    {name: '"channel"', value: `"${channel}"`},
   ];
   const symbol = (param.find(x => x.name === 'symbol') || {})['x-example'];
 
@@ -104,13 +104,13 @@ export function getWsSubscribeParams(parameters, operationId) {
     case 'WsCandles':
       const type = (param.find(x => x.name === 'type') || {})['x-example'];
       const timeInterval = (param.find(x => x.name === 'timeframe') || {})['x-example'];
-      subParams.push({name: 'key', value: `'${type}:${timeInterval}:${symbol}'`});
+      subParams.push({name: '"key"', value: `"${type}:${timeInterval}:${symbol}"`});
       break;
     case 'WsBook':
-      subParams.push({name: 'symbol', value: `'${symbol}'`});
+      subParams.push({name: '"symbol"', value: `"${symbol}"`});
       break;
     case 'WsTicker':
-      subParams.push({name: 'symbol', value: `'${symbol}'`});
+      subParams.push({name: '"symbol"', value: `"${symbol}"`});
       break;
     default:
       throw new Error('Unknown ws operation');
