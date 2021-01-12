@@ -17,7 +17,7 @@ export const RestMarketDataSection = () => (
         Deversifi currently places orders with Bitfinex and market data can be retrieved using Bitfinex public end points.
         Available symbols for trading are available in in the client config file under: DVF.exchangeSymbols.
         <Bold> Currently market data APIs both websocket and REST are transitioning to a new implementation,
-          thus endpoints are gradually switching to endpoint <CodeInText>/market-data/ws</CodeInText> which uses different symbol format</Bold>
+          thus endpoints are gradually switching to endpoint <CodeInText>/market-data/</CodeInText> which uses different symbol format.</Bold>
       </Text>
     </TutorialSection>
     <SubSection id="Rest API Market Data" className="section">
@@ -100,7 +100,7 @@ request(url, function(error, response, body) {
         Bitfinex Rest APIs and examples are available here:</Text>
         <List>
           <ListItem>
-            <Text>Tickers: <GreenLink href="https://docs.deversifi.com/docs#getBfxV2Tickers">https://docs.deversifi.com/docs#getBfxV2Tickers</GreenLink></Text>
+            <Text>Tickers: <GreenLink href="https://docs.deversifi.com/docs#getDvfTickers">https://docs.deversifi.com/docs#getDvfTickers</GreenLink></Text>
           </ListItem>
           <ListItem>
             <Text>Candles: <GreenLink href="https://docs.deversifi.com/docs#getBfxV2Candles">https://docs.deversifi.com/docs#getBfxV2Candles</GreenLink></Text>

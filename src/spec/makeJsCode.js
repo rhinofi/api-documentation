@@ -17,7 +17,7 @@ export function makeJsCode(spec, entry, path, method) {
   );
 }
 
-export function makeWsJsCode(spec, entry, path, method) {
+export function makeWsJsCode(spec, entry, path) {
   const queryLine = getQueryLine(entry.parameters);
   const subParams = getWsSubscribeParams(entry.parameters, entry.operationId);
   return (
@@ -93,7 +93,6 @@ function getBody(parameters) {
 
 export function getWsSubscribeParams(parameters, operationId) {
   const param = (parameters || []).filter(x => x.in === 'subscribeMsg');
-  console.log('getWsSubscribeMsg ~ parameters', parameters);
   const channel = (param.find(x => x.name === 'channel') || {})['x-example'];
   const subParams = [
     {name: 'event', value: '\'subscribe\''},

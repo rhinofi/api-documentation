@@ -2,7 +2,7 @@ import {forEachEndpoint} from './forEachEndpoint';
 import {getBodyExample} from './getBodyExample';
 import {makeJsCode, makeWsJsCode} from './makeJsCode';
 import {makePythonCode, makeWsPythonCode} from './makePythonCode';
-import {makeCppCode} from './mapeCppCode';
+import {makeCppCode, makeWsCppCode} from './mapeCppCode';
 import {makeCurlCode} from './makeCurlCode';
 
 export function getEndpoints(spec) {
@@ -47,20 +47,22 @@ function getCalls(spec, entry, path, method) {
       language: 'js',
       name: 'JavaScript',
       content: method === 'ws'
-        ? makeWsJsCode(spec, entry, path, method)
+        ? makeWsJsCode(spec, entry, path)
         : makeJsCode(spec, entry, path, method)
     },
     {
       language: 'py',
       name: 'Python 3',
       content: method === 'ws'
-        ? makeWsPythonCode(spec, entry, path, method)
+        ? makeWsPythonCode(spec, entry, path)
         : makePythonCode(spec, entry, path, method),
     },
     {
       language: 'cpp',
       name: 'C++',
-      content: makeCppCode(spec, entry, path, method),
+      content: method === 'ws'
+        ? makeWsCppCode(spec, entry, path)
+        : makeCppCode(spec, entry, path, method)
     },
   ];
 }
