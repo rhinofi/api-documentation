@@ -79,12 +79,19 @@ function getCalls(spec, entry, path, method) {
 
 function getResponses(entry) {
   const responses = [];
+  const hasDefault = Object.keys(entry.responses).includes('default');
+
   for (const key in entry.responses) {
     const response = entry.responses[key];
     let example = response.examples && response.examples['application/json'];
     example = example && JSON.stringify(example, null, 2);
+
+    if (hasDefault && key === '200') {
+      continue;
+    }
+
     responses.push({
-      code: key,
+      code: key === '200' ? 'default' : key,
       // TODO: status name
       success: !/^\d+$/.test(key) || key.startsWith('2'),
       example,
@@ -95,6 +102,14 @@ function getResponses(entry) {
 }
 
 function getResponsesDetails(entry) {
+  // TODO: currently docs don't support model $ref,
+  // all default responses are defined manually in overlay
+
+  const hasDefault = Object.keys(entry.responses).includes('default');
+
+  if (!hasDefault) {
+    entry.responses.default = entry.responses['200'];
+  }
   switch (entry.responses.default.schema.type) {
     case 'array':
       return entry.responses.default.schema.items.properties;
