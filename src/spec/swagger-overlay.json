@@ -1306,7 +1306,7 @@
       "get":{
         "title":"Orderbook",
         "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision. Raw books can be retrieved by using precision R0.",
-        "operationId":"getBfxV2Book",
+        "operationId":"getDvfBook",
         "parameters":[
           {
             "in":"path",

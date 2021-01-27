@@ -103,10 +103,10 @@ request(url, function(error, response, body) {
             <Text>Tickers: <GreenLink href="https://docs.deversifi.com/docs#getDvfTickers">https://docs.deversifi.com/docs#getDvfTickers</GreenLink></Text>
           </ListItem>
           <ListItem>
-            <Text>Candles: <GreenLink href="https://docs.deversifi.com/docs#getBfxV2Candles">https://docs.deversifi.com/docs#getBfxV2Candles</GreenLink></Text>
+            <Text>Candles: <GreenLink href="https://docs.deversifi.com/docs#getDvfCandles">https://docs.deversifi.com/docs#getDvfCandles</GreenLink></Text>
           </ListItem>
           <ListItem>
-            <Text>Orderbook: <GreenLink href="https://docs.deversifi.com/docs#getBfxV2Book">https://docs.deversifi.com/docs#getBfxV2Book</GreenLink></Text>
+            <Text>Orderbook: <GreenLink href="https://docs.deversifi.com/docs#getDvfBook">https://docs.deversifi.com/docs#getDvfBook</GreenLink></Text>
           </ListItem>
         </List>
     </SubSection>
