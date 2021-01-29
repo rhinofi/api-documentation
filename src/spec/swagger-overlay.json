@@ -1612,8 +1612,16 @@
             "name":"end",
             "type":"string",
             "required":false,
-            "description":"Filter end (time since epoch in ms). Only when section is 'hist'",
+            "description":"Filter end (time since epoch in ms). Only when section is 'hist' Defaults to now.",
             "x-example":"1577923200000"
+          },
+          {
+            "in":"query",
+            "name":"sort",
+            "type":"number",
+            "required":false,
+            "description":"if = 1 it sorts results returned with old > new",
+            "x-example":-1
           }
         ],
         "tags":[
