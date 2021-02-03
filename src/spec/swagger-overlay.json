@@ -1302,11 +1302,11 @@
         }
       }
     },
-    "/bfx/v2/book/{Symbol}/{Precision}":{
+    "/market-data/book/{symbol}/{precision}":{
       "get":{
         "title":"Orderbook",
         "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision. Raw books can be retrieved by using precision R0.",
-        "operationId":"getBfxV2Book",
+        "operationId":"getDvfBook",
         "parameters":[
           {
             "in":"path",
@@ -1379,7 +1379,7 @@
     "/market-data/tickers":{
       "get":{
         "title":"Tickers",
-        "summary":"The ticker endpoint provides a high level overview of the state of the market for a specified pair. It shows the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
+        "summary":"The ticker endpoint provides a high level overview of the state of the market for a specified pairs. It shows the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
         "operationId":"getDvfTickers",
         "parameters":[
           {
@@ -1452,7 +1452,7 @@
             "examples":{
               "application/json":[
                 [
-                  "tBTCUSD",
+                  "BTC:USD",
                   8719.7,
                   34.58126956,
                   8722.2,
@@ -1465,7 +1465,7 @@
                   8449.3
                 ],
                 [
-                  "tLTCUSD",
+                  "LTC:USD",
                   57.875,
                   1297.95111409,
                   57.931,
@@ -1483,27 +1483,105 @@
         }
       }
     },
-    "/bfx/v2/candles/trade:{timeframe}:{symbol}/{section}":{
+    "/market-data/ticker/{symbol}": {
+      "get":{
+        "title":"Ticker",
+        "summary":"The ticker endpoint provides a high level overview of the state of the market for a specified pair. It shows the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
+        "operationId":"getDvfTicker",
+        "parameters":[
+          {
+            "in":"query",
+            "name":"symbols",
+            "type":"string",
+            "required":true,
+            "description":"Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"ZRX:USDT\", \"ETH:USDT\"]",
+            "x-example":"ETH:USDT"
+          }
+        ],
+        "responses":{
+          "default":{
+            "description":"Returns the current best bid and ask, the last traded price, as well as information on the daily volume and price movement over the last day.",
+            "schema":{
+              "type":"array",
+              "items":{
+                "type":"object",
+                "properties":{
+                  "bid":{
+                    "type":"number",
+                    "description":"Price of the most recent highest bid."
+                  },
+                  "bid_size":{
+                    "type":"number",
+                    "description":"Sum of the 25 highest bid sizes."
+                  },
+                  "ask":{
+                    "type":"number",
+                    "description":"Price of the most recent lowest ask price."
+                  },
+                  "ask_size":{
+                    "type":"number",
+                    "description":"Sum of the 25 lowest ask sizes."
+                  },
+                  "daily_change":{
+                    "type":"number",
+                    "description":"Amount that the last price has changed since yesterday."
+                  },
+                  "daily_change_relative":{
+                    "type":"number",
+                    "description":"Relative price change since yesterday (x 100 for percentage change)."
+                  },
+                  "last_price":{
+                    "type":"number",
+                    "description":"Price of the last trade."
+                  },
+                  "volume":{
+                    "type":"number",
+                    "description":"Daily volume."
+                  },
+                  "high":{
+                    "type":"number",
+                    "description":"Daily high."
+                  },
+                  "low":{
+                    "type":"number",
+                    "description":"Daily low."
+                  }
+                }
+              }
+            },
+            "examples":{
+              "application/json":[
+                [
+                  8719.7,
+                  34.58126956,
+                  8722.2,
+                  32.51991831,
+                  263.3,
+                  0.0311,
+                  8722.3,
+                  3798.87390501,
+                  8750,
+                  8449.3
+                ]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/market-data/candles/{key}/{section}":{
       "get":{
         "title":"Candles",
         "summary":"The Candles endpoint provides OCHL (Open, Close, High, Low) and volume data for the specified funding currency or trading pair. The endpoint returns the last 100 candles by default, but a limit and a start and/or end timestamp can be specified.",
-        "operationId":"getBfxV2Candles",
+        "operationId":"getDvfCandles",
         "parameters":[
           {
             "in":"path",
-            "name":"timeframe",
+            "name":"key",
             "type":"string",
             "required":true,
-            "description":"Specify time frame. Available values are '1m', '5m', '15m', '30m', '1h', '3h', '6h','12h', '1D','7D', '14D', '1M'.",
-            "x-example":"1m"
-          },
-          {
-            "in":"path",
-            "name":"symbol",
-            "type":"string",
-            "required":true,
-            "description":"Specify the trading pair for which information is required.",
-            "x-example":"tETHUSD"
+            "description":"Is a group of variables defining candles key. First param currently only supports 'trade'. Second param is time frame. Available values are '1m', '5m', '15m', '30m', '1h', '3h', '6h','12h', '1D','7D', '14D', '1M'. And third is the trading pair for which information is required.",
+            "x-example":"trade:1m:ETH:USDT"
           },
           {
             "in":"path",
@@ -1518,7 +1596,7 @@
             "name":"limit",
             "type":"number",
             "required":false,
-            "description":"Limits the number of results.",
+            "description":"Limits the number of results. Max 10000",
             "x-example":10
           },
           {
@@ -1526,7 +1604,7 @@
             "name":"start",
             "type":"string",
             "required":false,
-            "description":"Filter start (time since epoch in ms).",
+            "description":"Filter start (time since epoch in ms). Only when section is 'hist'",
             "x-example":"1517923200000"
           },
           {
@@ -1534,7 +1612,7 @@
             "name":"end",
             "type":"string",
             "required":false,
-            "description":"Filter end (time since epoch in ms).",
+            "description":"Filter end (time since epoch in ms). Only when section is 'hist' Defaults to now.",
             "x-example":"1577923200000"
           },
           {
@@ -1542,8 +1620,8 @@
             "name":"sort",
             "type":"number",
             "required":false,
-            "description":"Determines if the results should be sorted. If = 1, it sorts results returned with old > new.",
-            "x-example":1
+            "description":"if = 1 it sorts results returned with old > new",
+            "x-example":-1
           }
         ],
         "tags":[

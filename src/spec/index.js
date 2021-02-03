@@ -1,5 +1,6 @@
 
 import swaggerData from './swagger-v11--submitted.json';
+import swaggerMarketData from './swagger-market-data.json';
 import swaggerOverlay from './swagger-overlay.json';
 import {preprocess} from './preprocess';
 import merge from 'lodash.merge';
@@ -33,6 +34,6 @@ const conciliation = data => {
 
 export function loadSpec() {
   const spec = conciliation(swaggerData);
-  const fullSpec = merge(spec, swaggerOverlay);
+  const fullSpec = merge(spec, swaggerMarketData, swaggerOverlay);
   return preprocess(fullSpec);
 }

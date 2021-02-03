@@ -113,7 +113,7 @@
             "schema":{
               "$ref":"#/definitions/User24HoursVolumeResponse"
             },
-            "description": "Returns the overall trading volume details of a specific address for all tokens in USD as well as the trading volume per trading pair fot the last 24 hours.",
+            "description": "Returns the overall trading volume details of a specific address for all tokens in USD as well as the trading volume per trading pair fot the last 24 hours."
           }
         }
       }
@@ -1259,7 +1259,7 @@
         "signature": {
           "type": "string",
           "description": "The signature obtained by signing the nonce with your private ethereum key.",
-          "example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001",
+          "example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
         },
         "token":{
           "type":"string",
@@ -1753,7 +1753,7 @@
           "type": "string",
           "description": "Canceled status.",
           "example": true
-        },
+        }
       }
     },
     "starkPublicKey":{
