@@ -1305,7 +1305,7 @@
     "/market-data/book/{symbol}/{precision}":{
       "get":{
         "title":"Orderbook",
-        "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision. Raw books can be retrieved by using precision R0.",
+        "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision.",
         "operationId":"getDvfBook",
         "parameters":[
           {
@@ -1321,7 +1321,7 @@
             "name":"precision",
             "type":"string",
             "required":true,
-            "description":"Set the price aggregation level. Adjust the precision by entering a value between P0-P4. Raw books can be retrieved by using precision R0. Use one of the following values - P0, P1, P2, P3, P4, R0.",
+            "description":"Set the price aggregation level. Adjust the precision by entering a value between P0-P4. Use one of the following values - P0, P1, P2, P3, P4.",
             "x-example":"P0"
           }
         ],
