@@ -1305,23 +1305,23 @@
     "/market-data/book/{symbol}/{precision}":{
       "get":{
         "title":"Orderbook",
-        "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision. Raw books can be retrieved by using precision R0.",
+        "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision.",
         "operationId":"getDvfBook",
         "parameters":[
           {
             "in":"path",
-            "name":"Symbol",
+            "name":"symbol",
             "type":"string",
             "required":true,
             "description":"Specifies the trading pair.",
-            "x-example":"tETHUSD"
+            "x-example":"ETH:USD"
           },
           {
             "in":"path",
-            "name":"Precision",
+            "name":"precision",
             "type":"string",
             "required":true,
-            "description":"Set the price aggregation level. Adjust the precision by entering a value between P0-P4. Raw books can be retrieved by using precision R0. Use one of the following values - P0, P1, P2, P3, P4, R0.",
+            "description":"Set the price aggregation level. Adjust the precision by entering a value between P0-P4. Use one of the following values - P0, P1, P2, P3, P4.",
             "x-example":"P0"
           }
         ],
@@ -1490,8 +1490,8 @@
         "operationId":"getDvfTicker",
         "parameters":[
           {
-            "in":"query",
-            "name":"symbols",
+            "in":"path",
+            "name":"symbol",
             "type":"string",
             "required":true,
             "description":"Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"ZRX:USDT\", \"ETH:USDT\"]",
@@ -1551,18 +1551,16 @@
             },
             "examples":{
               "application/json":[
-                [
-                  8719.7,
-                  34.58126956,
-                  8722.2,
-                  32.51991831,
-                  263.3,
-                  0.0311,
-                  8722.3,
-                  3798.87390501,
-                  8750,
-                  8449.3
-                ]
+                8719.7,
+                34.58126956,
+                8722.2,
+                32.51991831,
+                263.3,
+                0.0311,
+                8722.3,
+                3798.87390501,
+                8750,
+                8449.3
               ]
             }
           }
