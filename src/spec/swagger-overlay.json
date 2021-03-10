@@ -1302,11 +1302,11 @@
         }
       }
     },
-    "/market-data/book/{symbol}/{precision}":{
+    "/market-data/book/{symbol}/{precision}/{length}": {
       "get":{
         "title":"Orderbook",
         "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision.",
-        "operationId":"getDvfBook",
+        "operationId":"getMarketdataBookSymbolPrecisionLength",
         "parameters":[
           {
             "in":"path",
@@ -1314,7 +1314,7 @@
             "type":"string",
             "required":true,
             "description":"Specifies the trading pair.",
-            "x-example":"ETH:USD"
+            "x-example":"ETH:USDT"
           },
           {
             "in":"path",
@@ -1323,6 +1323,14 @@
             "required":true,
             "description":"Set the price aggregation level. Adjust the precision by entering a value between P0-P4. Use one of the following values - P0, P1, P2, P3, P4.",
             "x-example":"P0"
+          },
+          {
+            "in":"path",
+            "name":"length",
+            "type":"string",
+            "required":true,
+            "description":"Set the orderbook length. Adjust the max number of orders to be returned for each side by choosing between either 25 or 250.",
+            "x-example":"25"
           }
         ],
         "tags":[

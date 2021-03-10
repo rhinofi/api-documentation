@@ -3,304 +3,319 @@
     "host": "api.stg.deversifi.com",
     "basePath": "/",
     "schemes": [
-        "http"
+      "http"
     ],
     "info": {
-        "title": "Deversifi API documentation",
-        "version": "1.0.0",
-        "description": "dvf-pub-api"
+      "title": "Deversifi API documentation",
+      "version": "1.0.0",
+      "description": "dvf-pub-api"
     },
     "tags": [],
     "paths": {
-        "/market-data/tickers": {
-            "get": {
-                "summary": "Returns multiple tickers",
-                "operationId": "getMarketdataTickers",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Comma separated pairs or ALL",
-                        "name": "symbols",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
-                "tags": [
-                    "Market"
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/tickers"
-                        },
-                        "description": "Successful"
-                    }
-                }
+      "/market-data/tickers": {
+        "get": {
+          "summary": "Returns multiple tickers",
+          "operationId": "getMarketdataTickers",
+          "parameters": [
+            {
+              "type": "string",
+              "description": "Comma separated pairs or ALL",
+              "name": "symbols",
+              "in": "query",
+              "required": true
             }
-        },
-        "/market-data/ticker/{symbol}": {
-            "get": {
-                "summary": "Returns single ticker current snapshot.",
-                "operationId": "getMarketdataTickerSymbol",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "enum": [
-                            "ETH:USDT",
-                            "ZRX:USDT",
-                            "ZRX:ETH",
-                            "BTC:USDT",
-                            "ETH:BTC",
-                            "KON:RAD",
-                            "KON:USDT"
-                        ],
-                        "name": "symbol",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "tags": [
-                    "Market"
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/ticker"
-                        },
-                        "description": "Successful"
-                    }
-                }
+          ],
+          "tags": [
+            "Market"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/tickers"
+              },
+              "description": "Successful"
             }
-        },
-        "/market-data/book/{symbol}/{precision}": {
-            "get": {
-                "summary": "Returns current order book snapshot of a requested pair",
-                "operationId": "getMarketdataBookSymbolPrecision",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "enum": [
-                            "ETH:USDT",
-                            "ZRX:USDT",
-                            "ZRX:ETH",
-                            "BTC:USDT",
-                            "ETH:BTC",
-                            "KON:RAD",
-                            "KON:USDT"
-                        ],
-                        "name": "symbol",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "enum": [
-                            "P0",
-                            "P1",
-                            "P2",
-                            "P3",
-                            "P4"
-                        ],
-                        "name": "precision",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "tags": [
-                    "Market"
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/orderbook"
-                        },
-                        "description": "Successful"
-                    }
-                }
-            }
-        },
-        "/market-data/candles/{key}/{section}": {
-            "get": {
-                "summary": "Returns last or history of candles between start and end limited by limit",
-                "operationId": "getMarketdataCandlesKeySection",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "name": "key",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "enum": [
-                            "last",
-                            "hist"
-                        ],
-                        "name": "section",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "format": "date",
-                        "description": "Started date of candle period. REQUIRED if section is set to \"hist\"",
-                        "name": "start",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "format": "date",
-                        "description": "End date of candle period. REQUIRED if section is set to \"hist\"",
-                        "name": "end",
-                        "in": "query"
-                    },
-                    {
-                        "type": "number",
-                        "description": "Limit number of candles returned. Default is 240, max is 10000",
-                        "default": 240,
-                        "minimum": 1,
-                        "maximum": 10000,
-                        "name": "limit",
-                        "in": "query"
-                    },
-                    {
-                        "type": "number",
-                        "description": "if = 1 it sorts results returned with old > new",
-                        "default": -1,
-                        "enum": [
-                            1,
-                            -1
-                        ],
-                        "name": "sort",
-                        "in": "query"
-                    }
-                ],
-                "tags": [
-                    "Market"
-                ],
-                "responses": {
-                    "200": {
-                        "schema": {
-                            "$ref": "#/definitions/candles"
-                        },
-                        "description": "Successful"
-                    }
-                }
-            }
+          }
         }
+      },
+      "/market-data/ticker/{symbol}": {
+        "get": {
+          "summary": "Returns single ticker current snapshot.",
+          "operationId": "getMarketdataTickerSymbol",
+          "parameters": [
+            {
+              "type": "string",
+              "enum": [
+                "ETH:USDT",
+                "ZRX:USDT",
+                "ZRX:ETH",
+                "BTC:USDT",
+                "ETH:BTC",
+                "KON:RAD",
+                "KON:USDT",
+                "DAI:ETH",
+                "DAI:USDT"
+              ],
+              "name": "symbol",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "tags": [
+            "Market"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/ticker"
+              },
+              "description": "Successful"
+            }
+          }
+        }
+      },
+      "/market-data/candles/{key}/{section}": {
+        "get": {
+          "summary": "Returns last or history of candles between start and end limited by limit",
+          "operationId": "getMarketdataCandlesKeySection",
+          "parameters": [
+            {
+              "type": "string",
+              "name": "key",
+              "in": "path",
+              "required": true
+            },
+            {
+              "type": "string",
+              "enum": [
+                "last",
+                "hist"
+              ],
+              "name": "section",
+              "in": "path",
+              "required": true
+            },
+            {
+              "type": "string",
+              "format": "date",
+              "description": "Started date of candle period. REQUIRED if section is set to \"hist\"",
+              "name": "start",
+              "in": "query"
+            },
+            {
+              "type": "string",
+              "format": "date",
+              "description": "End date of candle period. REQUIRED if section is set to \"hist\"",
+              "name": "end",
+              "in": "query"
+            },
+            {
+              "type": "number",
+              "description": "Limit number of candles returned. Default is 240, max is 10000",
+              "default": 240,
+              "minimum": 1,
+              "maximum": 10000,
+              "name": "limit",
+              "in": "query"
+            },
+            {
+              "type": "number",
+              "description": "if = 1 it sorts results returned with old > new",
+              "default": -1,
+              "enum": [
+                1,
+                -1
+              ],
+              "name": "sort",
+              "in": "query"
+            }
+          ],
+          "tags": [
+            "Market"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/candles"
+              },
+              "description": "Successful"
+            }
+          }
+        }
+      },
+      "/market-data/book/{symbol}/{precision}/{length}": {
+        "get": {
+          "summary": "Returns current order book snapshot of a requested pair",
+          "operationId": "getMarketdataBookSymbolPrecisionLength",
+          "parameters": [
+            {
+              "type": "string",
+              "enum": [
+                "ETH:USDT",
+                "ZRX:USDT",
+                "ZRX:ETH",
+                "BTC:USDT",
+                "ETH:BTC",
+                "KON:RAD",
+                "KON:USDT",
+                "DAI:ETH",
+                "DAI:USDT"
+              ],
+              "name": "symbol",
+              "in": "path",
+              "required": true
+            },
+            {
+              "type": "string",
+              "enum": [
+                "P0",
+                "P1",
+                "P2",
+                "P3",
+                "P4"
+              ],
+              "name": "precision",
+              "in": "path",
+              "required": true
+            },
+            {
+              "type": "string",
+              "default": "25",
+              "enum": [
+                "25",
+                "250"
+              ],
+              "name": "length",
+              "in": "path",
+              "required": true
+            }
+          ],
+          "tags": [
+            "Market"
+          ],
+          "responses": {
+            "200": {
+              "schema": {
+                "$ref": "#/definitions/orderbook"
+              },
+              "description": "Successful"
+            }
+          }
+        }
+      }
     },
     "definitions": {
-        "Model1": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "description": "Requested pair",
-                "example": "ETH:USDT"
-            }
-        },
-        "tickers": {
-            "type": "array",
-            "example": [
-                [
-                    "ETH:USDT",
-                    182.02,
-                    0,
-                    184.23,
-                    0,
-                    0,
-                    0,
-                    199.06,
-                    147.046,
-                    0,
-                    0
-                ]
-            ],
-            "items": {
-                "$ref": "#/definitions/Model1"
-            }
-        },
-        "ticker": {
-            "type": "array",
-            "example": [
-                182.02,
-                0,
-                184.23,
-                0,
-                0,
-                0,
-                199.06,
-                147.046,
-                0,
-                0
-            ],
-            "items": {
-                "type": "number",
-                "description": "Current highest bid",
-                "example": 1
-            }
-        },
-        "Model2": {
-            "type": "array",
-            "items": {
-                "type": "number",
-                "description": "Order price",
-                "example": 100.12
-            }
-        },
-        "orderbook": {
-            "type": "array",
-            "example": [
-                [
-                    182.02,
-                    1,
-                    0.5
-                ],
-                [
-                    184.23,
-                    2,
-                    3
-                ],
-                [
-                    199.06,
-                    2,
-                    -2
-                ]
-            ],
-            "items": {
-                "$ref": "#/definitions/Model2"
-            }
-        },
-        "candle": {
-            "type": "array",
-            "items": {
-                "type": "number",
-                "description": "Timestamp",
-                "example": 1611233460000
-            }
-        },
-        "candles": {
-            "type": "array",
-            "example": [
-                [
-                    1611233580000,
-                    2e-7,
-                    2e-7,
-                    2e-7,
-                    2e-7,
-                    0.04
-                ],
-                [
-                    1611233460000,
-                    0.0000054,
-                    0.0000054,
-                    0.0000054,
-                    0.0000054,
-                    0.04
-                ]
-            ],
-            "items": {
-                "$ref": "#/definitions/candle"
-            }
+      "Model1": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "description": "Requested pair",
+          "example": "ETH:USDT"
         }
+      },
+      "tickers": {
+        "type": "array",
+        "example": [
+          [
+            "ETH:USDT",
+            182.02,
+            0,
+            184.23,
+            0,
+            0,
+            0,
+            199.06,
+            147.046,
+            0,
+            0
+          ]
+        ],
+        "items": {
+          "$ref": "#/definitions/Model1"
+        }
+      },
+      "ticker": {
+        "type": "array",
+        "example": [
+          182.02,
+          0,
+          184.23,
+          0,
+          0,
+          0,
+          199.06,
+          147.046,
+          0,
+          0
+        ],
+        "items": {
+          "type": "number",
+          "description": "Current highest bid",
+          "example": 1
+        }
+      },
+      "candle": {
+        "type": "array",
+        "items": {
+          "type": "number",
+          "description": "Timestamp",
+          "example": 1611233460000
+        }
+      },
+      "candles": {
+        "type": "array",
+        "example": [
+          [
+            1611233580000,
+            2e-7,
+            2e-7,
+            2e-7,
+            2e-7,
+            0.04
+          ],
+          [
+            1611233460000,
+            0.0000054,
+            0.0000054,
+            0.0000054,
+            0.0000054,
+            0.04
+          ]
+        ],
+        "items": {
+          "$ref": "#/definitions/candle"
+        }
+      },
+      "Model2": {
+        "type": "array",
+        "items": {
+          "type": "number",
+          "description": "Order price",
+          "example": 100.12
+        }
+      },
+      "orderbook": {
+        "type": "array",
+        "example": [
+          [
+            182.02,
+            1,
+            0.5
+          ],
+          [
+            184.23,
+            2,
+            3
+          ],
+          [
+            199.06,
+            2,
+            -2
+          ]
+        ],
+        "items": {
+          "$ref": "#/definitions/Model2"
+        }
+      }
     }
-}
+  }
