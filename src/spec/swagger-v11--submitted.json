@@ -585,9 +585,6 @@
               "$ref":"#/definitions/cancelOrderResponse"
             },
             "description":"Queues cancellation request and returns the order ID of the cancelled order."
-          },
-          "502":{
-            "description":"Unable to determine the status of order cancellation request, verify by fetching orders list"
           }
         }
       }
@@ -717,9 +714,6 @@
               "$ref": "#/definitions/submitOrderResponse"
             },
             "description": "Queues order for market submission and returns the order ID of the submitted order."
-          },
-          "502": {
-            "description": "Unable to determine the status of order submission request, verify by fetching orders list"
           }
         }
       }

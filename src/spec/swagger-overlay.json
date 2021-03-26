@@ -1002,12 +1002,11 @@
           "default":{
             "examples":{
               "application/json":{
-                "statusCode": 200,
                 "orderId":"d7c8b9"
               }
             }
           },
-          "502": {
+          "Server Error": {
             "examples": {
               "application/json":{
                 "statusCode": 502,
@@ -1148,7 +1147,6 @@
           "default": {
             "examples": {
               "application/json":{
-                "statusCode": 200,
                 "pending": true,
                 "_id": "",
                 "user": "0xc2fff68dbdb8c0dcceb2b84a921cc2c8004104fa",
@@ -1189,7 +1187,7 @@
               }
             }
           },
-          "502": {
+          "Server Error": {
             "examples": {
               "application/json": {
                 "statusCode": 502,
