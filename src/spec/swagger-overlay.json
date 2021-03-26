@@ -1002,15 +1002,15 @@
           "default":{
             "examples":{
               "application/json":{
-                "statusCode": 200,
                 "orderId":"d7c8b9"
               }
             }
           },
-          "Unable to determine the status of order cancellation request": {
+          "Server Error": {
             "examples": {
               "application/json":{
-                "statusCode": 502
+                "statusCode": 502,
+                "error": "Unable to determine the status of order cancellation request"
               }
             }
           }
@@ -1147,7 +1147,6 @@
           "default": {
             "examples": {
               "application/json":{
-                "statusCode": 200,
                 "pending": true,
                 "_id": "",
                 "user": "0xc2fff68dbdb8c0dcceb2b84a921cc2c8004104fa",
@@ -1188,10 +1187,11 @@
               }
             }
           },
-          "Unable to determine the status of order submission request": {
+          "Server Error": {
             "examples": {
-              "application/json":{
-                "statusCode": 502
+              "application/json": {
+                "statusCode": 502,
+                "error": "Unable to determine the status of order submission request"
               }
             }
           }
