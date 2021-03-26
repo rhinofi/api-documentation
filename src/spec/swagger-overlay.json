@@ -1002,7 +1002,15 @@
           "default":{
             "examples":{
               "application/json":{
+                "statusCode": 200,
                 "orderId":"d7c8b9"
+              }
+            }
+          },
+          "Unable to determine the status of order cancellation request": {
+            "examples": {
+              "application/json":{
+                "statusCode": 502
               }
             }
           }
@@ -1139,6 +1147,7 @@
           "default": {
             "examples": {
               "application/json":{
+                "statusCode": 200,
                 "pending": true,
                 "_id": "",
                 "user": "0xc2fff68dbdb8c0dcceb2b84a921cc2c8004104fa",
@@ -1176,6 +1185,13 @@
                 "tokenBuy": "ZRX",
                 "createdAt": "2020-05-20T16:24:36.452Z",
                 "updatedAt": "2020-05-20T16:24:36.452Z"
+              }
+            }
+          },
+          "Unable to determine the status of order submission request": {
+            "examples": {
+              "application/json":{
+                "statusCode": 502
               }
             }
           }
