@@ -580,11 +580,14 @@
           "Trading"
         ],
         "responses":{
-          "default":{
+          "200":{
             "schema":{
               "$ref":"#/definitions/cancelOrderResponse"
             },
-            "description":"Returns the order ID of the cancelled order."
+            "description":"Queues cancellation request and returns the order ID of the cancelled order."
+          },
+          "502":{
+            "description":"Unable to determine the status of order cancellation request, verify by fetching orders list"
           }
         }
       }
@@ -705,11 +708,18 @@
             "schema": { "$ref": "#/definitions/Model1" }
           }
         ],
-        "tags": ["Trading"],
+        "tags": [
+          "Trading"
+        ],
         "responses": {
-          "default": {
-            "schema": { "$ref": "#/definitions/submitOrderResponse" },
-            "description": "Returns the order ID of the submitted order."
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/submitOrderResponse"
+            },
+            "description": "Queues order for market submission and returns the order ID of the submitted order."
+          },
+          "502": {
+            "description": "Unable to determine the status of order submission request, verify by fetching orders list"
           }
         }
       }
@@ -1695,6 +1705,11 @@
           "type":"string",
           "description":"The order ID.",
           "example":"d7c8b9"
+        },
+        "canceled":{
+          "type":"boolean",
+          "description":"only if order is already canceled",
+          "example":true
         }
       }
     },
