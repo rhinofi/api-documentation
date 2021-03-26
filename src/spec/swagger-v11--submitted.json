@@ -580,7 +580,7 @@
           "Trading"
         ],
         "responses":{
-          "200":{
+          "default":{
             "schema":{
               "$ref":"#/definitions/cancelOrderResponse"
             },
@@ -712,7 +712,7 @@
           "Trading"
         ],
         "responses": {
-          "200": {
+          "default": {
             "schema": {
               "$ref": "#/definitions/submitOrderResponse"
             },
