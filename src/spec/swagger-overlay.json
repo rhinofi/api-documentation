@@ -1138,7 +1138,7 @@
             "in": "body",
             "name": "body",
             "schema": {
-              "$ref": "#/definitions/Model2"
+              "$ref": "#/definitions/submitOrderPayload"
             }
           }
         ],

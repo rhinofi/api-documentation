@@ -702,7 +702,7 @@
           {
             "in": "body",
             "name": "body",
-            "schema": { "$ref": "#/definitions/Model1" }
+            "schema": { "$ref": "#/definitions/submitOrderPayload" }
           }
         ],
         "tags": [
@@ -2109,7 +2109,7 @@
         }
       }
     },
-    "Model1": {
+    "submitOrderPayload": {
       "type": "object",
       "properties": {
         "cid": { "type": "string" },
