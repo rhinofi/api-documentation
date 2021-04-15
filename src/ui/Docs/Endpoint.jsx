@@ -11,10 +11,6 @@ import {Section} from '../common/Section';
 export const Endpoint = ({endpoint}) => {
   const {method, title, name, path, description, responses, calls, responsesDetails} = endpoint;
 
-  if (title === 'Submit Order') {
-    console.log(endpoint)
-  }
-
   const ref = useRef();
   useEffect(() => {
     if (location.hash.substring(1) === name && ref.current) {
