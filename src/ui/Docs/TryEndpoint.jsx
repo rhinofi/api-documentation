@@ -9,6 +9,7 @@ import {ResponseError, Response} from './Response';
 import styled from 'styled-components';
 import {useLayout} from '../common/Layout/LayoutProvider';
 import {PrismCode} from './PrismCode';
+import { Details } from './Details';
 
 export const TryEndpoint = ({endpoint, method}) => {
   const [parameterValues, setParameterValues] = useState({});
@@ -59,6 +60,7 @@ export const TryEndpoint = ({endpoint, method}) => {
             })}
           </>
         }
+        {endpoint.requestDetails && <Details type='req' details={endpoint.requestDetails}  />}
         {endpoint.body !== undefined && <Body value={body} onChange={setBody}/>}
         <ButtonFullWidth disabled={loading} onClick={tryNow}>{loading ? 'Loading' : 'Try now'}</ButtonFullWidth>
         {error && <ResponseError error={error}/>}

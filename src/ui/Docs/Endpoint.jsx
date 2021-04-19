@@ -3,7 +3,7 @@ import {Description} from './Description';
 import styled from 'styled-components';
 import {ResponseExample} from './ResponseExample';
 import {ExampleCall} from './ExampleCall';
-import {ResponseDetails} from './ResponseDetails';
+import {Details} from './Details';
 import {TryEndpoint} from './TryEndpoint';
 import {useLayout} from '../common/Layout/LayoutProvider';
 import {Section} from '../common/Section';
@@ -37,7 +37,7 @@ export const Endpoint = ({endpoint}) => {
           </RowItem>
           <RowItem>
             <ResponseExample responses={responses}/>
-            <ResponseDetails details={responsesDetails}/>
+            <Details details={responsesDetails}/>
           </RowItem>
         </Row>
       </Examples>

@@ -2112,7 +2112,11 @@
     "submitOrderPayload": {
       "type": "object",
       "properties": {
-        "cid": { "type": "string" },
+        "cid": {
+          "type": "string",
+          "description": "Optional custom order ID that could be set when placing order and used later to retrieve order. This ID is unique per user (user A and B can each have an order with cid = AAA, but the same user cannot have two orders with the same cid)",
+          "example": "long-123"
+        },
         "gid": { "type": "string" },
         "type": {
           "type": "string",

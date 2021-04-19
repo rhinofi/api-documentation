@@ -3,48 +3,48 @@ import {SectionTitle} from '../common/SectionTitle';
 import styled from 'styled-components';
 import {Type} from '../common/Type';
 
-export const ResponseDetails = ({details}) => {
+export const Details = ({type, details}) => {
 
-  const renderResponsesDetails = (details) => {
-    const responseDetails = [];
+  const renderDetails = (details) => {
+    const reqResDetails = [];
 
     for (const property in details) {
-      responseDetails.push(
-        <ResponseInfo
+      reqResDetails.push(
+        <Info
           className="response-details"
           key={property}
           title={property}
           type={details[property].type}
           description={details[property].description}
         >
-          {details[property].properties ? renderResponsesDetails(details[property].properties) : null}
-        </ResponseInfo>
+          {details[property].properties ? renderDetails(details[property].properties) : null}
+        </Info>
       );
     }
 
-    return responseDetails;
+    return reqResDetails;
   };
 
   return (
-    <ResponseDetailsView>
-      <SectionTitle>Response details</SectionTitle>
-      {renderResponsesDetails(details)}
-    </ResponseDetailsView>
+    <DetailsView>
+      <SectionTitle>{type === 'req' ? 'Request' : 'Response'} details</SectionTitle>
+      {renderDetails(details)}
+    </DetailsView>
   );
 };
 
-const ResponseInfo = ({title, description, type, children, className}) => (
-  <ResponseInfoView className={className}>
+const Info = ({title, description, type, children, className}) => (
+  <InfoView className={className}>
     <Row>
       <Title>{title}</Title>
       <Type>{type}</Type>
     </Row>
     <Text>{description}</Text>
     {children}
-  </ResponseInfoView>
+  </InfoView>
 );
 
-const ResponseDetailsView = styled.div`
+const DetailsView = styled.div`
   .response-details .response-details {
     margin-top: 24px;
     padding-left: 24px;
@@ -52,7 +52,7 @@ const ResponseDetailsView = styled.div`
 `;
 
 
-const ResponseInfoView = styled.div`
+const InfoView = styled.div`
   & + & {
     margin-top: 24px;
   }
