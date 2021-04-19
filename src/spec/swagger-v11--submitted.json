@@ -1204,6 +1204,11 @@
           "description": "The ID of the order. In case you want to view all open orders, check POST openOrders.",
           "example": "123"
         },
+        "cid": {
+          "type": "string",
+          "description": "An optional user-defined identifier for this order",
+          "example": "satoshi-order-2083236893"
+        },
         "nonce": {
           "type": "number",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
@@ -1674,6 +1679,11 @@
           "type":"string",
           "description":"The order ID.",
           "example":"d7c8b9"
+        },
+        "cid": {
+          "type": "string",
+          "description": "An optional user-defined identifier for this order",
+          "example": "satoshi-order-2083236893"
         },
         "nonce": {
           "type": "number",
