@@ -19,6 +19,8 @@ export function getEndpoints(spec) {
     const responsesDetails = getResponsesDetails(entry);
     const protocol = method === 'ws' ? 'wss' : 'https';
 
+    const requestDetails = getRequestDetails(entry)
+
     const endpoint = {
       method: method.toUpperCase(),
       title: entry.title,
@@ -31,6 +33,7 @@ export function getEndpoints(spec) {
       parameters,
       body: body ? JSON.stringify(body, null, 4) : undefined,
       responsesDetails,
+      requestDetails
     };
 
     if (method === 'ws') {
@@ -115,5 +118,20 @@ function getResponsesDetails(entry) {
       return entry.responses.default.schema.items.properties;
     case 'object':
       return entry.responses.default.schema.properties;
+  }
+}
+
+function getRequestDetails(entry) {
+  // TODO: currently docs don't support model $ref,
+  // all default responses are defined manually in overlay
+
+  const bodyParameter = (entry.parameters || []).find(p => p.in === 'body');
+  if (!bodyParameter) return undefined
+
+  switch (bodyParameter.schema.type) {
+    case 'array':
+      return bodyParameter.schema.items.properties;
+    case 'object':
+      return bodyParameter.schema.properties;
   }
 }

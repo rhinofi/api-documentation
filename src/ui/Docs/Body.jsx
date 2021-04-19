@@ -8,6 +8,7 @@ export const Body = ({value, onChange}) => (
 const TextArea = styled.textarea`
   height: 200px;
   width: 100%;
+  margin-top: 30px;
   margin-bottom: 30px;
   padding: 13px 16px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), #212433;
