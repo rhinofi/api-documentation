@@ -315,12 +315,12 @@
         "operationId": "getV1TradingRFeerate",
         "parameters": [
           {
-            "type": "number",
+            "type": "string",
             "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
             "name": "nonce",
             "in": "query",
             "required": true,
-            "x-example": 1579901055575
+            "x-example": "1579901055.575"
           },
           {
             "type": "string",
@@ -361,12 +361,12 @@
         "operationId":"getV1Pub30DaysVolumeSpecificAddress",
         "parameters":[
           {
-            "type": "number",
+            "type": "string",
             "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
             "name": "nonce",
             "in": "query",
             "required": true,
-            "x-example": 1579901055575
+            "x-example": "1579901055.575"
           },
           {
             "type": "string",
@@ -443,12 +443,12 @@
         "operationId":"getV1Pub24HoursVolumeSpecificAddress",
         "parameters":[
           {
-            "type": "number",
+            "type": "string",
             "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
             "name": "nonce",
             "in": "query",
             "required": true,
-            "x-example": 1579901055575
+            "x-example": "1579901055.575"
           },
           {
             "type": "string",

@@ -58,11 +58,11 @@
         "operationId":"getV1TradingR30daysvolume",
         "parameters":[
           {
-            "type":"number",
+            "type":"string",
             "name":"nonce",
             "in":"query",
             "required":true,
-            "example": 1579901055575
+            "example": "1579901055.575"
           },
           {
             "type":"string",
@@ -91,11 +91,11 @@
         "operationId":"getV1Pub24HoursVolumeSpecificAddress",
         "parameters":[
           {
-            "type":"number",
+            "type":"string",
             "name":"nonce",
             "in":"query",
             "required":true,
-            "example": 1579901055575
+            "example": "1579901055.575"
           },
           {
             "type":"string",
@@ -172,12 +172,12 @@
         "operationId":"getV1TradingRFeerate",
         "parameters":[
           {
-            "type":"number",
+            "type":"string",
             "name":"nonce",
             "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
             "in":"query",
             "required":true,
-            "example": 1579901055575
+            "example": "1579901055.575"
           },
           {
             "type":"string",
@@ -836,9 +836,9 @@
       "type": "object",
       "properties": {
         "nonce": {
-          "type": "number",
+          "type": "string",
           "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1776156902.058
+          "example": "1776156902.058"
         },
         "signature": {
           "type": "string",
@@ -1024,9 +1024,9 @@
       "type":"object",
       "properties":{
         "nonce":{
-          "type":"number",
+          "type":"string",
           "description":"This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example":1579901055575
+          "example":"1579901055.575"
         },
         "signature":{
           "type":"string",
@@ -1210,9 +1210,9 @@
           "example": "satoshi-order-2083236893"
         },
         "nonce": {
-          "type": "number",
+          "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1579901055575
+          "example": "1579901055.575"
         },
         "signature": {
           "type": "string",
@@ -1261,9 +1261,9 @@
       "type":"object",
       "properties":{
         "nonce": {
-          "type": "number",
+          "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1579901055575
+          "example": "1579901055.575"
         },
         "signature": {
           "type": "string",
@@ -1285,9 +1285,9 @@
       "type":"object",
       "properties":{
         "nonce":{
-          "type":"number",
+          "type":"string",
           "description":"A user generated nonce.",
-          "example":1579901055575
+          "example": "1579901055.575"
         },
         "signature":{
           "type":"string",
@@ -1361,9 +1361,9 @@
           "example":"1a2b3c"
         },
         "nonce":{
-          "type":"number",
+          "type":"string",
           "description":"This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example":1579901055575
+          "example": "1579901055.575"
         },
         "signature":{
           "type":"string",
@@ -1415,9 +1415,9 @@
       "type": "object",
       "properties": {
         "nonce": {
-          "type": "number",
+          "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1579901055575
+          "example": "1579901055.575"
         },
         "signature": {
           "type": "string",
@@ -1551,9 +1551,9 @@
       "type": "object",
       "properties": {
         "nonce": {
-          "type": "number",
+          "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1579901055575
+          "example": "1579901055.575"
         },
         "signature": {
           "type": "string",
@@ -1686,9 +1686,9 @@
           "example": "satoshi-order-2083236893"
         },
         "nonce": {
-          "type": "number",
+          "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1579901055575
+          "example": "1579901055.575"
         },
         "signature":{
           "type":"string",
@@ -1726,9 +1726,9 @@
           "example":"q7w8e9"
         },
         "nonce": {
-          "type": "number",
+          "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1579901055575
+          "example": "1579901055.575"
         },
         "signature":{
           "type":"string",
@@ -1820,9 +1820,9 @@
       "type":"object",
       "properties":{
         "nonce": {
-          "type": "number",
+          "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1579901055575,
+          "example": "1579901055.575",
           "required":true
         },
         "token":{
@@ -1965,9 +1965,9 @@
           "example":"6d840e6d0ecfcbcfa83c0f704439e16c69383d93f51427feb9a4f2d21fbe075"
         },
         "nonce":{
-          "type":"number",
+          "type":"string",
           "description":"A user generated nonce.",
-          "example":1579783140.807
+          "example":"1579783140.807"
         },
         "signature":{
           "type":"string",
@@ -2282,7 +2282,7 @@
         "nonce":{
           "type":"number",
           "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1579901055575
+          "example": 1579901055.575
         },
         "starkPublicKey":{
           "type":"object",
