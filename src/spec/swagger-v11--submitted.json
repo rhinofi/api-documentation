@@ -829,6 +829,207 @@
           }
         }
       }
+    },
+    "/v1/trading/r/getBalanceForUser/{userEthAddress}": {
+      "post": {
+        "summary": "This is used to retrieve the total and active balances of a user per token. Active balance is the balance that is currently available. Total balance (specified as balance) is the sum of all the balances including those locked for trading.",
+        "operationId": "postV1TradingRGetbalanceforuserUserethaddress",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The ETH address of a potential user",
+            "name": "userEthAddress",
+            "in": "path",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "The token for which the balances are provided.",
+                    "example": "ETH"
+                  },
+                  "balance": {
+                    "type": "number",
+                    "description": "It is the total balance for the user corresponding to the specified token.",
+                    "example": 42
+                  },
+                  "available": {
+                    "type": "number",
+                    "description": "It is the part of the balance available for use.",
+                    "example": 23
+                  },
+                  "locked": {
+                    "type": "number",
+                    "description": "It is the part of the balance currently in open orders or pending withdrawal.",
+                    "example": 19
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Trading",
+          "public"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/getBalanceResponse"
+            },
+            "description": "Successful"
+          }
+        }
+      }
+    },
+    "/v1/trading/r/publicTradeHistory/{user}": {
+      "get": {
+        "summary": "This method is used to retrieve a list of all past executed trades for a user. This includes the different trades that have been settled for each fully executed or partially executed order.",
+        "operationId": "getV1TradingRPublictradehistoryUser",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The ETH address of a potential user",
+            "name": "user",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Trading",
+          "public"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fillAmount": {
+                        "type": "number",
+                        "description": "amount filled"
+                      },
+                      "user": {
+                        "type": "string",
+                        "description": "User ETH address"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Date of the settlement"
+                      },
+                      "tokenBuy": {
+                        "type": "string",
+                        "description": "Buy token"
+                      },
+                      "tokenSell": {
+                        "type": "string",
+                        "description": "Sell token"
+                      },
+                      "amountBuy": {
+                        "type": "string",
+                        "description": "Amount of buy order"
+                      },
+                      "amountSell": {
+                        "type": "string",
+                        "description": "Amount of sell order"
+                      },
+                      "orderId": {
+                        "type": "string",
+                        "description": "Id of the order"
+                      },
+                      "feeCurrency": {
+                        "type": "string",
+                        "description": "Currency of the fee"
+                      },
+                      "feeAmount": {
+                        "type": "string",
+                        "description": "Amount of fee"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Successful"
+          }
+        }
+      }
+    },
+    "/v1/trading/r/getPublicUserPermissions": {
+      "post": {
+        "summary": "Used to get all configured permissions for the authenticated user",
+        "operationId": "postV1TradingRGetpublicuserpermissions",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nonce": {
+                  "type": "string",
+                  "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+                  "example": "1776156902.058"
+                },
+                "signature": {
+                  "type": "string",
+                  "description": "The signature obtained by signing the nonce with your private ethereum key.",
+                  "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Trading", "public"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/permissionsResponse"
+            },
+            "description": "Successful"
+          }
+        }
+      }
+    },
+    "/v1/trading/r/setPublicUserPermissions": {
+      "post": {
+        "summary": "Used to set a specific permission for a given user",
+        "operationId": "postV1TradingRSetpublicuserpermissions",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/permissionsPayload"
+            }
+          }
+        ],
+        "tags": [
+          "Trading"
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/permissionsResponse"
+            },
+            "description": "Successful"
+          }
+        }
+      }
     }
   },
   "definitions":{
@@ -2412,6 +2613,44 @@
           "type":"number",
           "description":"Used to determine whether or not the transaction originated as a buy or sell.",
           "example":"buy"
+        }
+      }
+    },
+    "permissionsResponse": {
+      "type": "object",
+      "properties": {
+        "balances": {
+          "type": "boolean",
+          "description": "is balances authorized"
+        },
+        "tradingHistory": {
+          "type": "boolean",
+          "description": "is trading history authorized"
+        }
+      }
+    },
+    "permissionsPayload": {
+      "type": "object",
+      "properties": {
+        "nonce": {
+          "type": "string",
+          "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+          "example": "1776156902.058"
+        },
+        "signature": {
+          "type": "string",
+          "description": "The signature obtained by signing the nonce with your private ethereum key.",
+          "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+        },
+        "key": {
+          "type": "string",
+          "description": "The permission key to change the access for",
+          "example": "balances"
+        },
+        "value": {
+          "type": "boolean",
+          "description": "Whether to allow public access to the endpoints driven by provided permission",
+          "example": true
         }
       }
     }

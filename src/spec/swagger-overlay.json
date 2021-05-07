@@ -1318,6 +1318,301 @@
         }
       }
     },
+    "/v1/trading/r/getBalanceForUser/{userEthAddress}": {
+      "post": {
+        "title": "Get User Balances",
+        "summary": "This is used to retrieve the total and active balances of a user per token. Active balance is the balance that is currently available. Total balance (specified as balance) is the sum of all the balances including those locked for trading.",
+        "operationId": "postV1TradingRGetbalanceforuserUserethaddress",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The ETH address of a potential user",
+            "name": "userEthAddress",
+            "in": "path",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "description": "The token which the balance is specifically requested for.",
+                  "example": "ETH"
+                },
+                "fields": {
+                  "type": "array",
+                  "description": "Specific fields to be returned for balance information",
+                  "example": [
+                    "balance",
+                    "updatedAt"
+                  ],
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "balance",
+                      "available",
+                      "locked",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Trading",
+          "public"
+        ],
+        "responses": {
+          "default": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "description": "The token for which the balances are provided.",
+                    "example": "ETH"
+                  },
+                  "balance": {
+                    "type": "number",
+                    "description": "It is the total balance for the user corresponding to the specified token.",
+                    "example": 42
+                  },
+                  "available": {
+                    "type": "number",
+                    "description": "It is the part of the balance available for use.",
+                    "example": 23
+                  },
+                  "locked": {
+                    "type": "number",
+                    "description": "It is the part of the balance currently in open orders or pending withdrawal.",
+                    "example": 19
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "token": "BTC",
+                  "balance": 0,
+                  "available": 0,
+                  "locked": 0
+                },
+                {
+                  "token": "ETH",
+                  "balance": 114036369,
+                  "available": 89036369,
+                  "locked": 25000000
+                },
+                {
+                  "token": "KON",
+                  "balance": 99800000,
+                  "available": 99800000,
+                  "locked": 0
+                },
+                {
+                  "token": "USDT",
+                  "balance": 2781535529,
+                  "available": 2781535529,
+                  "locked": 0
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/publicTradeHistory/{user}": {
+      "get": {
+        "title": "User Trade History",
+        "summary": "This method is used to retrieve a list of all past executed trades for a user. This includes the different trades that have been settled for each fully executed or partially executed order.",
+        "operationId": "getV1TradingRPublictradehistoryUser",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "The ETH address of a potential user",
+            "name": "user",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Trading",
+          "public"
+        ],
+        "responses": {
+          "default": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fillAmount": {
+                        "type": "number",
+                        "description": "amount filled"
+                      },
+                      "user": {
+                        "type": "string",
+                        "description": "User ETH address"
+                      },
+                      "date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Date of the settlement"
+                      },
+                      "tokenBuy": {
+                        "type": "string",
+                        "description": "Buy token"
+                      },
+                      "tokenSell": {
+                        "type": "string",
+                        "description": "Sell token"
+                      },
+                      "amountBuy": {
+                        "type": "string",
+                        "description": "Amount of buy order"
+                      },
+                      "amountSell": {
+                        "type": "string",
+                        "description": "Amount of sell order"
+                      },
+                      "orderId": {
+                        "type": "string",
+                        "description": "Id of the order"
+                      },
+                      "feeCurrency": {
+                        "type": "string",
+                        "description": "Currency of the fee"
+                      },
+                      "feeAmount": {
+                        "type": "string",
+                        "description": "Amount of fee"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "items": [
+                    {
+                      "fillAmount": -0.05,
+                      "user": "0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1",
+                      "date": "2021-05-06T09:54:33.433Z",
+                      "tokenBuy": "USDT",
+                      "tokenSell": "ETH",
+                      "amountBuy": "9.985",
+                      "amountSell": "0.05",
+                      "orderId": "MSf8g3RbctU",
+                      "feeCurrency": "USDT",
+                      "feeAmount": "0.015"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/getPublicUserPermissions": {
+      "post": {
+        "title": "Get Public Permissions",
+        "summary": "Used to get all configured permissions for the authenticated user",
+        "operationId": "postV1TradingRGetpublicuserpermissions",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nonce": {
+                  "type": "string",
+                  "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
+                  "example": "1776156902.058"
+                },
+                "signature": {
+                  "type": "string",
+                  "description": "The signature obtained by signing the nonce with your private ethereum key.",
+                  "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Trading", "public"
+        ],
+        "responses": {
+          "default": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "balances": {
+                  "type": "boolean",
+                  "description": "is balances authorized"
+                },
+                "tradingHistory": {
+                  "type": "boolean",
+                  "description": "is trading history authorized"
+                }
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "balances": true,
+                  "tradingHistory": true
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/v1/trading/r/setPublicUserPermissions": {
+      "post": {
+        "title": "Set Public Permissions",
+        "responses": {
+          "default": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "balances": {
+                  "type": "boolean",
+                  "description": "is balances authorized"
+                },
+                "tradingHistory": {
+                  "type": "boolean",
+                  "description": "is trading history authorized"
+                }
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "balances": true,
+                  "tradingHistory": true
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
     "/market-data/book/{symbol}/{precision}/{length}": {
       "get":{
         "title":"Orderbook",
