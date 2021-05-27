@@ -1694,8 +1694,24 @@
             }
         },
         "examples": {
-          "application/json":
-            {"items":[{"_id":"CCspAsqYsEN","token":"ETH","amount":0.2,"recipient":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","source":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","date":"2021-03-19T12:34:05.357Z","feeAmount":0},{"_id":"4x8nLkkxTJ5","token":"ETH","amount":0.2,"recipient":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","source":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","date":"2021-03-04T09:04:02.381Z","feeAmount":0},{"_id":"K6ChG82WYob","token":"ETH","amount":0.5,"recipient":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","source":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","date":"2021-03-04T09:03:10.671Z","feeAmount":0},{"_id":"MJRXa33E4sn","token":"ETH","amount":0.3,"recipient":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","source":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","date":"2021-03-03T15:56:38.742Z","feeAmount":0},{"_id":"KXUPSDQ1arf","token":"ETH","amount":0.3,"recipient":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","source":"0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1","date":"2021-03-03T10:46:28.630Z","feeAmount":0}],"pagination":{"totalItems":5,"skip":0,"limit":20}}
+          "application/json": {
+              "items": [
+                {
+                  "_id": "KXUPSDQ1arf",
+                  "token": "ETH",
+                  "amount": 0.3,
+                  "recipient": "0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1",
+                  "source": "0x271f6a30fcf762325d3213ce19ed55e7e6a8cac1",
+                  "date": "2021-03-03T10:46:28.630Z",
+                  "feeAmount": 0
+                }
+              ],
+              "pagination": {
+                "totalItems": 5,
+                "skip": 0,
+                "limit": 20
+              }
+            }
         }
       }
     }
@@ -1778,8 +1794,41 @@
           }
         },
         "examples": {
-          "application/json": 
-            {"items":[{"price":10.095,"fillAmount":-1,"symbol":"ETH:USDT","fillId":"609a7ecea47ac5332a0178ca","orderId":"4mF1Qk5TDq9","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-11T12:55:42.718Z","orderAmount":-1,"date":"2021-05-11T12:55:43.147Z","orderActive":false,"orderCanceled":false},{"price":200,"fillAmount":0.05,"symbol":"ETH:USDT","fillId":"609a7e0ba47ac5332a0178c0","orderId":"3tqTLDnkEMH","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-11T12:52:27.664Z","orderAmount":0.1,"date":"2021-05-11T12:52:29.050Z","orderActive":false,"orderCanceled":false},{"price":200,"fillAmount":0.05,"symbol":"ETH:USDT","fillId":"609a7e0ba47ac5332a0178bd","orderId":"3tqTLDnkEMH","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-11T12:52:27.664Z","orderAmount":0.1,"date":"2021-05-11T12:52:28.048Z","orderActive":false,"orderCanceled":false},{"price":200,"fillAmount":-0.05,"symbol":"ETH:USDT","fillId":"609543263e43336a0a25d714","orderId":"MSf8g3RbctU","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:44:06.628Z","orderAmount":-0.3,"date":"2021-05-07T13:39:51.020Z","orderActive":false,"orderCanceled":true},{"price":200,"fillAmount":-0.06,"symbol":"ETH:USDT","fillId":"609521bb3e43336a0a25d6dc","orderId":"MSf8g3RbctU","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:44:06.628Z","orderAmount":-0.3,"date":"2021-05-07T11:17:15.723Z","orderActive":false,"orderCanceled":true},{"price":200,"fillAmount":-0.05,"symbol":"ETH:USDT","fillId":"609520fd3e43336a0a25d6d1","orderId":"MSf8g3RbctU","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:44:06.628Z","orderAmount":-0.3,"date":"2021-05-07T11:14:06.021Z","orderActive":false,"orderCanceled":true},{"price":200,"fillAmount":-0.05,"symbol":"ETH:USDT","fillId":"6093bcd9ec05a4226816bc54","orderId":"MSf8g3RbctU","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:44:06.628Z","orderAmount":-0.3,"date":"2021-05-06T09:54:33.433Z","orderActive":false,"orderCanceled":true},{"price":190,"fillAmount":-0.1,"symbol":"ETH:USDT","fillId":"6093baddec05a4226816bc48","orderId":"B7h6fQnJ6hL","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:46:05.519Z","orderAmount":-0.1,"date":"2021-05-06T09:46:06.538Z","orderActive":false,"orderCanceled":false},{"price":190,"fillAmount":0.1,"symbol":"ETH:USDT","fillId":"6093baddec05a4226816bc47","orderId":"4kMfLwWJ4E8","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:45:59.931Z","orderAmount":0.1,"date":"2021-05-06T09:46:05.937Z","orderActive":false,"orderCanceled":false},{"price":190,"fillAmount":-0.1,"symbol":"ETH:USDT","fillId":"6093bacfec05a4226816bc42","orderId":"FmvyoBq5q1W","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:45:51.046Z","orderAmount":-0.1,"date":"2021-05-06T09:45:52.446Z","orderActive":false,"orderCanceled":false},{"price":190,"fillAmount":0.1,"symbol":"ETH:USDT","fillId":"6093bacfec05a4226816bc41","orderId":"9qovukwnzUu","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:45:40.153Z","orderAmount":0.1,"date":"2021-05-06T09:45:51.337Z","orderActive":false,"orderCanceled":false},{"price":190,"fillAmount":-0.1,"symbol":"ETH:USDT","fillId":"6093ba95ec05a4226816bc3c","orderId":"Fy1qTx38JMZ","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:44:53.541Z","orderAmount":-0.1,"date":"2021-05-06T09:44:54.833Z","orderActive":false,"orderCanceled":false},{"price":190,"fillAmount":0.1,"symbol":"ETH:USDT","fillId":"6093ba95ec05a4226816bc3b","orderId":"2fh4oeSZQxW","orderType":"EXCHANGE LIMIT","orderCreationDate":"2021-05-06T09:44:35.020Z","orderAmount":0.3,"date":"2021-05-06T09:44:54.334Z","orderActive":false,"orderCanceled":true}],"pagination":{"totalItems":13,"skip":0,"limit":20}}
+          "application/json": {
+              "items": [
+                {
+                  "price": 190,
+                  "fillAmount": -0.1,
+                  "symbol": "ETH:USDT",
+                  "fillId": "6093ba95ec05a4226816bc3c",
+                  "orderId": "Fy1qTx38JMZ",
+                  "orderType": "EXCHANGE LIMIT",
+                  "orderCreationDate": "2021-05-06T09:44:53.541Z",
+                  "orderAmount": -0.1,
+                  "date": "2021-05-06T09:44:54.833Z",
+                  "orderActive": false,
+                  "orderCanceled": false
+                },
+                {
+                  "price": 190,
+                  "fillAmount": 0.1,
+                  "symbol": "ETH:USDT",
+                  "fillId": "6093ba95ec05a4226816bc3b",
+                  "orderId": "2fh4oeSZQxW",
+                  "orderType": "EXCHANGE LIMIT",
+                  "orderCreationDate": "2021-05-06T09:44:35.020Z",
+                  "orderAmount": 0.3,
+                  "date": "2021-05-06T09:44:54.334Z",
+                  "orderActive": false,
+                  "orderCanceled": true
+                }
+              ],
+              "pagination": {
+                "totalItems": 13,
+                "skip": 0,
+                "limit": 20
+              }
+            }
         }
       }
     }
