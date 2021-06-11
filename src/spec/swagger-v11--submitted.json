@@ -748,6 +748,15 @@
       "post":{
         "summary":"Returns a range of gas prices in Wei to use with on chain transactions.",
         "operationId":"getV1TradingRGetGasPrice",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/getGasPricePayload"
+            }
+          }
+        ],
         "tags":[
           "Trading"
         ],
@@ -2780,6 +2789,16 @@
         "starkVaultId",
         "expireTime"
       ]
+    },
+    "getGasPricePayload": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "Token for which to get the gas price",
+          "example": "ETH"
+        }
+      }
     },
     "getGasPriceResponse": {
       "type":"object",
