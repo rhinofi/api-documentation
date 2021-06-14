@@ -745,7 +745,7 @@
       }
     },
     "/v1/trading/r/getGasPrice":{
-      "post":{
+      "get":{
         "summary":"Returns a range of gas prices in Wei to use with on chain transactions.",
         "operationId":"getV1TradingRGetGasPrice",
         "tags":[

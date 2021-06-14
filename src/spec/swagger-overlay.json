@@ -1199,7 +1199,7 @@
       }
     },
     "/v1/trading/r/getGasPrice": {
-      "post": {
+      "get": {
         "title": "Get Gas Price",
         "responses": {
           "default": {
