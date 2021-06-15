@@ -102,6 +102,21 @@ export const TutorialsLinks = () => {
         setCurrentSection={setCurrentSection}
         text="USD Tether Markets"
       />
+      <TutorialsLink
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        text="Internal Transfers"
+      />
+      <TutorialsLink
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        text="Trading Client"
+      />
+      <TutorialsLink
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        text="Querying Endpoints"
+      />
     </ul>
   );
 };

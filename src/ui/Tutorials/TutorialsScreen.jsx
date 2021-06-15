@@ -12,6 +12,9 @@ import {DevelopmentEnvironmentsSection} from './TutorialsSections/DevelopmentEnv
 import {StarkWareSettlementSection} from './TutorialsSections/StarkWareSettlementSection';
 import {WebsocketMarketDataSection} from './TutorialsSections/WebsocketMarketDataSection';
 import {RestMarketDataSection} from './TutorialsSections/RestMarketDataSection';
+import {InternalTransfers} from './TutorialsSections/InternalTransfers';
+import {TradingClient} from './TutorialsSections/TradingClient';
+import {QueryingEndpoints} from './TutorialsSections/QueryingEndpoints';
 import {DocsLink} from './DocsLink';
 import {ArticlesSearch} from './ArticlesSearch';
 
@@ -37,6 +40,9 @@ export const TutorialsScreen = () => {
           <StarkWareSettlementSection/>
           <WebsocketMarketDataSection/>
           <RestMarketDataSection/>
+          <InternalTransfers/>
+          <TradingClient/>
+          <QueryingEndpoints/>
         </Main>
       </Content>
     </Screen>
