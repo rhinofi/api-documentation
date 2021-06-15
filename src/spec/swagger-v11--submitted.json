@@ -718,6 +718,140 @@
         }
       }
     },
+    "/v1/trading/w/transfer": {
+      "post": {
+        "title": "Transfer",
+        "summary": "Submit a request for internal transfer (NOTE: currently not available to wider public).",
+        "operationId": "postV1TradingWTransfer",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+                "$ref": "#/definitions/transferPayload"
+            }
+          }
+        ],
+        "tags": ["Trading"],
+        "responses": {
+          "default": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "type": "string",
+                  "description": "Transfer ID.",
+                  "example": "LCafcGC6tBH"
+                },
+                "token": {
+                  "type": "string",
+                  "description": "The token that was transferred.",
+                  "example": "NEC"
+                },
+                "amount": {
+                  "type": "string",
+                  "description": "The amount that was transferred (in quantised units).",
+                  "example": "100",
+                  "pattern": "^[0-9]*$"
+                },
+                "recipient": {
+                  "type": "string",
+                  "description": "Deversifi user id of recipient of the transfer.",
+                  "example": "0x948cd3ad67c5f21412bfcd07a7981322f9fa01f0"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "The date and time transfer request was received.",
+                  "example": "2020-01-29T14:13:05.898Z"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "The date and time transfer request was received.",
+                  "example": "2020-01-29T14:13:05.898Z"
+                },
+                "tx": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "TransferRequest"
+                      ]
+                    },
+                    "amount": {
+                      "type": "string",
+                      "pattern": "^[0-9]*$"
+                    },
+                    "expirationTimestamp": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "nonce": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "receiverPublicKey": {
+                      "type": "string",
+                      "pattern": "^0x[a-f0-9]+$"
+                    },
+                    "receiverVaultId": {
+                      "type": "integer"
+                    },
+                    "senderPublicKey": {
+                      "type": "string",
+                      "pattern": "^0x[a-f0-9]+$"
+                    },
+                    "senderVaultId": {
+                      "type": "integer"
+                    },
+                    "signature": {
+                      "$ref": "#/definitions/signature"
+                    },
+                    "token": {
+                      "type": "string",
+                      "pattern": "^0x[a-f0-9]+$"
+                    }
+                  }
+                }
+              },
+              "required": [
+                  "_id",
+                  "token",
+                  "createdAt",
+                  "updatedAt"
+              ]
+            },
+            "examples": {
+              "application/json": {
+                "_id": "LCafcGC6tBH",
+                "token": "NEC",
+                "amount": "100",
+                "recipient":"0x948cd3ad67c5f21412bfcd07a7981322f9fa01f0",
+                "createdAt": "2020-01-29T14:13:05.898Z",
+                "updatedAt": "2020-01-29T14:13:05.898Z",
+                "tx": {
+                  "type": "TransferRequest",
+                  "amount": "100",
+                  "expirationTimestamp": 456890,
+                  "nonce": 120,
+                  "receiverPublicKey": "0x341E46a49F15785373edE443Df0220DEa6a41Bbc",
+                  "receiverVaultId": 15678,
+                  "senderPublicKey": "0x341E46a49F15785373edE443Df0220DEa6a41Bbc",
+                  "senderVaultId": 1234,
+                  "signature": {
+                    "r": "5d14357fcf8f489218de0855267c6f64bc463135debf62680ad796e63cd6d3b",
+                    "s": "786ab874d91e3a5871134955fcb768914754760a0ada326af67f758f32819cf"
+                  },
+                  "token": "0x341E46a49F15785373edE443Df0220DEa6a41Bbc"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/trading/w/withdraw":{
       "post":{
         "summary":"Submit a request for a new withdrawal.",
@@ -2991,6 +3125,148 @@
           "description": "Whether to allow public access to the endpoints driven by provided permission",
           "example": true
         }
+      }
+    },
+    "transferPayload": {
+      "type": "object",
+      "properties": {
+        "tx": {
+          "type": "object",
+          "description": "StarkWare TansferRequest for main transfer",
+          "example": {
+            "type": "TransferRequest",
+            "amount": "100",
+            "expirationTimestamp": 516578,
+            "nonce": 624865484,
+            "receiverPublicKey": "0x011869c13b32ab9b7ec84e2b31c1de58baaaa6bbb2443a33bbad8df739a6e958",
+            "receiverVaultId": 1478152318,
+            "senderPublicKey": "0x0435a5f41a1109379a143f931b6d2062623be35cc688a4f896e8689a1dd6f5c6",
+            "senderVaultId": 1252694399,
+            "signature": {
+              "r": "5d14357fcf8f489218de0855267c6f64bc463135debf62680ad796e63cd6d3b",
+              "s": "786ab874d91e3a5871134955fcb768914754760a0ada326af67f758f32819cf"
+            },
+            "token": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba7"
+          },
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "TransferRequest"
+              ]
+            },
+            "amount": {
+              "type": "string",
+              "pattern": "^[0-9]*$"
+            },
+            "expirationTimestamp": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "nonce": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "receiverPublicKey": {
+              "type": "string",
+              "pattern": "^0x[a-f0-9]+$"
+            },
+            "receiverVaultId": {
+              "type": "integer",
+              "example": 123
+            },
+            "senderPublicKey": {
+              "type": "string",
+              "pattern": "^0x[a-f0-9]+$"
+            },
+            "senderVaultId": {
+              "type": "integer"
+            },
+            "signature": {
+              "$ref": "#/definitions/signature"
+            },
+            "token": {
+              "type": "string",
+              "pattern": "^0x[a-f0-9]+$"
+            }
+          }
+        },
+        "feeTx": {
+          "type": "object",
+          "description": "StarkWare TansferRequest for service fee",
+          "example": {
+            "type": "TransferRequest",
+            "amount": "100",
+            "expirationTimestamp": 516578,
+            "nonce": 624865484,
+            "receiverPublicKey": "0x011869c13b32ab9b7ec84e2b31c1de58baaaa6bbb2443a33bbad8df739a6e958",
+            "receiverVaultId": 1478152318,
+            "senderPublicKey": "0x0435a5f41a1109379a143f931b6d2062623be35cc688a4f896e8689a1dd6f5c6",
+            "senderVaultId": 1252694399,
+            "signature": {
+              "r": "5d14357fcf8f489218de0855267c6f64bc463135debf62680ad796e63cd6d3b",
+              "s": "786ab874d91e3a5871134955fcb768914754760a0ada326af67f758f32819cf"
+            },
+            "token": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba7"
+          },
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "TransferRequest"
+                ]
+            },
+            "amount": {
+                "type": "string",
+                "pattern": "^[0-9]*$"
+            },
+            "expirationTimestamp": {
+                "type": "integer",
+                "minimum": 0
+            },
+            "nonce": {
+                "type": "integer",
+                "minimum": 0
+            },
+            "receiverPublicKey": {
+                "type": "string",
+                "pattern": "^0x[a-f0-9]+$"
+            },
+            "receiverVaultId": {
+                "type": "integer"
+            },
+            "senderPublicKey": {
+                "type": "string",
+                "pattern": "^0x[a-f0-9]+$"
+            },
+            "senderVaultId": {
+                "type": "integer"
+            },
+            "signature": {
+                "$ref": "#/definitions/signature"
+            },
+            "token": {
+              "type": "string",
+              "pattern": "^0x[a-f0-9]+$"
+            }
+          }
+        },
+        "starkPublicKey": {
+            "$ref": "#/definitions/starkPublicKey"
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "properties": {
+          "r": {
+              "type": "string",
+              "pattern": "^0x[a-f0-9]+$"
+          },
+          "s": {
+              "type": "string",
+              "pattern": "^0x[a-f0-9]+$"
+          }
       }
     }
   }
