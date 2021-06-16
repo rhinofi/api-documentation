@@ -45,7 +45,8 @@ async function public () {
     </SubSection>
     <SubSection id="Private Endpoints" className="section">
       <SubTitle>Private Endpoints</SubTitle>
-      <Text>Using same deversifi client we can call authorized endpoints [example 1], same result can be achieved manually signing a signature [example 2]:</Text>
+      <Text>Using same deversifi client we can call authorized endpoints [example 1], same result can be achieved manually signing a signature POST [example 2]
+        and for get GET we need an Authorization header [example 3]:</Text>
       <CodeWrapper>
         <PrismCode
           language="js"
@@ -56,11 +57,9 @@ const DVF = require('dvf-client-js');
 const fetch = require('node-fetch');
 
 async function private () {
-  // ---EXAMPLE 1---
+  // ---SETUP---
   const providerUrl = '// Infura or similar provider url //';
-
   const ethPrivKey = '// Your private key //';
-
   const starkPrivateKey = '// Your stark private key //';
 
   const provider = new HDWalletProvider(ethPrivKey, providerUrl);
@@ -77,10 +76,11 @@ async function private () {
   }
   dvf = await DVF(web3, dvfConfig);
 
+  // ---EXAMPLE 1 [DVF CLIENT]---
   const balances = await dvf.getBalance()
   console.info('balances', balances)
 
-  // ---EXAMPLE 2---
+  // ---EXAMPLE 2 [POST]---
   const { nonce, signature } = await dvf.sign.nonceSignature()
 
   const body = {
@@ -99,6 +99,27 @@ async function private () {
     },
   });
   console.info('balances', await rBalance.json())
+
+  // ---EXAMPLE 3 [GET]---
+  const { nonce, signature } = await dvf.sign.nonceSignature()
+
+  const makeEcRecoverHeader = data => {
+    const bufferStarkAuthData = Buffer.from(JSON.stringify(data))
+    return 'EcRecover ' + bufferStarkAuthData.toString('base64')
+  }
+
+  const authHeaders = makeEcRecoverHeader({ nonce, signature })
+  const user24HourVolumeUrl = 'https://api.deversifi.com/v1/trading/r/User24HoursVolume';
+
+  const rUserVolume = await fetch(user24HourVolumeUrl, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "Authorization": authHeaders
+    },
+  });
+  console.info('User 24 hour volume', await rUserVolume.json())
 }
           `}
         />

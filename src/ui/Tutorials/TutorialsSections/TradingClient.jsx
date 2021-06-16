@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 export const TradingClient = () => (
   <>
-    <TutorialSection title="Trading client">
+    <TutorialSection title="Trading Client">
       <Text>
         We can use dvf-client to make our own trading client, which makes buy/sells.
       </Text>
@@ -27,9 +27,7 @@ const DVF = require('dvf-client-js');
 
 async function client () {
   const providerUrl = '// Infura or similar provider url //';
-
   const ethPrivKey = '// Your private key //';
-
   const starkPrivateKey = '// Your stark private key //';
 
   const provider = new HDWalletProvider(ethPrivKey, providerUrl);

@@ -4,8 +4,9 @@ import {Text} from '../../common/Text';
 import {SubTitle} from '../../common/SubTitle';
 import {SubSection} from '../../common/SubSection';
 import {PrismCode} from '../../Docs/PrismCode';
-import styled from 'styled-components';
 import {Code} from '../../common/Code';
+import {Bold} from '../../common/Bold';
+import styled from 'styled-components';
 
 export const RebalancingFunds = () => (
   <>
@@ -16,7 +17,8 @@ export const RebalancingFunds = () => (
     </TutorialSection>
     <SubSection id="RebalancingFunds" className="section">
       <SubTitle>Balance/Deposit/Withdrawals</SubTitle>
-      <Text>The client api exposes convenient deposit/withdraw tracking functionality. <Code>getBalance</Code> Alaways returns latest balance data, but you can use <Code>getDeposits</Code> to see all deposit history and <Code>getWithdrawals</Code> to see all pending withdrawals. </Text>
+      <Text>The client api exposes convenient deposit/withdraw tracking functionality. <Code>getBalance</Code> Alaways returns latest balance data, but
+      you can use <Code>getDeposits</Code> to see all deposit history and <Code>getWithdrawals</Code> to see all <Bold>pending</Bold> withdrawals. </Text>
       <CodeWrapper>
         <PrismCode
           language="js"
@@ -27,9 +29,7 @@ const DVF = require('dvf-client-js');
 
 async function balance () {
   const providerUrl = '// Infura or similar provider url //';
-
   const ethPrivKey = '// Your private key //';
-
   const starkPrivateKey = '// Your stark private key //';
 
   const provider = new HDWalletProvider(ethPrivKey, providerUrl);
