@@ -4,6 +4,7 @@ import {Text} from '../../common/Text';
 import {SubTitle} from '../../common/SubTitle';
 import {SubSection} from '../../common/SubSection';
 import {PrismCode} from '../../Docs/PrismCode';
+import {Code} from '../../common/Code';
 import styled from 'styled-components';
 
 export const TradingClient = () => (
@@ -15,7 +16,7 @@ export const TradingClient = () => (
     </TutorialSection>
     <SubSection id="Trading" className="section">
       <SubTitle>Trading</SubTitle>
-      <Text>Using deversifi client library we can connect to our account and make trades using it's credentials:</Text>
+      <Text>Using deversifi client library we can connect to our account and make trades using key credentials:</Text>
       <CodeWrapper>
         <PrismCode
           language="js"
@@ -34,9 +35,10 @@ async function client () {
   const provider = new HDWalletProvider(ethPrivKey, providerUrl);
   const web3 = new Web3(provider);
   
-  // order
   const price = 200
   const amount = '0.05'
+
+  // order buy params
   const buy = {
     symbol: "ETH:USDT",
     amount,
@@ -44,6 +46,7 @@ async function client () {
     starkPrivateKey
   }
 
+  // order sell params
   const sell = {
     symbol: "ETH:USDT",
     amount: \`-\${amount}\`,
@@ -52,7 +55,7 @@ async function client () {
   }
 
   const dvfConfig = {
-    api: 'https://api.deversifi.dev',
+    api: 'https://api.deversifi.com',
     wallet: {
       type: 'tradingKey',
       meta: {
@@ -63,14 +66,27 @@ async function client () {
 
   dvf = await DVF(web3, dvfConfig);
 
+  // Buy order placing
   const rBuyOrder = await dvf.submitOrder(buy)
   console.info('buy order receipt', JSON.stringify(rBuyOrder))
 
+  // Sell order placing
   const rSellOrder = await dvf.submitOrder(sell)
   console.info('sell order receipt', JSON.stringify(rSellOrder))
 }
           `}
         />
+      </CodeWrapper>
+      <Text>If you decide you want to cancel the order no matter buy or sell, use the returned reference <Code>rBuyOrder</Code> or <Code>rSellOrder</Code> to cancel it:</Text>
+      <CodeWrapper>
+      <PrismCode
+          language="js"
+          code={`
+// Order canceling
+const rBuyOrder = await dvf.submitOrder(buy)  
+await dvf.cancelOrder({ orderId: rBuyOrder._id })
+          `}
+          />
       </CodeWrapper>
     </SubSection>
   </>

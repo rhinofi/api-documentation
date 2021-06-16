@@ -15,6 +15,7 @@ import {RestMarketDataSection} from './TutorialsSections/RestMarketDataSection';
 import {InternalTransfers} from './TutorialsSections/InternalTransfers';
 import {TradingClient} from './TutorialsSections/TradingClient';
 import {QueryingEndpoints} from './TutorialsSections/QueryingEndpoints';
+import {RebalancingFunds} from './TutorialsSections/RebalancingFunds';
 import {DocsLink} from './DocsLink';
 import {ArticlesSearch} from './ArticlesSearch';
 
@@ -43,6 +44,7 @@ export const TutorialsScreen = () => {
           <InternalTransfers/>
           <TradingClient/>
           <QueryingEndpoints/>
+          <RebalancingFunds/>
         </Main>
       </Content>
     </Screen>

@@ -28,7 +28,7 @@ async function public () {
     month: "03",
     day: "01",
   };
-  const url = \`https://api.deversifi.dev/v1/trading/r/24HoursVolume/\${params.year}/\${params.month}/\${params.day}\`;
+  const url = \`https://api.deversifi.com/v1/trading/r/24HoursVolume/\${params.year}/\${params.month}/\${params.day}\`;
 
   const rTradingVolume = await fetch(url, {
     method: "GET",
@@ -67,7 +67,7 @@ async function private () {
   const web3 = new Web3(provider);
   
   const dvfConfig = {
-    api: 'https://api.deversifi.dev',
+    api: 'https://api.deversifi.com',
     wallet: {
       type: 'tradingKey',
       meta: {
@@ -88,7 +88,7 @@ async function private () {
     signature
   }
 
-  const balanceUrl = 'https://api.deversifi.dev/v1/trading/r/getBalance';
+  const balanceUrl = 'https://api.deversifi.com/v1/trading/r/getBalance';
 
   const rBalance = await fetch(balanceUrl, {
     method: "POST",

@@ -117,6 +117,11 @@ export const TutorialsLinks = () => {
         setCurrentSection={setCurrentSection}
         text="Querying Endpoints"
       />
+      <TutorialsLink
+        currentSection={currentSection}
+        setCurrentSection={setCurrentSection}
+        text="Rebalancing Funds"
+      />
     </ul>
   );
 };
