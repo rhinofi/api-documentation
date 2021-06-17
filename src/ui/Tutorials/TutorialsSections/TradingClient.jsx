@@ -11,12 +11,12 @@ export const TradingClient = () => (
   <>
     <TutorialSection title="Trading Client">
       <Text>
-        We can use dvf-client to make our own trading client, which makes buy/sells.
+        We can use dvf-client to make our own trading client, which makes it easy to place buy or sell orders.
       </Text>
     </TutorialSection>
     <SubSection id="Trading" className="section">
       <SubTitle>Trading</SubTitle>
-      <Text>Using deversifi client library we can connect to our account and make trades using key credentials:</Text>
+      <Text>Using the deversifi client library we can connect to our account and make trades using key credentials:</Text>
       <CodeWrapper>
         <PrismCode
           language="js"

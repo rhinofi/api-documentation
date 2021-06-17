@@ -721,7 +721,7 @@
     "/v1/trading/w/transfer": {
       "post": {
         "title": "Transfer",
-        "summary": "Submit a request for internal transfer (NOTE: currently not available to wider public).",
+        "summary": "Submit a request for internal transfer.",
         "operationId": "postV1TradingWTransfer",
         "parameters": [
           {
@@ -746,7 +746,7 @@
                 "token": {
                   "type": "string",
                   "description": "The token that was transferred.",
-                  "example": "NEC"
+                  "example": "USDT"
                 },
                 "amount": {
                   "type": "string",
@@ -826,7 +826,7 @@
             "examples": {
               "application/json": {
                 "_id": "LCafcGC6tBH",
-                "token": "NEC",
+                "token": "USDT",
                 "amount": "100",
                 "recipient":"0x948cd3ad67c5f21412bfcd07a7981322f9fa01f0",
                 "createdAt": "2020-01-29T14:13:05.898Z",
@@ -3132,7 +3132,7 @@
       "properties": {
         "tx": {
           "type": "object",
-          "description": "StarkWare TansferRequest for main transfer",
+          "description": "StarkWare TransferRequest for main transfer",
           "example": {
             "type": "TransferRequest",
             "amount": "100",

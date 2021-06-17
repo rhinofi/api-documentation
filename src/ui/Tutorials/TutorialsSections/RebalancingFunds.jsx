@@ -12,7 +12,7 @@ export const RebalancingFunds = () => (
   <>
     <TutorialSection title="Rebalancing funds">
       <Text>
-        It is possible to easily track your balance using deversify client.
+        It is possible to easily track your balance using deversifi client.
       </Text>
     </TutorialSection>
     <SubSection id="RebalancingFunds" className="section">

@@ -11,7 +11,7 @@ export const InternalTransfers = () => (
   <>
     <TutorialSection title="Internal Transfers">
       <Text>
-        Internal transfers allow transfering amounts of your deversifi token balance to other users on the platform.
+        Internal transfers allow transfering amounts of your deversifi token balance to other users of the protocol.
       </Text>
     </TutorialSection>
     <SubSection id="Transfer" className="section">
@@ -54,7 +54,7 @@ async function transfer () {
           `}
         />
       </CodeWrapper>
-      <Text>To fetch transfer history we would query the <Code>/transfers</Code> endpoint using previously establish dvf with key credentials and your prefered http request package:</Text>
+      <Text>To fetch transfer history we would query the <Code>/transfers</Code> endpoint using previously establish dvf with key credentials and your preferred http request package:</Text>
       <CodeWrapper>
         <PrismCode
           language="js"
