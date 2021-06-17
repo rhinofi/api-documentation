@@ -1655,7 +1655,7 @@
         "token":{
           "type":"string",
           "description":"The token that was withdrawn.",
-          "example":"NEC"
+          "example":"USDT"
         },
         "amount":{
           "type":"number",
@@ -1742,7 +1742,7 @@
         "token":{
           "type":"string",
           "description":"The token that was deposited",
-          "example":"NEC"
+          "example":"USDT"
         },
         "amount":{
           "type":"number",
@@ -1967,7 +1967,7 @@
         "token":{
           "type":"string",
           "description":"The token that was withdrawn.",
-          "example":"NEC"
+          "example":"USDT"
         },
         "amount":{
           "type":"number",
@@ -2321,7 +2321,7 @@
         "token":{
           "type":"string",
           "description":"The token for which the withdrawal was requested.",
-          "example":"NEC"
+          "example":"USDT"
         },
         "amount":{
           "type":"number",

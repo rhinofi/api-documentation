@@ -69,10 +69,6 @@
                     "tokenAmount":207.84246409836658,
                     "USDValue":34797.96540446898
                   },
-                  "NEC":{
-                    "tokenAmount":231870.3805543381,
-                    "USDValue":18523.75403816698
-                  },
                   "MKR":{
                     "tokenAmount":48.32582713775642,
                     "USDValue":25137.12168147688
@@ -423,10 +419,6 @@
                   "ETH":{
                     "tokenAmount":443.61218170251453,
                     "USDValue":61525.002289
-                  },
-                  "NEC":{
-                    "tokenAmount":1173.0238160813603,
-                    "USDValue":90.447721
                   }
                 },
                 "startDate":"2019-12-15T19:09:18.668Z"
@@ -497,10 +489,6 @@
                   "ETH":{
                     "tokenAmount":443.61218170251453,
                     "USDValue":61525.002289
-                  },
-                  "NEC":{
-                    "tokenAmount":1173.0238160813603,
-                    "USDValue":90.447721
                   }
                 }
               }
@@ -642,7 +630,7 @@
                   "starkKey":"77a3b314db07c45076d11f62b6f9e748a39790441823307743cf00d6597ea43",
                   "starkVaultId":123,
                   "starkTokenId":"0x7",
-                  "token":"NEC",
+                  "token":"USDT",
                   "amount":1000,
                   "createdAt":"2020-01-29T14:02:08.477Z",
                   "isPostedOffchain":false,
@@ -837,7 +825,7 @@
                   "_id":"53cb6b9b4f4ddef1ad47f943",
                   "ethAddress":"0x14d06788090769f669427b6aea1c0240d2321f34",
                   "starkKey":"77a3b314db07c45076d11f62b6f9e748a39790441823307743cf00d6597ea43",
-                  "token":"NEC",
+                  "token":"USDT",
                   "amount":1000,
                   "createdAt":"2020-01-29T14:13:05.898Z"
                 }
@@ -1025,7 +1013,7 @@
             "examples":{
               "application/json":{
                 "_id": "LCafcGC6tBH",
-                "token": "NEC",
+                "token": "USDT",
                 "amount": "100",
                 "createdAt": "2020-01-01T22:57:47.323Z",
                 "readyToWithdrawOnChain": false,
