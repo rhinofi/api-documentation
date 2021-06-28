@@ -95,7 +95,7 @@ export const TutorialsLinks = () => {
       <TutorialsLink
         currentSection={currentSection}
         setCurrentSection={setCurrentSection}
-        text="Rest Market Data"
+        text="Rest API Market Data"
       />
       <TutorialsLink
         currentSection={currentSection}
