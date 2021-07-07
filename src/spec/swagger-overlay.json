@@ -2352,7 +2352,7 @@
             "name":"symbol",
             "type":"string",
             "required":true,
-            "description":"Specify the trading pair. A list of symbols can also be provided. In order to retrieve the results of all trading pairs, the symbol “ALL” should be used. symbols = [\"MKR:ETH\", \"ETH:USDT\"]",
+            "description":"Specify the trading pair.",
             "x-example":"ETH:USDT"
           },
           {
