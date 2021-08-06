@@ -62,14 +62,14 @@
             "name":"nonce",
             "in":"query",
             "required":true,
-            "example": "1579901055.575"
+            "example": "v2-1704114061.000"
           },
           {
             "type":"string",
             "name":"signature",
             "in":"query",
             "required":true,
-            "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+            "example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
           }
         ],
         "tags":[
@@ -95,7 +95,7 @@
             "name":"nonce",
             "in":"query",
             "required":true,
-            "example": "1579901055.575"
+            "example": "v2-1704114061.000"
           },
           {
             "type":"string",
@@ -177,7 +177,7 @@
             "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
             "in":"query",
             "required":true,
-            "example": "1579901055.575"
+            "example": "v2-1704114061.000"
           },
           {
             "type":"string",
@@ -322,7 +322,7 @@
             "description":"Date of the last deposit returned.",
             "name":"startDate",
             "in":"query",
-            "x-example":1595337548241
+            "x-example":1747384800000
           },
           {
             "type":"number",
@@ -504,7 +504,7 @@
             "description":"Date of the last order returned.",
             "name":"startDate",
             "in":"query",
-            "x-example":1595337548241
+            "x-example":1747384800000
           },
           {
             "type":"number",
@@ -540,7 +540,7 @@
             "description":"Date of the last withdraw returned.",
             "name":"startDate",
             "in":"query",
-            "x-example":1595337548241
+            "x-example":1747384800000
           },
           {
             "type":"number",
@@ -940,7 +940,7 @@
             "name":"StartDate",
             "type":"number",
             "description":"The Unix timestamp in milliseconds for the start period for the query.",
-            "x-example":1547384800
+            "x-example":1747384800000
           },
           {
             "in":"path",
@@ -1115,12 +1115,12 @@
                 "nonce": {
                   "type": "string",
                   "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-                  "example": "1776156902.058"
+                  "example": "v2-1704114061.000"
                 },
                 "signature": {
                   "type": "string",
                   "description": "The signature obtained by signing the nonce with your private ethereum key.",
-                  "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+                  "example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
                 }
               }
             }
@@ -1408,12 +1408,12 @@
         "nonce": {
           "type": "string",
           "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1776156902.058"
+          "example": "v2-1704114061.000"
         },
         "signature": {
           "type": "string",
           "description": "The signature obtained by signing the nonce with your private ethereum key.",
-          "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+          "example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
         },
         "token": {
           "type": "string",
@@ -1596,12 +1596,12 @@
         "nonce":{
           "type":"string",
           "description":"This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example":"1579901055.575"
+          "example":"v2-1704114061.000"
         },
         "signature":{
           "type":"string",
           "description":"The signature obtained by signing the nonce with your private ethereum key.",
-          "example":"0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+          "example":"0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
         },
         "token":{
           "type":"string",
@@ -1782,7 +1782,7 @@
         "nonce": {
           "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1579901055.575"
+          "example": "v2-1704114061.000"
         },
         "signature": {
           "type": "string",
@@ -1833,12 +1833,12 @@
         "nonce": {
           "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1579901055.575"
+          "example": "v2-1704114061.000"
         },
         "signature": {
           "type": "string",
           "description": "The signature obtained by signing the nonce with your private ethereum key.",
-          "example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+          "example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
         },
         "token":{
           "type":"string",
@@ -1857,12 +1857,12 @@
         "nonce":{
           "type":"string",
           "description":"A user generated nonce.",
-          "example": "1579901055.575"
+          "example": "v2-1704114061.000"
         },
         "signature":{
           "type":"string",
           "description":"The signed hash (signature) received during the pre-registration process.",
-          "example":"0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+          "example":"0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
         }
       },
       "required":[
@@ -1928,17 +1928,17 @@
         "withdrawalId":{
           "type":"string",
           "description":"Used to identify a specific withdrawal.",
-          "example":"1a2b3c"
+          "example":"i6JjTE2PDL"
         },
         "nonce":{
           "type":"string",
           "description":"This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1579901055.575"
+          "example": "v2-1704114061.000"
         },
         "signature":{
           "type":"string",
           "description":"The signature obtained by signing the nonce with your private ethereum key.",
-          "example":"0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+          "example":"0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
         }
       },
       "required":[
@@ -1987,17 +1987,17 @@
         "nonce": {
           "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1579901055.575"
+          "example": "v2-1704114061.000"
         },
         "signature": {
           "type": "string",
           "description": "The signature obtained by signing the nonce with your private ethereum key.",
-          "example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+          "example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
         },
         "symbol": {
           "type": "string",
           "description": "Specifies the trading pair.",
-          "example": "ETH:USD"
+          "example": "ETH:USDT"
         }
       },
       "required": ["nonce", "signature"]
@@ -2123,17 +2123,17 @@
         "nonce": {
           "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1579901055.575"
+          "example": "v2-1704114061.000"
         },
         "signature": {
           "type": "string",
           "description": "The signature obtained by signing the nonce with your private ethereum key.",
-          "example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+          "example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
         },
         "symbol": {
           "type": "string",
           "description": "Specifies the trading pair.",
-          "example": "ETH:USD"
+          "example": "ETH:USDT"
         }
       },
       "required": ["nonce", "signature"]
@@ -2258,7 +2258,7 @@
         "nonce": {
           "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1579901055.575"
+          "example": "v2-1704114061.000"
         },
         "signature":{
           "type":"string",
@@ -2298,7 +2298,7 @@
         "nonce": {
           "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1579901055.575"
+          "example": "v2-1704114061.000"
         },
         "signature":{
           "type":"string",
@@ -2392,7 +2392,7 @@
         "nonce": {
           "type": "string",
           "description": "This nonce is used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1579901055.575",
+          "example": 162543006,
           "required":true
         },
         "token":{
@@ -2852,7 +2852,7 @@
         "nonce":{
           "type":"number",
           "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": 1579901055.575
+          "example": "v2-1704114061.000"
         },
         "starkPublicKey":{
           "type":"object",
@@ -3108,12 +3108,12 @@
         "nonce": {
           "type": "string",
           "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-          "example": "1776156902.058"
+          "example": "v2-1704114061.000"
         },
         "signature": {
           "type": "string",
           "description": "The signature obtained by signing the nonce with your private ethereum key.",
-          "example": "0x0277b6e85ffdfb8cdc34c89b8b60c42a1a96a57e1b528ca3ff203b2dac8c9a200dbedd5ab8d2ed7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
+          "example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
         },
         "key": {
           "type": "string",

@@ -196,7 +196,7 @@
             "type":"string",
             "required":false,
             "description":"The end date and time (Unix timestamp in milliseconds) for which the trade volumes are requested. If startDate and endDate are not provided, it returns the volume ranking if all time.",
-            "x-example":1577923200000
+            "x-example":1747384800000
           }
         ],
         "tags":[
@@ -262,7 +262,7 @@
             "type":"string",
             "required":false,
             "description":"The end date and time (Unix timestamp in milliseconds) for which events are requested.If startDate and endDate are not provided, it returns the volume ranking if all time.",
-            "x-example":1577923200000
+            "x-example":1747384800000
           }
         ],
         "tags":[
@@ -316,7 +316,7 @@
             "name": "nonce",
             "in": "query",
             "required": true,
-            "x-example": "1579901055.575"
+            "x-example": "v2-1704114061.000"
           },
           {
             "type": "string",
@@ -324,7 +324,7 @@
             "name": "signature",
             "in": "query",
             "required": true,
-            "x-example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+            "x-example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
           },
           {
             "type": "string",
@@ -362,7 +362,7 @@
             "name": "nonce",
             "in": "query",
             "required": true,
-            "x-example": "1579901055.575"
+            "x-example": "v2-1704114061.000"
           },
           {
             "type": "string",
@@ -370,7 +370,7 @@
             "name": "signature",
             "in": "query",
             "required": true,
-            "x-example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+            "x-example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
           }
         ],
         "tags":[
@@ -440,7 +440,7 @@
             "name": "nonce",
             "in": "query",
             "required": true,
-            "x-example": "1579901055.575"
+            "x-example": "v2-1704114061.000"
           },
           {
             "type": "string",
@@ -448,7 +448,7 @@
             "name": "signature",
             "in": "query",
             "required": true,
-            "x-example": "0x494a2c166f95518dcf5a9484fcb702a454382f281f96ba41639fe3a2af279fdc1e3b4e5aa2f585a9a40fb5aaabf10b5390ed5592d502c7799a261f81219491f001"
+            "x-example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
           }
         ],
         "tags":[
@@ -1239,7 +1239,7 @@
                   "price":183.5,
                   "base_volume":1.8,
                   "quote_volume":381.28,
-                  "timestamp": 1577923200000,
+                  "timestamp": 1747384800000,
                   "type": "buy"
                 }
               ]
@@ -1266,7 +1266,7 @@
             "name":"StartDate",
             "type":"number",
             "description":"Date of the last trade returned.",
-            "x-example":1547384800
+            "x-example":1747384800000
           },
           {
             "in":"path",
@@ -1530,7 +1530,7 @@
                 "nonce": {
                   "type": "string",
                   "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-                  "example": "1776156902.058"
+                  "example": "v2-1704114061.000"
                 },
                 "signature": {
                   "type": "string",
@@ -1980,7 +1980,7 @@
             "examples":{
               "application/json":[
                 [
-                  "BTC:USD",
+                  "BTC:USDT",
                   8719.7,
                   34.58126956,
                   8722.2,
@@ -1993,7 +1993,7 @@
                   8449.3
                 ],
                 [
-                  "LTC:USD",
+                  "LTC:USDT",
                   57.875,
                   1297.95111409,
                   57.931,
@@ -2139,7 +2139,7 @@
             "type":"string",
             "required":false,
             "description":"Filter end (time since epoch in ms). Only when section is 'hist' Defaults to now.",
-            "x-example":"1577923200000"
+            "x-example":"1747384800000"
           },
           {
             "in":"query",

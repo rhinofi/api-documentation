@@ -44,7 +44,7 @@ const payload = {
     "cid": "",
     "gid": "",
     "type": "EXCHANGE LIMIT",
-    "symbol": "ETH:USD",
+    "symbol": "ETH:USDT",
     "amount": "1",
     "price": 140,
     "meta": {
