@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
     "highlight-words-core": "^1.2.2",
+    "lodash.mapvalues": "^4.6.0",
     "lodash.merge": "^4.6.2",
     "prismjs": "^1.23.0",
     "react": "^16.12.0",

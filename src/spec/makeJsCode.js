@@ -1,4 +1,5 @@
 import {getExampleFromSchema} from './getBodyExample';
+import { getHeadersWithExtras } from './getHeadersWithExtras';
 
 export function makeJsCode(spec, entry, path, method) {
   const queryLine = getQueryLine(entry.parameters);
@@ -10,7 +11,7 @@ export function makeJsCode(spec, entry, path, method) {
     '  const response = await fetch(url, {\n' +
     getMethod(method) +
     getBody(entry.parameters) +
-    getHeaders() +
+    getHeaders(entry.parameters) +
     '  });\n' +
     '  return response.json();\n' +
     '}'
@@ -119,11 +120,13 @@ export function getWsSubscribeParams(parameters, operationId) {
   return subParams;
 }
 
-function getHeaders() {
+function getHeaders(parameters = []) {
   return (
     '    headers: {\n' +
-    '      "Accept": "application/json",\n' +
-    '      "Content-Type": "application/json",\n' +
+    Object.entries(
+      getHeadersWithExtras(parameters.filter(parameter => parameter.in === 'header'))
+    ).map(([key, value]) => `      "${key}": "${value}"`)
+     .join(',\n') + '\n' +
     '    },\n'
   );
 }

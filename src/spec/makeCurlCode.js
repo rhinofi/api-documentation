@@ -1,13 +1,19 @@
 import {getBodyExample} from './getBodyExample';
+import { getExtraHeaders } from './getExtraHeaders';
+import { getHeadersWithExtras } from './getHeadersWithExtras';
 
 export function makeCurlCode(spec, entry, path, method) {
   let url = `https://${spec.host}${path}`;
-  for (const variable of (entry.parameters || [])) {
+
+  const parameters = entry.parameters || []
+  for (const variable of parameters) {
     if (variable.in === 'path') {
       const value = variable['x-example'] ? variable['x-example'] : '???';
       url = url.replace(`{${variable.name}}`, value);
     }
   }
+
+  const headers = getHeadersWithExtras(parameters.filter(variable => variable.in === 'header'))
   const queryParams = (entry.parameters || [])
     .filter(x => x.in === 'query' && x['x-example'])
     .map(x => `${x.name}=${x['x-example']}`)
@@ -17,12 +23,11 @@ export function makeCurlCode(spec, entry, path, method) {
   }
   let code = `curl \\
   -X ${method.toUpperCase()} \\
-  -H "Accept: application/json" \\
-  -H "Content-Type: application/json" \\\n`;
+  ${Object.entries(headers).map(([key, value]) => `-H "${key}: ${value}"`).join(` \\\n  `)} \\\n`;
   const body = getBodyExample(entry);
   if (body) {
     code += `  -d '${JSON.stringify(body).replace(/'/g, '\\\'')}' \\\n`;
   }
-  code += `  ${url}`;
+  code += `  "${url}"`;
   return code;
 }

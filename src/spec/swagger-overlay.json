@@ -304,52 +304,7 @@
         }
       }
     },
-    "/v1/trading/r/feeRate": {
-      "get": {
-        "title":"Get Fee Rate",
-        "summary": "Return current fee rate for a given address. This rate is dependent on the trading volume of the user.",
-        "operationId": "getV1TradingRFeerate",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "This nonce which used to provide the time until which this nonce is valid. It is presented as seconds since epoch.",
-            "name": "nonce",
-            "in": "query",
-            "required": true,
-            "x-example": "v2-1704114061.000"
-          },
-          {
-            "type": "string",
-            "description": "The signature obtained by signing the nonce with your private ethereum key.",
-            "name": "signature",
-            "in": "query",
-            "required": true,
-            "x-example": "0x2b48d53f2e3a696630ebdcd1ff057556bbc9de9c294adfaa5b1f13df91b67b347fdd88c29594c377ba0024dec40cd9808829e7f4447772482f50a7a8e9a903561c"
-          },
-          {
-            "type": "string",
-            "name": "token",
-            "in": "query",
-            "x-example": "ETH"
-          }
-        ],
-        "tags": ["Trading"],
-        "responses": {
-          "default": {
-            "examples": {
-              "application/json": {
-                "address": "0x116f494a2ce567067f319fea1c9f294f23d2fe68",
-                "timestamp": 1590263332427,
-                "fees": {
-                  "maker": 15,
-                  "taker": 20
-                }
-              }  
-            }
-          }
-        }
-      }
-    },
+
     "/v1/trading/r/30DaysVolume": {
       "get":{
         "title":"User 30-day volume",
@@ -556,62 +511,6 @@
                   "token":"USD"
                 }
               ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/getConf":{
-      "post":{
-        "title":"Get Config",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":{
-                "DVF": {
-                  "defaultFeeRate": 0.002,
-                  "deversifiAddress": "0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
-                  "starkExContractAddress": "0x94E84779D79E34b9166C850c3123d42C273F8843",
-                  "exchangeSymbols": [
-                    "tETHUSD",
-                    "tZRXUSD",
-                    "tZRXETH",
-                    "tBTCUSD"
-                  ],
-                  "tempStarkVaultId": 1
-                },
-                "tokenRegistry": {
-                  "ETH": {
-                    "decimals": 18,
-                    "quantization": 10000000000,
-                    "minOrderSize": 0.05,
-                    "starkTokenId": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba6"
-                  },
-                  "USDT": {
-                    "decimals": 6,
-                    "quantization": 1,
-                    "minOrderSize": 10,
-                    "settleSpread": 0,
-                    "starkTokenId": "0x180bef8ae3462e919489763b84dc1dc700c45a249dec4d1136814a639f2dd7b",
-                    "tokenAddress": "0x4c5f66596197a86fb30a2435e2ef4ddcb39342c9"
-                  },
-                  "ZRX": {
-                    "decimals": 18,
-                    "quantization": 10000000000,
-                    "minOrderSize": 20,
-                    "starkTokenId": "0x3901ee6a6c5ac0f6e284f4273b961b7e9f29d25367d31d90b75820473a202f7",
-                    "tokenAddress": "0xcd077abedd831a3443ffbe24fb76661bbb17eb69"
-                  },
-                  "BTC": {
-                    "decimals": 18,
-                    "quantization": 10000000000,
-                    "minOrderSize": 0.0004,
-                    "starkTokenId": "0x21ef21d6b234cd669edd702dd3d1d017be888337010b950ae3679eb4194b4bc",
-                    "tokenAddress": "0x40d8978500bf68324a51533cd6a21e3e59be324a"
-                  }
-                }
-              }
-              
             }
           }
         }
@@ -1181,126 +1080,6 @@
                 "statusCode": 502,
                 "error": "Unable to determine the status of order submission request"
               }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/getGasPrice": {
-      "get": {
-        "title": "Get Gas Price",
-        "responses": {
-          "default": {
-            "examples": {
-              "application/json": {
-                "fast": 70000000000,
-                "fastWait": 0.5,
-                "average": 67000000000,
-                "averageWait": 1.4,
-                "cheap": 66000000000,
-                "cheapWait": 10.5
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/trades/{Symbol}": {
-      "get": {
-        "title": "Trades History",
-        "operationId":"getV1TradingRTrades",
-        "parameters":[
-          {
-            "in":"path",
-            "name":"Symbol",
-            "type":"string",
-            "required":true,
-            "description":"The market trading pair in deversifi format i.e BASE:QUOTE",
-            "x-example":"ETH:USDT"
-          }
-        ],
-        "tags":[
-          "Market"
-        ],
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":[
-                {
-                  "trade_id":1,
-                  "price":275.23,
-                  "base_volume":1.5,
-                  "quote_volume":347.81,
-                  "timestamp": 1527836800000,
-                  "type": "buy"
-                },
-                {
-                  "trade_id":2,
-                  "price":183.5,
-                  "base_volume":1.8,
-                  "quote_volume":381.28,
-                  "timestamp": 1747384800000,
-                  "type": "buy"
-                }
-              ]
-            }
-          }
-        }
-      }
-    },
-    "/v1/trading/r/tradesSince/{Symbol}/{StartDate}/{Limit}": {
-      "get": {
-        "title": "Trades Since Date History",
-        "operationId":"getV1TradingRTradessince",
-        "parameters":[
-          {
-            "in":"path",
-            "name":"Symbol",
-            "type":"string",
-            "required":true,
-            "description":"The market trading pair in deversifi format i.e BASE:QUOTE",
-            "x-example":"ETH:USDT"
-          },
-          {
-            "in":"path",
-            "name":"StartDate",
-            "type":"number",
-            "description":"Date of the last trade returned.",
-            "x-example":1747384800000
-          },
-          {
-            "in":"path",
-            "name":"Limit",
-            "type":"number",
-            "required":false,
-            "description":"Limit of trades that will be returned. With a maximum limit of 1000.",
-            "x-example":60
-          }
-        ],
-        "tags":[
-          "Market"
-        ],
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":[
-                {
-                  "trade_id":1,
-                  "price":275.23,
-                  "base_volume":1.5,
-                  "quote_volume":347.81,
-                  "timestamp": 1548028800,
-                  "type": "buy"
-                },
-                {
-                  "trade_id":2,
-                  "price":183.5,
-                  "base_volume":1.8,
-                  "quote_volume":381.28,
-                  "timestamp": 1558396800,
-                  "type": "buy"
-                }
-              ]
             }
           }
         }
@@ -2539,6 +2318,56 @@
           }
         }
       }
-    }
+    },
+    "/v1/trading/allowances": { "get": { "title": "Allowance" } },
+    "/v1/trading/balanceHistory": { "get": { "title": "Balance History" } },
+    "/v1/trading/depositsAndWithdrawals": { "get": { "title": "Deposit/Withdraw History" } },
+    "/v1/trading/entityAccounts": { "get": { "title": "Entity Accounts" } },
+    "/v1/trading/r/airdropEligibility": { "get": { "title": "Airdrop Eligibility" } },
+    "/v1/trading/r/fastWithdrawalFee": { "get": { "title": "Fast Withdrawal Fee" } },
+    "/v1/trading/r/fastWithdrawalMaxAmount": { "get": { "title": "Fast Withdrawal Limits" } },
+    "/v1/trading/r/feeRate": { "get": { "title": "Fees" } },
+    "/v1/trading/r/gasSavings": { "get": { "title": "Gas Savings" } },
+    "/v1/trading/r/getBalanceUsd": { "get": { "title": "USD Balance" } },
+    "/v1/trading/r/getConf": { "get": { "title": "Get Configuration" }, "post": { "title": "Get Configuration" } },
+    "/v1/trading/r/getGasPrice": { "get": { "title": "Get Gas Price" }, "post": { "title": "Get Gas Price" } },
+    "/v1/trading/r/getTokenCirculatingSupply": { "get": { "title": "Token Supply" } },
+    "/v1/trading/r/getTokenHolders": { "get": { "title": "Token Holders" } },
+    "/v1/trading/r/getTokenLiquidityLeft": { "get": { "title": "Token Liquidity" } },
+    "/v1/trading/r/getTokenSaleStartEnd": { "get": { "title": "Sale start/end" } },
+    "/v1/trading/r/totalValueLocked": { "get": { "title": "Allowance" } },
+    "/v1/trading/r/tradeHistory": { "get": { "title": "Trade History" } },
+    "/v1/trading/r/vaultIdAndStarkKey": { "get": { "title": "VaultId + StarkKey" } },
+    "/v1/trading/r/votingPower": { "get": { "title": "Voting Power" } },
+    "/v1/trading/registrations/{targetEthAddress}": { "get": { "title": "Registration Status" } },
+    "/v1/trading/bridgedDeposits": { "post": { "title": "Bridged Deposit" } },
+    "/v1/trading/bridgedWithdrawals": { "post": { "title": "Bridged Withdrawal" } },
+    "/v1/trading/deposits": { "post": { "title": "Deposit" } },
+    "/v1/trading/deposits-validate": { "post": { "title": "Dry Run Deposit" } },
+    "/v1/trading/withdrawals": { "post": { "title": "Withdraw" } },
+    "/v1/trading/amm/fundingOrderData": { "get": { "title": "AMM Funding Order Data" } },
+    "/v1/trading/amm/fundingOrders": { "post": { "title": "AMM Funding Order" } },
+    "/v1/trading/r/addAirdrops": { "post": { "title": "Add Airdrops" } },
+    "/v1/trading/r/hasReceivedCompensation": { "post": { "title": "Check Received Bonus" } },
+    "/v1/trading/r/recoverTradingKey": { "post": { "title": "Recover DTK" } },
+    "/v1/trading/r/userOrderCount": { "post": { "title": "User Order Count" } },
+    "/v1/trading/w/cancelOpenOrders": { "post": { "title": "Cancel All Orders" } },
+    "/v1/trading/w/claimAirdrop": { "post": { "title": "Claim Airdrop" } },
+    "/v1/trading/w/fastWithdrawal": { "post": { "title": "Fast-Withdraw" } },
+    "/v1/trading/w/feedback": { "post": { "title": "Feedback Subscribe" } },
+    "/v1/trading/w/storeStarkTradingKey": { "post": { "title": "Store DTK" } },
+    "/v1/trading/w/transfer": { "post": { "title": "Transfer" } },
+    "/v1/trading/collateralBalances": { "get": { "title": "Collateral Balances" } },
+    "/v1/trading/r/beehiveStats": { "get": { "title": "Beehive Stats" } },
+    "/v1/trading/r/swapVolume": { "get": { "title": "Swap Volume" } },
+    "/v1/trading/r/transferVolume": { "get": { "title": "Transfer Volume" } },
+    "/v1/trading/r/tradeCountSince": { "get": { "title": "Trade Count Since" } },
+    "/v1/trading/r/trades/{symbol}": { "get": { "title": "Trades For Pair" } },
+    "/v1/trading/r/24HoursVolume/{year}/{month}/{day}": { "get": { "title": "24H Volume" } },
+    "/v1/trading/r/tradesSince/{symbol}/{startDate}/{limit}": { "get": { "title": "Trades For Pair Since" } },
+    "/v1/trading/r/getPublicPermissions": { "get": { "title": "Public Permissions" } },
+    "/v1/trading/w/notifications": { "post": { "title": "Add Notification" } },
+    "/v1/trading/w/notifications/{id}": { "delete": { "title": "Remove Notification" } }
+
   }
 }

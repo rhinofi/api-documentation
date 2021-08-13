@@ -1,8 +1,10 @@
 import {getExampleFromSchema} from './getBodyExample';
+import { getHeadersWithExtras } from './getHeadersWithExtras';
 import {getWsSubscribeParams} from './makeJsCode';
 
 export function makeCppCode(spec, entry, path, method) {
-  const variableInit = (entry.parameters || [])
+  const parameters = (entry.parameters || [])
+  const variableInit = parameters
     .filter(variable => variable.in === 'path' || variable.in === 'query')
     .map(variable => `std::string param_${variable.name} = ${JSON.stringify(variable['x-example'])};`);
 
@@ -15,6 +17,9 @@ export function makeCppCode(spec, entry, path, method) {
     ?.join('&');
   const queryStringCode = queryString ? `url += "?${queryString}";\n` : '';
 
+  const headersCode = Object.entries(getHeadersWithExtras(parameters))
+    .map(([key, value]) => `headers.push_back("${key}: ${value}");`)
+    .join('\n')
   const bodyParam = entry.parameters?.find(x => x.in === 'body');
   const bodyParamCode = bodyParam ? `std::string body = "${escapeString(JSON.stringify(getExampleFromSchema(bodyParam.schema)))}";` : '';
   const bodyOpts = bodyParam ? `
@@ -30,7 +35,11 @@ ${queryStringCode}
 curlpp::Easy request;
 std::ostringstream response;
 
+std::list<std::string> headers;
+${headersCode}
+
 // set the request options
+request.setOpt(new curlpp::options::HttpHeader(headers));
 request.setOpt(new curlpp::options::Url(url));
 request.setOpt(new curlpp::options::WriteStream(&response));
 ${bodyOpts}
