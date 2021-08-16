@@ -88,8 +88,6 @@ function getHeaders(parameters = []) {
       getHeadersWithExtras(parameters.filter(parameter => parameter.in === 'header'))
     ).map(([key, value]) => `      "${key}": "${value}"`)
      .join(',\n') + '\n' +
-    // '    "Accept": "application/json",\n' +
-    // '    "Content-Type": "application/json",\n' +
     '}\n\n'
   );
 }
