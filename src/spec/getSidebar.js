@@ -1,5 +1,11 @@
 import {forEachEndpoint} from './forEachEndpoint';
 
+var categoriesToExclude = [
+  'internal', // Here to stay but for internal use
+  'deprecated', // Is meant to disapear in the future / not to be used anymore
+  'hidden' // Hidden for other reasons (ex: feature not released yet)
+]
+
 export function getSidebar(spec) {
   const categories = new Map();
   forEachEndpoint(spec, (entry, orgPath) => {
@@ -12,5 +18,6 @@ export function getSidebar(spec) {
     });
     categories.set(categoryName, category);
   });
-  return [...categories.values()];
+  return [...categories.values()]
+    .filter(category => !categoriesToExclude.includes(category.name.toLowerCase()))
 }

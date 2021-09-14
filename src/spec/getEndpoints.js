@@ -7,6 +7,7 @@ import {makeCppCode, makeWsCppCode} from './mapeCppCode';
 import {makeCurlCode} from './makeCurlCode';
 import {makeWscatCode} from './makeWscatCode';
 import { getParamExample } from './getParamExample';
+import { sortBy } from 'lodash';
 
 export function getEndpoints(spec) {
   const endpoints = [];
@@ -144,7 +145,7 @@ function getResponses(entry) {
       // TODO: details
     });
   }
-  return responses;
+  return sortBy(responses, response => response.code !== 'default');
 }
 
 function getResponsesDetails(entry) {
