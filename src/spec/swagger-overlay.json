@@ -670,14 +670,7 @@
     },
     "/v1/trading/r/getVaultId":{
       "post":{
-        "title":"Get Vault Id",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":1851736
-            }
-          }
-        }
+        "title":"Get Vault Id"
       }
     },
     "/v1/trading/w/withdraw":{
@@ -715,222 +708,32 @@
     },
     "/v1/trading/r/getWithdrawal":{
       "post":{
-        "title":"Get Withdrawal",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":[
-                {
-                  "_id":"53cb6b9b4f4ddef1ad47f943",
-                  "ethAddress":"0x14d06788090769f669427b6aea1c0240d2321f34",
-                  "starkKey":"77a3b314db07c45076d11f62b6f9e748a39790441823307743cf00d6597ea43",
-                  "token":"USDT",
-                  "amount":1000,
-                  "createdAt":"2020-01-29T14:13:05.898Z"
-                }
-              ]
-            }
-          }
-        }
+        "title":"Get Withdrawal"
       }
     },
     "/v1/trading/r/openOrders":{
       "post":{
-        "title":"All Orders",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":[
-                {
-                  "_id": "L1tarX5wUem",
-                  "user": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
-                  "symbol": "ETH:USDT",
-                  "amount": -0.3,
-                  "totalFilled": -0.2,
-                  "price": 200,
-                  "averagePrice": 199.20,
-                  "feeRate": "0.002",
-                  "tokenBuy": "USDT",
-                  "totalBought": "4990000000",
-                  "tokenSell": "ETH",
-                  "totalSold": "45555500",
-                  "active": true,
-                  "type": "EXCHANGE LIMIT",
-                  "createdAt": "2020-05-09T18:29:56.882Z",
-                  "updatedAt": "2020-05-09T18:29:56.893Z",
-                  "activatedAt": "2020-05-09T18:29:56.893Z"
-                },
-                {
-                  "_id": "L1tarX5wUem",
-                  "user": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
-                  "symbol": "BTC:USDT",
-                  "amount": -0.03,
-                  "totalFilled": -0.01,
-                  "price": 8000,
-                  "averagePrice": 7950,
-                  "feeRate": "0.002",
-                  "tokenBuy": "USDT",
-                  "totalBought": "2400000000",
-                  "tokenSell": "BTC",
-                  "totalSold": "30000000",
-                  "active": true,
-                  "type": "EXCHANGE LIMIT",
-                  "createdAt": "2020-05-09T18:29:56.882Z",
-                  "updatedAt": "2020-05-09T18:29:56.893Z",
-                  "activatedAt": "2020-05-09T18:29:56.893Z"
-                }
-              ]
-            }
-          }
-        }
+        "title":"All Orders"
       }
     },
     "/v1/trading/r/orderHistory":{
       "post":{
-        "title":"Order History",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":[
-                {
-                  "_id": "L1tarX5wUem",
-                  "user": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
-                  "symbol": "ETH:USDT",
-                  "amount": -0.3,
-                  "totalFilled": -0.2,
-                  "price": 200,
-                  "averagePrice": 199.20,
-                  "feeRate": "0.002",
-                  "tokenBuy": "USDT",
-                  "totalBought": "4990000000",
-                  "tokenSell": "ETH",
-                  "totalSold": "45555500",
-                  "active": true,
-                  "type": "EXCHANGE LIMIT",
-                  "createdAt": "2020-05-09T18:29:56.882Z",
-                  "updatedAt": "2020-05-09T18:29:56.893Z",
-                  "activatedAt": "2020-05-09T18:29:56.893Z"
-                },
-                {
-                  "_id": "L1tarX5wUem",
-                  "user": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
-                  "symbol": "BTC:USDT",
-                  "amount": -0.03,
-                  "totalFilled": -0.01,
-                  "price": 8000,
-                  "averagePrice": 7950,
-                  "feeRate": "0.002",
-                  "tokenBuy": "USDT",
-                  "totalBought": "2400000000",
-                  "tokenSell": "BTC",
-                  "totalSold": "30000000",
-                  "active": true,
-                  "type": "EXCHANGE LIMIT",
-                  "createdAt": "2020-05-09T18:29:56.882Z",
-                  "updatedAt": "2020-05-09T18:29:56.893Z",
-                  "activatedAt": "2020-05-09T18:29:56.893Z"
-                },
-                {
-                  "_id": "L1tarX5wUem",
-                  "user": "0xc1caf2d76c49e4a60635635c329a3ac22ddeb547",
-                  "symbol": "BTC:USDT",
-                  "amount": -0.03,
-                  "totalFilled": -0.01,
-                  "price": 8000,
-                  "averagePrice": 7950,
-                  "feeRate": "0.002",
-                  "tokenBuy": "USDT",
-                  "totalBought": "2400000000",
-                  "tokenSell": "BTC",
-                  "totalSold": "30000000",
-                  "active": true,
-                  "type": "EXCHANGE LIMIT",
-                  "createdAt": "2020-05-09T18:29:56.882Z",
-                  "updatedAt": "2020-05-09T18:29:56.893Z",
-                  "activatedAt": "2020-05-09T18:29:56.893Z"
-                }
-              ]
-            }
-          }
-        }
+        "title":"Order History"
       }
     },
     "/v1/trading/r/withdrawHistory":{
       "post":{
-        "title":"Withdrawal History",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":[
-                {
-                  "_id":"5e318fc4948cc789bb5f7bb4",
-                  "token":"ETH",
-                  "amount":100,
-                  "createdAt":"2020-01-29T14:13:05.898Z",
-                  "readyToWithdrawOnChain": false
-                },
-                {
-                  "_id":"5e318fc4948cc789bb5f7bb5",
-                  "token":"USD",
-                  "amount":27,
-                  "createdAt":"2020-01-30T14:13:05.898Z",
-                  "readyToWithdrawOnChain": true
-                }
-              ]
-            }
-          }
-        }
+        "title":"Withdrawal History"
       }
     },
     "/v1/trading/w/cancelOrder":{
       "post":{
-        "title":"Cancel Order",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":{
-                "orderId":"d7c8b9"
-              }
-            }
-          },
-          "Server Error": {
-            "examples": {
-              "application/json":{
-                "statusCode": 502,
-                "error": "Unable to determine the status of order cancellation request"
-              }
-            }
-          }
-        }
+        "title":"Cancel Order"
       }
     },
     "/v1/trading/w/cancelWithdrawal":{
       "post":{
-        "title":"Cancel Withdrawal",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":{
-                "_id": "LCafcGC6tBH",
-                "token": "USDT",
-                "amount": "100",
-                "createdAt": "2020-01-01T22:57:47.323Z",
-                "readyToWithdrawOnChain": false,
-                "canceled": true
-              }
-            }
-          },
-          "withdrawal not found": {
-            "examples": {
-              "application/json":{
-                "statusCode": 422,
-                "error": "WITHDRAWAL_NOT_FOUND",
-                "message": "WITHDRAWAL_NOT_FOUND",
-                "type": "DVFError"
-              }
-            }
-          }
-        }
+        "title":"Cancel Withdrawal"
       }
     },
     "/v1/trading/w/deposit":{
@@ -970,119 +773,12 @@
     },
     "/v1/trading/w/register":{
       "post":{
-        "title":"Register",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":{
-                "DVF":{
-                  "depositExpiry":720,
-                  "depositNonce":1,
-                  "deversifiAddress":"0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
-                  "starkExContractAddress":"0xF3731d0cdC9834f6F32104580bD226EF1bc1A9F9",
-                  "exchangeSymbols":[
-                    "tETHUSD",
-                    "tZRXUSD",
-                    "tZRXETH"
-                  ],
-                  "tempStarkVaultId":1
-                },
-                "tokenRegistry":{
-                  "ETH":{
-                    "decimals":18,
-                    "minOrderSize":0.1,
-                    "starkTokenId":"0x1"
-                  },
-                  "USD":{
-                    "decimals":6,
-                    "minOrderSize":25,
-                    "settleSpread":-0.026,
-                    "starkTokenId":"0x2",
-                    "tokenAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7"
-                  },
-                  "ZRX":{
-                    "decimals":18,
-                    "minOrderSize":40,
-                    "starkTokenId":"22e6d888f32dea3c6e8ba64609a314eebbe1eb704e9e9febe368b0bacb21efe",
-                    "tokenAddress":"0xe41d2489571d322189246dafa5ebde1f4699f498"
-                  }
-                },
-                "isRegistered":true,
-                "ethAddress":"0x341e46a49f15785373ede443df0220dea6a41bbc"
-              }
-            }
-          }
-        }
+        "title":"Register"
       }
     },
     "/v1/trading/w/submitOrder": {
       "post": {
-        "title": "Submit Order",
-        "summary": "This authenticated endpoint is used to submit an order.",
-        "operationId": "postV1TradingWSubmitorder",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "$ref": "#/definitions/submitOrderPayload"
-            }
-          }
-        ],
-        "tags": ["Trading"],
-        "responses": {
-          "default": {
-            "examples": {
-              "application/json":{
-                "pending": true,
-                "_id": "",
-                "user": "0xc2fff68dbdb8c0dcceb2b84a921cc2c8004104fa",
-                "symbol": "ZRX:ETH",
-                "amount": 50,
-                "type": "EXCHANGE LIMIT",
-                "price": 0.005,
-                "feeRate": 0.002,
-                "partnerId": "P1",
-                "meta": {
-                  "ethAddress": "0xc2fff68dbdb8c0dcceb2b84a921cc2c8004104fa",
-                  "starkPublicKey": {
-                    "x": "07fc758ce6d8591c46b34c4c94f37c81f9a2763cf7b4abce7779bfeea582a754",
-                    "y": "12e340b350a82322bae0106b952d5b9a3a80265dfa4228acb8c4e309bacd826"
-                  },
-                  "starkOrder": {
-                    "vaultIdSell": 1845686579,
-                    "vaultIdBuy": 1671627635,
-                    "amountSell": "25000000",
-                    "amountBuy": "4990000000",
-                    "tokenSell": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba6",
-                    "tokenBuy": "0x3901ee6a6c5ac0f6e284f4273b961b7e9f29d25367d31d90b75820473a202f7",
-                    "nonce": 143600912,
-                    "expirationTimestamp": 442384
-                  },
-                  "starkMessage": "6157ce5d1df3572f43cfae5742454988218e4106797f0fcbe820a984215803e",
-                  "starkSignature": {
-                    "r": "34fbf0f9eab6b26388e96abfaa9903c257e64f268ab0a3246ac2bcbfc3f5154",
-                    "s": "4836111bf1cb0683b6145ebf667ec01030d7e25d3832f28fadb0dfcd9522b43",
-                    "recoveryParam": 0
-                  }
-                },
-                "tokenSell": "ETH",
-                "tokenSellLockedBalance": "25000000",
-                "tokenBuy": "ZRX",
-                "createdAt": "2020-05-20T16:24:36.452Z",
-                "updatedAt": "2020-05-20T16:24:36.452Z"
-              }
-            }
-          },
-          "Server Error": {
-            "examples": {
-              "application/json": {
-                "statusCode": 502,
-                "error": "Unable to determine the status of order submission request"
-              }
-            }
-          }
-        }
+        "title": "Submit Order"
       }
     },
     "/v1/trading/r/getBalanceForUser/{userEthAddress}": {
@@ -2335,6 +2031,8 @@
     "/v1/trading/r/getTokenHolders": { "get": { "title": "Token Holders" } },
     "/v1/trading/r/getTokenLiquidityLeft": { "get": { "title": "Token Liquidity" } },
     "/v1/trading/r/getTokenSaleStartEnd": { "get": { "title": "Sale start/end" } },
+    "/v1/trading/r/registeredAccounts": { "get": { "title": "Registered Accounts" } },
+    "/v1/trading/r/tokenBalancesHistory": { "get": { "title": "Token Balances History" } },
     "/v1/trading/r/totalValueLocked": { "get": { "title": "Allowance" } },
     "/v1/trading/r/tradeHistory": { "get": { "title": "Trade History" } },
     "/v1/trading/r/vaultIdAndStarkKey": { "get": { "title": "VaultId + StarkKey" } },
