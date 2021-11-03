@@ -3253,6 +3253,18 @@
         },
         "starkPublicKey": {
             "$ref": "#/definitions/starkPublicKey"
+        },
+        "memo": {
+          "type": "string",
+          "description": "Optional memo string",
+          "example": "my reference",
+          "maxLength": 42
+        },
+        "partnerId": {
+          "type": "string",
+          "description": "Optional partner Id string",
+          "example": "xxyyzz",
+          "maxLength": 42
         }
       }
     },
