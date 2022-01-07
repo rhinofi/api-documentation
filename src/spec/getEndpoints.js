@@ -89,7 +89,6 @@ function getCalls(spec, entry, path, method) {
 }
 
 function buildExample(schema) {
-  console.log('build example', schema)
   const schemaWideExample = getParamExample(schema)
   if (schemaWideExample !== undefined) {
     return schemaWideExample
