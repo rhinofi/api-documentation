@@ -1,15 +1,15 @@
 
-export function getParamExample(queryParam = {}) {
-  if (queryParam.hasOwnProperty('example')) {
-    return queryParam['example']
+export function getParamExample(params = {}) {
+  if (params.hasOwnProperty('example')) {
+    return params['example']
   }
-  if (queryParam.hasOwnProperty('x-example')) {
-    return queryParam['x-example']
+  if (params.hasOwnProperty('x-example')) {
+    return params['x-example']
   }
-  if (queryParam.hasOwnProperty('default')) {
-    return queryParam.default
+  if (params.hasOwnProperty('default')) {
+    return params.default
   }
-  if (queryParam.enum && queryParam.enum.length > 0) {
-    return queryParam.enum[0]
+  if (params.enum && params.enum.length > 0) {
+    return params.enum[0]
   }
 }

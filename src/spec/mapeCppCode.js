@@ -53,7 +53,7 @@ std::cout << response.str() << std::endl;
 }
 
 export function makeWsCppCode(spec, entry, path) {
-  const url = `wss://${spec.host}/${path}`;
+  const url = `wss://${spec.host}${path}`;
   const subParams = getWsSubscribeParams(entry.parameters, entry.operationId);
   return `// Required on Windows
 ix::initNetSystem();

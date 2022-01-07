@@ -10,7 +10,7 @@ export function getExampleFromSchema(schema) {
     case 'number':
       return schema.example;
     case 'object':
-      return mapValues(schema.properties, getExampleFromSchema);
+      return schema.example || mapValues(schema.properties, getExampleFromSchema);
   }
 }
 

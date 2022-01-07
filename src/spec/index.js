@@ -1,9 +1,14 @@
 
-import swaggerData from './swagger-v12--submitted.json';
 import swaggerMarketData from './swagger-market-data.json';
 import swaggerOverlay from './swagger-overlay.json';
 import {preprocess} from './preprocess';
 import merge from 'lodash.merge';
+import request from 'request';
+
+// Swagger URL to be fetched from prod
+const swaggerJsonUrl = process.env.SWAGGER_URL || 'https://api.deversifi.com/v1/trading/docs/swagger.json'
+// But endpoints to be reached on staging for "Try Endpoint" buttons
+const endpointsHost = process.env.ENDPOINTS_HOST || 'api.stg.deversifi.com'
 
 const parseRefs = (properties, definitions) => {
   Object.keys(properties).forEach(propKey => {
@@ -56,8 +61,21 @@ const conciliation = data => {
   return data;
 };
 
-export function loadSpec() {
-  const spec = conciliation(swaggerData);
-  const fullSpec = merge(spec, swaggerMarketData, swaggerOverlay);
-  return preprocess(fullSpec);
+export function loadSpecAsync() {
+  return new Promise((resolve, reject) => {
+    return request(swaggerJsonUrl, function (error, response, body) {
+      if (error) {
+        return reject(error);
+      }
+      const fetchedSwaggerData = JSON.parse(body);
+      const swaggerDataToUse = {
+        ...fetchedSwaggerData,
+        host: endpointsHost,
+        schemes: ['https']
+      };
+      const spec = conciliation(swaggerDataToUse);
+      const fullSpec = merge(spec, swaggerMarketData, swaggerOverlay);
+      return resolve(preprocess(fullSpec));
+    });
+  });
 }

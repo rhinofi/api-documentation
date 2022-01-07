@@ -27,7 +27,7 @@ export const SmartContractsSection = () => (
   <SubSection id="RopstenContracts" className="section">
     <SubTitle>Ropsten Contracts</SubTitle>
     <Text>
-      Exchange Contract - 0x5783323064dDa4A1ebe62defFeF46750BD2C560c <br/>
+      Exchange Contract - 0xe73a394ade4d94a073502da8703ea23490dc7b6a <br/>
     </Text>
   </SubSection>
   </>

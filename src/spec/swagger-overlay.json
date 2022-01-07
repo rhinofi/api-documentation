@@ -541,29 +541,6 @@
         }
       }
     },
-    "/v1/trading/r/getOrder":{
-      "post":{
-        "title":"Order",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":[
-                {
-                  "_id": "HrPujXPVQBY",
-                  "symbol": "ETH:USDT",
-                  "amount": -0.3,
-                  "price": 280,
-                  "totalFilled": 0,
-                  "pending": false,
-                  "canceled": false,
-                  "active": true
-                }
-              ]
-            }
-          }
-        }
-      }
-    },
     "/v1/trading/r/getPendingWithdrawals":{
       "post":{
         "title":"Pending Withdrawals",
@@ -706,21 +683,6 @@
         }
       }
     },
-    "/v1/trading/r/getWithdrawal":{
-      "post":{
-        "title":"Get Withdrawal"
-      }
-    },
-    "/v1/trading/r/openOrders":{
-      "post":{
-        "title":"All Orders"
-      }
-    },
-    "/v1/trading/r/orderHistory":{
-      "post":{
-        "title":"Order History"
-      }
-    },
     "/v1/trading/r/withdrawHistory":{
       "post":{
         "title":"Withdrawal History"
@@ -736,41 +698,7 @@
         "title":"Cancel Withdrawal"
       }
     },
-    "/v1/trading/w/deposit":{
-      "post":{
-        "title":"New Deposit",
-        "operationId": "postV1TradingWDeposit",
-        "responses":{
-          "default":{
-            "examples":{
-              "application/json":{
-                "pending": true,
-                "user": "0x52d92399dfb73df49383614170880ba09b66338e",
-                "token": "ETH",
-                "amount": "1020400",
-                "meta": {
-                  "ethAddress": "0x52d92399dfb73df49383614170880ba09b66338e",
-                  "starkKey": "00e0326547480bc8bf0fb143f08d23d3ff85aa450e6253bb721dee1410a83b73",
-                  "starkVaultId": 1937164364,
-                  "starkTokenId": "0xb333e3142fe16b78628f19bb15afddaef437e72d6d7f5c6c20c6801a27fba6",
-                  "expireTime": 442425,
-                  "starkMessage": "598f0f08033ca8bf16552d460b2510715c689d630ef5480d50c17ada5541821",
-                  "starkSignature": {
-                    "r": "5a00d9ebdfac03fdbe55f393b34fd252447cdee79179c8c0a5227b2fe2e577",
-                    "s": "58e2d3972f1d482b26440197b518bb0bdeb50d03750e731118bafe3a819989d",
-                    "recoveryParam": 1
-                  },
-                  "nonce": 162543006
-                },
-                "_id": "FyqJSSXFXPU",
-                "createdAt": "2020-05-22T09:43:36.348Z",
-                "updatedAt": "2020-05-22T09:43:36.348Z"
-              }
-            }
-          }
-        }
-      }
-    },
+
     "/v1/trading/w/register":{
       "post":{
         "title":"Register"
@@ -779,117 +707,6 @@
     "/v1/trading/w/submitOrder": {
       "post": {
         "title": "Submit Order"
-      }
-    },
-    "/v1/trading/r/getBalanceForUser/{userEthAddress}": {
-      "post": {
-        "title": "Get User Balances",
-        "summary": "This is used to retrieve the total and active balances of a user per token. Active balance is the balance that is currently available. Total balance (specified as balance) is the sum of all the balances including those locked for trading.",
-        "operationId": "postV1TradingRGetbalanceforuserUserethaddress",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "The ETH address of a potential user",
-            "name": "userEthAddress",
-            "in": "path",
-            "required": true
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "token": {
-                  "type": "string",
-                  "description": "The token which the balance is specifically requested for.",
-                  "example": "ETH"
-                },
-                "fields": {
-                  "type": "array",
-                  "description": "Specific fields to be returned for balance information",
-                  "example": [
-                    "balance",
-                    "updatedAt"
-                  ],
-                  "items": {
-                    "type": "string",
-                    "enum": [
-                      "balance",
-                      "available",
-                      "locked",
-                      "updatedAt"
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        ],
-        "tags": [
-          "Trading",
-          "public"
-        ],
-        "responses": {
-          "default": {
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "token": {
-                    "type": "string",
-                    "description": "The token for which the balances are provided.",
-                    "example": "ETH"
-                  },
-                  "balance": {
-                    "type": "number",
-                    "description": "It is the total balance for the user corresponding to the specified token.",
-                    "example": 42
-                  },
-                  "available": {
-                    "type": "number",
-                    "description": "It is the part of the balance available for use.",
-                    "example": 23
-                  },
-                  "locked": {
-                    "type": "number",
-                    "description": "It is the part of the balance currently in open orders or pending withdrawal.",
-                    "example": 19
-                  }
-                }
-              }
-            },
-            "examples": {
-              "application/json": [
-                {
-                  "token": "BTC",
-                  "balance": 0,
-                  "available": 0,
-                  "locked": 0
-                },
-                {
-                  "token": "ETH",
-                  "balance": 114036369,
-                  "available": 89036369,
-                  "locked": 25000000
-                },
-                {
-                  "token": "KON",
-                  "balance": 99800000,
-                  "available": 99800000,
-                  "locked": 0
-                },
-                {
-                  "token": "USDT",
-                  "balance": 2781535529,
-                  "available": 2781535529,
-                  "locked": 0
-                }
-              ]
-            }
-          }
-        }
       }
     },
     "/v1/trading/r/publicTradeHistory/{user}": {
@@ -1182,7 +999,7 @@
 },
 "/v1/trading/fills": {
   "get": {
-    "title": "Fills history",
+    "title": "Fills History",
     "operationId": "getV1TradingFills",
     "summary": "This method is used to get the history of fills (executed trades) for the authenticated user",
     "responses": {
@@ -2014,58 +1831,6 @@
           }
         }
       }
-    },
-    "/v1/trading/allowances": { "get": { "title": "Allowance" } },
-    "/v1/trading/balanceHistory": { "get": { "title": "Balance History" } },
-    "/v1/trading/depositsAndWithdrawals": { "get": { "title": "Deposit/Withdraw History" } },
-    "/v1/trading/entityAccounts": { "get": { "title": "Entity Accounts" } },
-    "/v1/trading/r/airdropEligibility": { "get": { "title": "Airdrop Eligibility" } },
-    "/v1/trading/r/fastWithdrawalFee": { "get": { "title": "Fast Withdrawal Fee" } },
-    "/v1/trading/r/fastWithdrawalMaxAmount": { "get": { "title": "Fast Withdrawal Limits" } },
-    "/v1/trading/r/feeRate": { "get": { "title": "Fees" } },
-    "/v1/trading/r/gasSavings": { "get": { "title": "Gas Savings" } },
-    "/v1/trading/r/getBalanceUsd": { "get": { "title": "USD Balance" } },
-    "/v1/trading/r/getConf": { "get": { "title": "Get Configuration" }, "post": { "title": "Get Configuration" } },
-    "/v1/trading/r/getGasPrice": { "get": { "title": "Get Gas Price" }, "post": { "title": "Get Gas Price" } },
-    "/v1/trading/r/getTokenCirculatingSupply": { "get": { "title": "Token Supply" } },
-    "/v1/trading/r/getTokenHolders": { "get": { "title": "Token Holders" } },
-    "/v1/trading/r/getTokenLiquidityLeft": { "get": { "title": "Token Liquidity" } },
-    "/v1/trading/r/getTokenSaleStartEnd": { "get": { "title": "Sale start/end" } },
-    "/v1/trading/r/registeredAccounts": { "get": { "title": "Registered Accounts" } },
-    "/v1/trading/r/tokenBalancesHistory": { "get": { "title": "Token Balances History" } },
-    "/v1/trading/r/totalValueLocked": { "get": { "title": "Allowance" } },
-    "/v1/trading/r/tradeHistory": { "get": { "title": "Trade History" } },
-    "/v1/trading/r/vaultIdAndStarkKey": { "get": { "title": "VaultId + StarkKey" } },
-    "/v1/trading/r/votingPower": { "get": { "title": "Voting Power" } },
-    "/v1/trading/registrations/{targetEthAddress}": { "get": { "title": "Registration Status" } },
-    "/v1/trading/bridgedDeposits": { "post": { "title": "Bridged Deposit" } },
-    "/v1/trading/bridgedWithdrawals": { "post": { "title": "Bridged Withdrawal" } },
-    "/v1/trading/deposits": { "post": { "title": "Deposit" } },
-    "/v1/trading/deposits-validate": { "post": { "title": "Dry Run Deposit" } },
-    "/v1/trading/withdrawals": { "post": { "title": "Withdraw" } },
-    "/v1/trading/amm/fundingOrderData": { "get": { "title": "AMM Funding Order Data" } },
-    "/v1/trading/amm/fundingOrders": { "post": { "title": "AMM Funding Order" } },
-    "/v1/trading/r/addAirdrops": { "post": { "title": "Add Airdrops" } },
-    "/v1/trading/r/hasReceivedCompensation": { "post": { "title": "Check Received Bonus" } },
-    "/v1/trading/r/recoverTradingKey": { "post": { "title": "Recover DTK" } },
-    "/v1/trading/r/userOrderCount": { "post": { "title": "User Order Count" } },
-    "/v1/trading/w/cancelOpenOrders": { "post": { "title": "Cancel All Orders" } },
-    "/v1/trading/w/claimAirdrop": { "post": { "title": "Claim Airdrop" } },
-    "/v1/trading/w/fastWithdrawal": { "post": { "title": "Fast-Withdraw" } },
-    "/v1/trading/w/feedback": { "post": { "title": "Feedback Subscribe" } },
-    "/v1/trading/w/storeStarkTradingKey": { "post": { "title": "Store DTK" } },
-    "/v1/trading/w/transfer": { "post": { "title": "Transfer" } },
-    "/v1/trading/collateralBalances": { "get": { "title": "Collateral Balances" } },
-    "/v1/trading/r/beehiveStats": { "get": { "title": "Beehive Stats" } },
-    "/v1/trading/r/swapVolume": { "get": { "title": "Swap Volume" } },
-    "/v1/trading/r/transferVolume": { "get": { "title": "Transfer Volume" } },
-    "/v1/trading/r/tradeCountSince": { "get": { "title": "Trade Count Since" } },
-    "/v1/trading/r/trades/{symbol}": { "get": { "title": "Trades For Pair" } },
-    "/v1/trading/r/24HoursVolume/{year}/{month}/{day}": { "get": { "title": "24H Volume" } },
-    "/v1/trading/r/tradesSince/{symbol}/{startDate}/{limit}": { "get": { "title": "Trades For Pair Since" } },
-    "/v1/trading/r/getPublicPermissions": { "get": { "title": "Public Permissions" } },
-    "/v1/trading/w/notifications": { "post": { "title": "Add Notification" } },
-    "/v1/trading/w/notifications/{id}": { "delete": { "title": "Remove Notification" } }
-
+    }
   }
 }

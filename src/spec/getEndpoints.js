@@ -40,14 +40,6 @@ export function getEndpoints(spec) {
       requestDetails
     };
 
-    if (method === 'ws') {
-      const wscat = makeWscatCode(spec, entry, path);
-      endpoint.wscat = wscat;
-    } else {
-      const curl = makeCurlCode(spec, entry, path, method);
-      endpoint.curl = curl;
-    }
-
     endpoints.push(endpoint);
   });
   return endpoints;
@@ -65,6 +57,13 @@ function getHeaders(entry) {
 
 function getCalls(spec, entry, path, method) {
   return [
+    {
+      language: 'bash',
+      name: method === 'ws' ? 'wscat' : 'cURL',
+      content: method === 'ws'
+        ? makeWscatCode(spec, entry, path)
+        : makeCurlCode(spec, entry, path, method)
+    },
     {
       language: 'js',
       name: 'JavaScript',
@@ -85,11 +84,12 @@ function getCalls(spec, entry, path, method) {
       content: method === 'ws'
         ? makeWsCppCode(spec, entry, path)
         : makeCppCode(spec, entry, path, method)
-    },
+    }
   ];
 }
 
 function buildExample(schema) {
+  console.log('build example', schema)
   const schemaWideExample = getParamExample(schema)
   if (schemaWideExample !== undefined) {
     return schemaWideExample

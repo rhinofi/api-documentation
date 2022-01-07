@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {loadSpec} from '../../spec';
+import {loadSpecAsync} from '../../spec';
 import {Sidebar} from '../common/Sidebar';
 import {Breadcrumbs} from '../common/Breadcrumbs';
 import {Endpoint} from './Endpoint';
@@ -9,12 +9,17 @@ import {Screen} from '../common/Screen';
 import {SidebarLinks} from './SidebarLinks';
 import {Content, Header, Main} from '../common/Layout/Layout';
 import {TutorialsLink} from './TutorialsLink';
+import { useEffect } from 'react';
 
 export const DocsScreen = () => {
-  const [spec] = useState(loadSpec);
+  const [spec, setSpec] = useState(null);
 
   const {sidebarLayout} = useLayout();
   const [isSidebarExpanded] = sidebarLayout;
+
+  useEffect(() => {
+    loadSpecAsync().then(setSpec);
+  }, []);
 
   return (
     <Screen>
