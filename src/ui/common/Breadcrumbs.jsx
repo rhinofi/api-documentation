@@ -19,7 +19,7 @@ const BreadcrumbView = styled.div`
 const BreadcrumbLinkStyles = css`
   font-size: 14px;
   line-height: 140%;
-  color: #FFFFFF;
+  color: #F05558;
 `;
 
 const BreadcrumbLink = styled(Link)`

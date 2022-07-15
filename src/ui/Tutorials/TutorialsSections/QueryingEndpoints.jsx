@@ -10,7 +10,7 @@ export const QueryingEndpoints = () => (
   <>
     <TutorialSection title="Querying Endpoints">
       <Text>
-        Get information from deversifi API endpoints.
+        Get information from rhino.fi API endpoints.
       </Text>
     </TutorialSection>
     <SubSection id="Public Endpoints" className="section">
@@ -28,7 +28,7 @@ async function public () {
     month: "03",
     day: "01",
   };
-  const url = \`https://api.deversifi.com/v1/trading/r/24HoursVolume/\${params.year}/\${params.month}/\${params.day}\`;
+  const url = \`https://api.rhino.fi/v1/trading/r/24HoursVolume/\${params.year}/\${params.month}/\${params.day}\`;
 
   const rTradingVolume = await fetch(url, {
     method: "GET",
@@ -45,7 +45,7 @@ async function public () {
     </SubSection>
     <SubSection id="Private Endpoints" className="section">
       <SubTitle>Private Endpoints</SubTitle>
-      <Text>Using same deversifi client we can call authorized endpoints [example 1], same result can be achieved manually signing a signature POST [example 2]
+      <Text>Using same rhino.fi client we can call authorized endpoints [example 1], same result can be achieved manually signing a signature POST [example 2]
         and for get GET we need an Authorization header [example 3]:</Text>
       <CodeWrapper>
         <PrismCode
@@ -64,9 +64,9 @@ async function private () {
 
   const provider = new HDWalletProvider(ethPrivKey, providerUrl);
   const web3 = new Web3(provider);
-  
+
   const dvfConfig = {
-    api: 'https://api.deversifi.com',
+    api: 'https://api.rhino.fi',
     wallet: {
       type: 'tradingKey',
       meta: {
@@ -88,7 +88,7 @@ async function private () {
     signature
   }
 
-  const balanceUrl = 'https://api.deversifi.com/v1/trading/r/getBalance';
+  const balanceUrl = 'https://api.rhino.fi/v1/trading/r/getBalance';
 
   const rBalance = await fetch(balanceUrl, {
     method: "POST",
@@ -109,7 +109,7 @@ async function private () {
   }
 
   const authHeaders = makeEcRecoverHeader({ nonce, signature })
-  const user24HourVolumeUrl = 'https://api.deversifi.com/v1/trading/r/User24HoursVolume';
+  const user24HourVolumeUrl = 'https://api.rhino.fi/v1/trading/r/User24HoursVolume';
 
   const rUserVolume = await fetch(user24HourVolumeUrl, {
     method: "GET",

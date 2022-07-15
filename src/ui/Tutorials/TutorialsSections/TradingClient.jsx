@@ -16,7 +16,7 @@ export const TradingClient = () => (
     </TutorialSection>
     <SubSection id="Trading" className="section">
       <SubTitle>Trading</SubTitle>
-      <Text>Using the deversifi client library we can connect to our account and make trades using key credentials:</Text>
+      <Text>Using the rhino.fi client library we can connect to our account and make trades using key credentials:</Text>
       <CodeWrapper>
         <PrismCode
           language="js"
@@ -32,7 +32,7 @@ async function client () {
 
   const provider = new HDWalletProvider(ethPrivKey, providerUrl);
   const web3 = new Web3(provider);
-  
+
   const price = 200
   const amount = '0.05'
 
@@ -53,7 +53,7 @@ async function client () {
   }
 
   const dvfConfig = {
-    api: 'https://api.deversifi.com',
+    api: 'https://api.rhino.fi',
     wallet: {
       type: 'tradingKey',
       meta: {
@@ -81,7 +81,7 @@ async function client () {
           language="js"
           code={`
 // Order canceling
-const rBuyOrder = await dvf.submitOrder(buy)  
+const rBuyOrder = await dvf.submitOrder(buy)
 await dvf.cancelOrder({ orderId: rBuyOrder._id })
           `}
           />

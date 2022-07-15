@@ -12,7 +12,7 @@ export const RebalancingFunds = () => (
   <>
     <TutorialSection title="Rebalancing funds">
       <Text>
-        It is possible to easily track your balance using deversifi client.
+        It is possible to easily track your balance using rhino.fi client.
       </Text>
     </TutorialSection>
     <SubSection id="RebalancingFunds" className="section">
@@ -36,7 +36,7 @@ async function balance () {
   const web3 = new Web3(provider);
 
   const dvfConfig = {
-    api: 'https://api.deversifi.com',
+    api: 'https://api.rhino.fi',
     wallet: {
       type: 'tradingKey',
       meta: {

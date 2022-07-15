@@ -11,12 +11,12 @@ export const InternalTransfers = () => (
   <>
     <TutorialSection title="Internal Transfers">
       <Text>
-        Internal transfers allow transfering amounts of your deversifi token balance to other users of the protocol.
+        Internal transfers allow transfering amounts of your rhino.fi token balance to other users of the protocol.
       </Text>
     </TutorialSection>
     <SubSection id="Transfer" className="section">
       <SubTitle>Transfer</SubTitle>
-      <Text>Following example shows how to make an internal transfer using deversifi client library:</Text>
+      <Text>Following example shows how to make an internal transfer using rhino.fi client library:</Text>
       <CodeWrapper>
         <PrismCode
           language="js"
@@ -38,7 +38,7 @@ async function transfer () {
   const web3 = new Web3(provider);
 
   const dvfConfig = {
-    api: 'https://api.deversifi.com',
+    api: 'https://api.rhino.fi',
     wallet: {
       type: 'tradingKey',
       meta: {
@@ -75,7 +75,7 @@ const authData = {
 
 const authHeaders = makeEcRecoverHeader(authData)
 
-const transfersUrl = 'https://api.deversifi.com/v1/trading/transfers';
+const transfersUrl = 'https://api.rhino.fi/v1/trading/transfers';
 
 const rTransfers = await fetch(transfersUrl, {
   method: "GET",

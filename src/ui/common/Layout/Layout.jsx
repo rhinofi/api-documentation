@@ -10,8 +10,9 @@ export const Header = styled.header`
   width: ${({isSidebarExpanded}) => isSidebarExpanded ? 'calc(100% - 254px)' : 'calc(100% - 111px)'};
   height: 60px;
   padding: 0 24px;
-  border-bottom: 1px solid #2b2d3d;
-  background: #212433;
+  border-bottom: 5px solid;
+  border-image: linear-gradient(to right, #fde699, #F05558, #6BCACE) 1;
+  background: #F2F2F2;
   z-index: 100;
 `;
 

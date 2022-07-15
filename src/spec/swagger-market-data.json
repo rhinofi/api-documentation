@@ -1,12 +1,12 @@
 {
     "swagger": "2.0",
-    "host": "api.stg.deversifi.com",
+    "host": "api.stg.rhino.fi",
     "basePath": "/",
     "schemes": [
       "http"
     ],
     "info": {
-      "title": "Deversifi API documentation",
+      "title": "RhinoFi API documentation",
       "version": "1.0.0",
       "description": "dvf-pub-api"
     },

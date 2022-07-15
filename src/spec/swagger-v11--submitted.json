@@ -1,12 +1,12 @@
 {
   "swagger":"2.0",
-  "host":"api.stg.deversifi.com",
+  "host":"api.stg.rhino.fi",
   "basePath":"/",
   "schemes":[
     "https"
   ],
   "info":{
-    "title":"Deversifi API documentation",
+    "title":"rhino.fi API documentation",
     "version":"1.0.0",
     "description":"dvf-pub-api"
   },
@@ -290,7 +290,7 @@
     },
     "/v1/trading/r/getConf":{
       "post":{
-        "summary":"Returns the DeversiFi application configuration details.",
+        "summary":"Returns the rhino.fi application configuration details.",
         "operationId":"postV1TradingRGetconf",
         "tags":[
           "Trading"
@@ -393,7 +393,7 @@
     },
     "/v1/trading/r/getUserConf":{
       "post":{
-        "summary":"Returns the DeversiFi application and user configuration details.",
+        "summary":"Returns the rhino.fi application and user configuration details.",
         "operationId":"postV1TradingRGetuserconf",
         "parameters":[
           {
@@ -670,7 +670,7 @@
     },
     "/v1/trading/w/register":{
       "post":{
-        "summary":"This method is used to register a Stark key that corresponds to an Ethereum public address. This will return deversifi Signature or DeversiFi application and user configuration details.",
+        "summary":"This method is used to register a Stark key that corresponds to an Ethereum public address. This will return rhino.fi Signature or rhino.fi application and user configuration details.",
         "operationId":"postV1TradingWRegister",
         "parameters":[
           {
@@ -689,7 +689,7 @@
             "schema":{
               "$ref":"#/definitions/registerResponse"
             },
-            "description":"Returns a Deversifi Signature (defiSignature) which is required to register on StarkEx Smart Contract. Returns the DeversiFi application as well as the user configuration details if use is already registered."
+            "description":"Returns a rhino.fi Signature (defiSignature) which is required to register on StarkEx Smart Contract. Returns the rhino.fi application as well as the user configuration details if use is already registered."
           }
         }
       }
@@ -756,7 +756,7 @@
                 },
                 "recipient": {
                   "type": "string",
-                  "description": "Deversifi user id of recipient of the transfer.",
+                  "description": "rhino.fi user id of recipient of the transfer.",
                   "example": "0x948cd3ad67c5f21412bfcd07a7981322f9fa01f0"
                 },
                 "createdAt": {
@@ -905,7 +905,7 @@
             "name":"Symbol",
             "type":"string",
             "required":true,
-            "description":"The market trading pair in deversifi format i.e BASE:QUOTE",
+            "description":"The market trading pair in rhino.fi format i.e BASE:QUOTE",
             "x-example":"ETH:USDT"
           }
         ],
@@ -932,7 +932,7 @@
             "name":"Symbol",
             "type":"string",
             "required":true,
-            "description":"The market trading pair in deversifi format i.e BASE:QUOTE",
+            "description":"The market trading pair in rhino.fi format i.e BASE:QUOTE",
             "x-example":"ETH:USDT"
           },
           {
@@ -1694,7 +1694,7 @@
             },
             "deversifiAddress":{
               "type":"string",
-              "description":"The address of the DeversiFi exchange."
+              "description":"The address of the rhino.fi exchange."
             },
             "starkExContractAddress":{
               "type":"string",
@@ -1702,7 +1702,7 @@
             },
             "exchangeSymbols":{
               "type":"array",
-              "description":"Currency pairs available at the DeversiFi exchange for trading"
+              "description":"Currency pairs available at the rhino.fi exchange for trading"
             },
             "tempStarkVaultId":{
               "type":"number",
@@ -1890,7 +1890,7 @@
             },
             "deversifiAddress":{
               "type":"string",
-              "description":"The address of the DeversiFi exchange."
+              "description":"The address of the rhino.fi exchange."
             },
             "starkExContractAddress":{
               "type":"string",
@@ -1898,7 +1898,7 @@
             },
             "exchangeSymbols":{
               "type":"string",
-              "description":"Currency pairs available at the DeversiFi exchange for trading"
+              "description":"Currency pairs available at the rhino.fi exchange for trading"
             },
             "tempStarkVaultId":{
               "type":"number",
@@ -2571,7 +2571,7 @@
             },
             "deversifiAddress":{
               "type":"string",
-              "description":"The address of the DeversiFi exchange."
+              "description":"The address of the rhino.fi exchange."
             },
             "starkExContractAddress":{
               "type":"string",
@@ -2579,7 +2579,7 @@
             },
             "exchangeSymbols":{
               "type":"string",
-              "description":"Currency pairs available at the DeversiFi exchange for trading"
+              "description":"Currency pairs available at the rhino.fi exchange for trading"
             },
             "tempStarkVaultId":{
               "type":"number",
@@ -2603,7 +2603,7 @@
         },
         "deFiSignature":{
           "type":"string",
-          "description":"Deversifi Signature",
+          "description":"rhino.fi Signature",
           "example":"0x0277b6e85ffdfb8cdc34c89b8d7ef19e915daf00327db91c1f5a1988666089e6b8420881699501"
         }
       }
@@ -2679,11 +2679,11 @@
           "type": "string",
           "description": "The Ethereum public address."
         },
-        "starkPublicKey": { 
+        "starkPublicKey": {
           "type":"object",
-          "description": "Detailed information related to each available token." 
+          "description": "Detailed information related to each available token."
         },
-        "starkSignature": { 
+        "starkSignature": {
           "type":"object",
           "description": "Detailed information related to each available token."
         }
@@ -2760,11 +2760,11 @@
               "type": "string",
               "description": "The Ethereum public address."
             },
-            "starkPublicKey": { 
+            "starkPublicKey": {
               "type":"object",
               "description": "Detailed information related to each available token."
             },
-            "starkSignature": { 
+            "starkSignature": {
               "type":"object",
               "description": "Detailed information related to each available token."
             }

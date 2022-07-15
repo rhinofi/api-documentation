@@ -4,14 +4,14 @@ export const ButtonBase = css`
   font-weight: bold;
   font-size: 15px;
   line-height: 144%;
-  color: #7AF5BF;
+  color: #FFFFFF;
   border-radius: 4px;
-  background: #27353c;
+  background: #6BCACE;
   border: none;
   cursor: pointer;
 
   &:disabled {
-    background: #A3A6C2;
+    background: #226467;
     color: #FFFFFF;
   }
 `;

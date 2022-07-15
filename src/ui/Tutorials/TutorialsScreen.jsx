@@ -12,7 +12,6 @@ import {DevelopmentEnvironmentsSection} from './TutorialsSections/DevelopmentEnv
 import {StarkWareSettlementSection} from './TutorialsSections/StarkWareSettlementSection';
 import {WebsocketMarketDataSection} from './TutorialsSections/WebsocketMarketDataSection';
 import {RestMarketDataSection} from './TutorialsSections/RestMarketDataSection';
-import {USDTetherMarketsSection} from './TutorialsSections/USDTetherMarketsSection';
 import {InternalTransfers} from './TutorialsSections/InternalTransfers';
 import {TradingClient} from './TutorialsSections/TradingClient';
 import {QueryingEndpoints} from './TutorialsSections/QueryingEndpoints';
@@ -43,7 +42,6 @@ export const TutorialsScreen = () => {
           <WebsocketMarketDataSection/>
           <RestMarketDataSection/>
           <InternalTransfers/>
-          <USDTetherMarketsSection/>
           <TradingClient/>
           <QueryingEndpoints/>
           <RebalancingFunds/>

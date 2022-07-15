@@ -4,6 +4,6 @@ export const Section = styled.div`
   padding-top: 80px;
 
   &:nth-child(even) {
-    background: #191b26;
+    background: #C5C5C5;
   }
 `;

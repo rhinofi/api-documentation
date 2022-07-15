@@ -28,7 +28,7 @@ export const Intro = (props) => (
           alt="articles"
           text="Articles"
         />
-        <a target="blank" href="https://github.com/deversifi">
+        <a target="blank" href="https://github.com/rhinofi">
           <BigButton>
             <img src={github} alt="github"/>
             <LinkButtonText>Github</LinkButtonText>
@@ -37,34 +37,34 @@ export const Intro = (props) => (
         </a>
       </Buttons>
       <Context>
-        <Title>Introduction to DeversiFi</Title>
+        <Title>Introduction to rhino.fi</Title>
         <Text>
-          The DeversiFi API allows automated high-speed trading of cryptocurrencies and tokens, including Ethereum and Bitcoin, using funds held in a secure personal wallet or smart-contract.
+          The rhino.fi API allows automated high-speed trading of cryptocurrencies and tokens, including Ethereum and Bitcoin, using funds held in a secure personal wallet or smart-contract.
         </Text>
 
         <Text>
-          The endpoints which have been made available allow access to submit, cancel and query placed orders onto the DeversiFi order book, whilst maintaining full control and custody of funds and authenticating only using cryptographic signatures in place of API keys. Using this API you will be able to:
+          The endpoints which have been made available allow access to submit, cancel and query placed orders onto the rhino.fi order book, whilst maintaining full control and custody of funds and authenticating only using cryptographic signatures in place of API keys. Using this API you will be able to:
           <List>
             <ListItem>Create and integrate trading into your own application</ListItem>
             <ListItem>Design and run advanced trading algorithms</ListItem>
-            <ListItem>Monitor price data and DeversiFi trading volumes</ListItem>
+            <ListItem>Monitor price data and rhino.fi trading volumes</ListItem>
             <ListItem>Take advantage of DeFi arbitrage opportunties whilst keeping secure control of your funds in a personal Ethereum wallet.</ListItem>
           </List>
         </Text>
         <Text>
-          The DeversiFi APIs can be interacted with directly as described by the endpoint documentation section, or making use of our open-source client libraries. The <CodeInText>dvf-client-js</CodeInText> (Node.js) library simplifies the interaction with the exchange and helps you get started faster. The library itself and tutorial on how to use it can be found on the <GreenLink href="https://github.com/DeversiFi/dvf-client-js">DeversiFi Github</GreenLink>
+          The rhino.fi APIs can be interacted with directly as described by the endpoint documentation section, or making use of our open-source client libraries. The <CodeInText>dvf-client-js</CodeInText> (Node.js) library simplifies the interaction with the exchange and helps you get started faster. The library itself and tutorial on how to use it can be found on the <GreenLink href="https://github.com/rhinofi/dvf-client-js">rhino.fi Github</GreenLink>
         </Text>
         <Text>
-          This documentation set is actively maintained and updated. If you would like to suggest any changes or find there is something missing, please <GreenLink href="https://github.com/deversifi/api-documentation/issues">create an issue on Github</GreenLink>.
+          This documentation set is actively maintained and updated. If you would like to suggest any changes or find there is something missing, please <GreenLink href="https://github.com/rhinofi/api-documentation/issues">create an issue on Github</GreenLink>.
         </Text>
         <br/><br/>
         <Title>URLs</Title>
-        <Text>The base URL for requests is <CodeInText>https://api.deversifi.com</CodeInText></Text>
+        <Text>The base URL for requests is <CodeInText>https://api.rhino.fi</CodeInText></Text>
         <List>
-          <ListItem>Trading base url: <CodeInText>https://api.deversifi.com/v1/trading/</CodeInText></ListItem>
-          <ListItem>Public volume data base url: <CodeInText>https://api.deversifi.com/v1/pub/</CodeInText></ListItem>
-          <ListItem>Price data base url: <CodeInText>https://api.deversifi.com/bfx/v2/</CodeInText></ListItem>
-          <ListItem>Price data websocket proxy base url: <CodeInText>https://api.deversifi.com/bfx/ws/2/</CodeInText></ListItem>
+          <ListItem>Trading base url: <CodeInText>https://api.rhino.fi/v1/trading/</CodeInText></ListItem>
+          <ListItem>Public volume data base url: <CodeInText>https://api.rhino.fi/v1/pub/</CodeInText></ListItem>
+          <ListItem>Price data base url: <CodeInText>https://api.rhino.fi/market-data/</CodeInText></ListItem>
+          <ListItem>Price data websocket proxy base url: <CodeInText>wss://api.rhino.fi/market-data/ws/</CodeInText></ListItem>
         </List>
       </Context>
     </Main>
@@ -99,13 +99,13 @@ const BigButton = styled.button`
   height: 104px;
   min-width: 270px;
   padding: 16px;
-  background-color: #4E505C;
+  background-color: #C5C5C5;
   border: none;
   color: #fff;
   font-size: 16px;
   border-radius: 4px;
 
-  font-family: Lato;
+  font-family: Lexend;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -127,7 +127,7 @@ const ExploreText = styled.p`
   margin-left: auto;
   font-size: 14px;
   line-height: 150%;
-  color: #7AF5BF;
+  color: #F05558;
 
   &::after {
     content: '';
@@ -154,16 +154,16 @@ const Context = styled.div`
 `;
 
 const Title = styled.h1`
-  font-family: Lato;
+  font-family: Lexend;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
   line-height: 120%;
-  color: #fff;
+  color: black;
 `;
 
 const Text = styled.p`
-  font-family: Lato;
+  font-family: Lexend;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;

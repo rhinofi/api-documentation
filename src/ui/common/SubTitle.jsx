@@ -6,5 +6,5 @@ export const SubTitle = styled.h3.attrs(props => ({
   font-weight: bold;
   font-size: 20px;
   line-height: 120%;
-  color: #FFFFFF;
+  color: black;
 `;

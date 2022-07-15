@@ -44,7 +44,7 @@ const SidebarView = styled.aside`
   flex-direction: column;
   width: ${({isExpanded}) => isExpanded ? '254px' : '111px'};
   height: 100%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), #212433;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), #F2F2F2;
   z-index: 9999;
 `;
 
@@ -62,7 +62,8 @@ const SidebarInner = styled.div`
   flex-grow: 1;
   overflow-y: auto;
   padding: 28px 12px;
-  border-top: 1px solid #2b2d3d;
+  border-top: 0px solid;
+  border-image: linear-gradient(to right, #fde699, #F05558, #6BCACE) 1;
 `;
 
 
@@ -74,9 +75,9 @@ const SidebarList = styled.ul`
 export const CategoryName = styled.p`
   margin-bottom: 16px;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 16px;
-  color: #FFFFFF;
+  color: black;
 `;
 
 export const Category = styled.li`
@@ -92,8 +93,8 @@ export const SidebarLink = styled.a`
   width: 100%;
   padding: 11px 12px;
   font-weight: ${({isActive}) => isActive ? '700' : '400'};
-  color: ${({isActive}) => isActive ? '#FFFFFF' : '#C8C9DA'};
-  background: ${({isActive}) => isActive ? '#5500FC' : 'transparent'};
+  color: ${({isActive}) => isActive ? '#FFFFFF' : 'black'};
+  background: ${({isActive}) => isActive ? '#F05558' : 'transparent'};
   border-radius: 4px;
   text-decoration: none;
   word-break: break-all;
@@ -105,7 +106,7 @@ const SidebarFooter = styled.div`
   align-items: center;
   height: 48px;
   padding: 15px;
-  border-top: 1px solid #2b2d3d;
+  border-top: 2px solid white;
 `;
 
 const ExpandButton = styled.button`

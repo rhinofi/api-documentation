@@ -13,7 +13,7 @@ export const Description = ({method, title, link, description}) => (
         <StyledTitle>{title}</StyledTitle>
       </HeaderRow>
       <HeaderRow>
-        <Text>Contribute to this endpoint on <Link href="https://github.com/deversifi/api-documentation">Github</Link></Text>
+        <Text>Contribute to this endpoint on <Link href="https://github.com/rhinofi/api-documentation">Github</Link></Text>
         <TutorialsLink href="/articles#LibrariesandExamples">Related articles</TutorialsLink>
       </HeaderRow>
     </Header>
@@ -59,8 +59,8 @@ const Method = styled.p`
   font-size: 10px;
   line-height: 16px;
   text-align: center;
-  color: #7AF5BF;
-  border: 1px solid #2a3941;
+  color: #6BCACE;
+  border: 1px solid #6BCACE;
   border-radius: 4px;
 `;
 
