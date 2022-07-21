@@ -1,10 +1,5 @@
 import {forEachEndpoint} from './forEachEndpoint';
 
-var categoriesToExclude = [
-  'internal', // Here to stay but for internal use
-  'deprecated', // Is meant to disapear in the future / not to be used anymore
-  'hidden' // Hidden for other reasons (ex: feature not released yet)
-];
 
 var categoriesOrder = [
   'platform',
@@ -23,9 +18,10 @@ const getCategoryWeight = (category) => {
   return categoriesOrder.length - categoriesOrder.indexOf(category.name.toLowerCase())
 };
 
-export function getSidebar(spec) {
+export function getSidebar(spec, categoriesToExclude) {
   const categories = new Map();
   forEachEndpoint(spec, (entry, orgPath, method) => {
+    if(!entry.tags) return;
     const categoryName = entry.tags && entry.tags[0];
     const category = categories.get(categoryName) || {name: categoryName, items: []};
     category.items.push({

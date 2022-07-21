@@ -9,9 +9,12 @@ import {makeWscatCode} from './makeWscatCode';
 import { getParamExample } from './getParamExample';
 import { sortBy } from 'lodash';
 
-export function getEndpoints(spec) {
+export function getEndpoints(spec, categoriesToExclude) {
   const endpoints = [];
   forEachEndpoint(spec, (entry, orgPath, method) => {
+    if(!entry.tags) return;
+    const categoryName = entry.tags && entry.tags[0];
+    if(categoriesToExclude.includes(categoryName.toLowerCase())) return;
     // workaround for unique ws socket endpoint
     const path = orgPath.replace(/{ws-uid-\d+}/g, '');
 
