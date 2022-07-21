@@ -34,7 +34,7 @@ export const TutorialsLinks = () => {
       <TutorialsLink
         currentSection={currentSection}
         setCurrentSection={setCurrentSection}
-        text="How DeversiFi Works"
+        text="How rhino.fi Works"
       />
       <TutorialsLink
         currentSection={currentSection}
@@ -96,11 +96,6 @@ export const TutorialsLinks = () => {
         currentSection={currentSection}
         setCurrentSection={setCurrentSection}
         text="Rest API Market Data"
-      />
-      <TutorialsLink
-        currentSection={currentSection}
-        setCurrentSection={setCurrentSection}
-        text="USD Tether Markets"
       />
       <TutorialsLink
         currentSection={currentSection}

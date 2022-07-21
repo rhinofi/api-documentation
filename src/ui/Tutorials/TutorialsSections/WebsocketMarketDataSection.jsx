@@ -16,19 +16,17 @@ export const WebsocketMarketDataSection = () => (
         When designing a trading system to use the DeversiFi APIs, the speed of your reaction to market data is essential.
         The fastest way to access market data when trading is to subscribe via websocket feeds.
         This is the same way that the DeversiFi UI shows and updates the order books.
-        <Bold> Currently market data APIs both websocket and REST are transitioning to a new implementation,
-          thus endpoints are gradually switching to endpoint <CodeInText>/market-data/ws</CodeInText> which uses different symbol format.</Bold>
       </Text>
     </TutorialSection>
     <SubSection id="Order Book" className="section">
       <SubTitle>Websocket Order Book</SubTitle>
-      <Text>Subscription to the book for a particular trading symbol, such as MKRETH is simple, and can be done using the example code below:</Text>
+      <Text>Subscription to the book for a particular trading symbol, such as MKR:ETH is simple, and can be done using the example code below:</Text>
       <CodeWrapper>
         <PrismCode
           language="js"
           code={`
             const ws = require('ws')
-const w = new ws('wss://api.deversifi.com/market-data/ws')
+const w = new ws('wss://api.rhino.fi/market-data/ws')
 
 w.on('message', (msg) => console.log(msg))
 
@@ -59,32 +57,10 @@ w.on('open', () => w.send(msg))
 `}
 />
 </CodeWrapper>
-<Text>
-  An open source websocket library provided by the Bitfinex.com exchange also provides a convenient websocket library for subscribing to order book data which many clients of DeversiFi may find useful: <GreenLink>https://github.com/bitfinexcom/bitfinex-api-node</GreenLink>
-</Text>
+
     </SubSection>
     <SubSection id="Trades" className="section">
-      <SubTitle>Websocket Trades</SubTitle>
-      <Text>Subscription to real time trades for a particular trading symbol, such as MKRETH can be done using the example code below:</Text>
-      <CodeWrapper>
-        <PrismCode
-          language="js"
-          code={`
-            const ws = require('ws')
-const w = new ws('wss://api.deversifi.com/bfx/ws/2')
 
-w.on('message', (msg) => console.log(msg))
-
-let msg = JSON.stringify({
-  event: 'subscribe',
-  channel: 'trades',
-  symbol: 'tMKRETH'
-})
-
-w.on('open', () => w.send(msg))
-`}
-        />
-      </CodeWrapper>
     </SubSection>
   </>
 );

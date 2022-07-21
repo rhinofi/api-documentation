@@ -6,5 +6,5 @@ export const Title = styled.h2.attrs(props => ({
   font-weight: bold;
   font-size: 30px;
   line-height: 120%;
-  color: #FFFFFF;
+  color: black;
 `;

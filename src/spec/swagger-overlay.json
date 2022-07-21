@@ -1000,7 +1000,7 @@
     "/market-data/book/{symbol}/{precision}/{length}": {
       "get":{
         "title":"Orderbook",
-        "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks on a price aggregated basis with customizable precision.",
+        "summary":"This public endpoint allows to keep track of the state of rhinofi orderbooks on a price aggregated basis with customizable precision.",
         "operationId":"getMarketdataBookSymbolPrecisionLength",
         "parameters":[
           {
@@ -1033,7 +1033,7 @@
         ],
         "responses":{
           "default":{
-            "description":"Returns a specific order and allows you to keep track of the state of Deversifi order books on a price aggregated basis with customizable precision.",
+            "description":"Returns a specific order and allows you to keep track of the state of rhinofi order books on a price aggregated basis with customizable precision.",
             "schema":{
               "type":"object",
               "properties":{
@@ -1168,7 +1168,7 @@
                   8449.3
                 ],
                 [
-                  "LTC:USDT",
+                  "LTC:USD",
                   57.875,
                   1297.95111409,
                   57.931,
@@ -1630,7 +1630,7 @@
     "{ws-uid-3}/market-data/ws":{
       "ws":{
         "title":"WS Orderbook",
-        "summary":"This public endpoint allows to keep track of the state of DeversiFi orderbooks.",
+        "summary":"This public endpoint allows to keep track of the state of rhinofi orderbooks.",
         "operationId":"WsBook",
         "parameters":[
           {
@@ -1663,7 +1663,7 @@
         ],
         "responses":{
           "default":{
-            "description":"Returns a specific order and allows you to keep track of the state of Deversifi order books on a price aggregated basis with customizable precision.",
+            "description":"Returns a specific order and allows you to keep track of the state of rhinofi order books on a price aggregated basis with customizable precision.",
             "schema":{
               "type":"object",
               "properties":{
