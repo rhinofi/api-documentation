@@ -10,7 +10,7 @@ int main()
   // set the parameters
   std::string currency = "ETH";
   // set the url
-  std::string url = "https://api.deversifi.com/v1/pub/tokenRanking/" + currency;
+  std::string url = "https://api.rhino.fi/v1/pub/tokenRanking/" + currency;
   try {
     // use the automatic cleanup of curlpp's used resources (RAII style)
     curlpp::Cleanup cleaner;
@@ -26,9 +26,9 @@ int main()
     // perform the request
     request.perform();
 
-    // print the result 
+    // print the result
     std::cout << response.str() << std::endl;
-  
+
     return EXIT_SUCCESS;
   }
   catch ( curlpp::LogicError & e ) {

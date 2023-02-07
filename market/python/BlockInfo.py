@@ -2,7 +2,7 @@ import requests
 import json
 
 # set the url
-url = "https://api.deversifi.com/v1/pub/block/{block_nr}"
+url = "https://api.rhino.fi/v1/pub/block/{block_nr}"
 
 # set the parameters
 url = url.format(block_nr=9278374)
