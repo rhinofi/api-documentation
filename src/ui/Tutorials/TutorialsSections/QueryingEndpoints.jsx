@@ -53,7 +53,7 @@ async function public () {
           code={`
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
-const DVF = require('dvf-client-js');
+const RhinofiClientFactory = require('@rhino.fi/client-js');
 const fetch = require('node-fetch');
 
 async function private () {
@@ -65,7 +65,7 @@ async function private () {
   const provider = new HDWalletProvider(ethPrivKey, providerUrl);
   const web3 = new Web3(provider);
 
-  const dvfConfig = {
+  const rhinofiConfig = {
     api: 'https://api.rhino.fi',
     wallet: {
       type: 'tradingKey',
@@ -74,14 +74,14 @@ async function private () {
       }
     }
   }
-  dvf = await DVF(web3, dvfConfig);
+  const rhinofi = await RhinofiClientFactory(web3, rhinofiConfig);
 
-  // ---EXAMPLE 1 [DVF CLIENT]---
-  const balances = await dvf.getBalance()
+  // ---EXAMPLE 1 [Rhinofi CLIENT]---
+  const balances = await rhinofi.getBalance()
   console.info('balances', balances)
 
   // ---EXAMPLE 2 [POST]---
-  const { nonce, signature } = await dvf.sign.nonceSignature()
+  const { nonce, signature } = await rhinofi.sign.nonceSignature()
 
   const body = {
     nonce: nonce.toString(),
@@ -101,7 +101,7 @@ async function private () {
   console.info('balances', await rBalance.json())
 
   // ---EXAMPLE 3 [GET]---
-  const { nonce, signature } = await dvf.sign.nonceSignature()
+  const { nonce, signature } = await rhinofi.sign.nonceSignature()
 
   const makeEcRecoverHeader = data => {
     const bufferStarkAuthData = Buffer.from(JSON.stringify(data))

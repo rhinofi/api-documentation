@@ -25,7 +25,7 @@ export const RebalancingFunds = () => (
           code={`
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
-const DVF = require('dvf-client-js');
+const RhinofiClientFactory = require('@rhino.fi/client-js');
 
 async function balance () {
   const providerUrl = '// Infura or similar provider url //';
@@ -35,7 +35,7 @@ async function balance () {
   const provider = new HDWalletProvider(ethPrivKey, providerUrl);
   const web3 = new Web3(provider);
 
-  const dvfConfig = {
+  const rhinofiConfig = {
     api: 'https://api.rhino.fi',
     wallet: {
       type: 'tradingKey',
@@ -44,18 +44,18 @@ async function balance () {
       }
     }
   }
-  dvf = await DVF(web3, dvfConfig);
+  const rhinofi = await RhinofiClientFactory(web3, rhinofiConfig);
 
   // balance
-  const balances = await dvf.getBalance()
+  const balances = await rhinofi.getBalance()
   console.info('balances', balances)
 
   // deposits
-  const deposits = await dvf.getDeposits()
+  const deposits = await rhinofi.getDeposits()
   console.info('deposits', deposits)
 
   // withdrawals
-  const withdrawls = await dvf.getWithdrawals()
+  const withdrawls = await rhinofi.getWithdrawals()
   console.info('withdrawls', withdrawls)
 }
           `}

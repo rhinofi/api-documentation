@@ -20,12 +20,12 @@ export const RestMarketDataSection = () => (
     <SubSection id="Rest API Market Data" className="section">
       <SubTitle>rhino.fi Client Config</SubTitle>
       <Text>For retrieving the client config via rhino.fi public API please see: </Text>
-        <Text><GreenLink href="https://github.com/rhinofi/dvf-client-js/tree/master/examples">https://github.com/rhinofi/dvf-client-js/tree/master/examples</GreenLink></Text>
+        <Text><GreenLink href="https://github.com/rhinofi/@rhino.fi/client-js/tree/master/examples">https://github.com/rhinofi/@rhino.fi/client-js/tree/master/examples</GreenLink></Text>
 <Text>or</Text>
 <Text></Text>
 <Text><GreenLink href="https://docs.rhino.fi/docs#postV1TradingRGetuserconf">Get user conf endpoint</GreenLink></Text>
 
-<Text>For retrieving the client config when using dvf-client-js library please see examples in dvf-client-js: <GreenLink href="https://github.com/rhinofi/dvf-client-js">https://github.com/rhinofi/dvf-client-js</GreenLink>
+<Text>For retrieving the client config when using @rhino.fi/client-js library please see examples in @rhino.fi/client-js: <GreenLink href="https://github.com/rhinofi/@rhino.fi/client-js">https://github.com/rhinofi/@rhino.fi/client-js</GreenLink>
 
 </Text><br></br>
       <SubTitle>Available trading pair symbols</SubTitle>
