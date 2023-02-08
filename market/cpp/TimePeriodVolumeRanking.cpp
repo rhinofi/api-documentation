@@ -12,7 +12,7 @@ int main()
   std::string startDate = "startDate=1577836800000";
   std::string endDate = "endDate=1577923200000";
   // set the url
-  std::string url = "https://api.deversifi.com/v1/pub/tokenRanking/" + currency + "?" + startDate + "&" + endDate;
+  std::string url = "https://api.rhino.fi/v1/pub/tokenRanking/" + currency + "?" + startDate + "&" + endDate;
   try {
     // use the automatic cleanup of curlpp's used resources (RAII style)
     curlpp::Cleanup cleaner;
@@ -28,9 +28,9 @@ int main()
     // perform the request
     request.perform();
 
-    // print the result 
+    // print the result
     std::cout << response.str() << std::endl;
-  
+
     return EXIT_SUCCESS;
   }
   catch ( curlpp::LogicError & e ) {

@@ -1,9 +1,9 @@
 "use strict";
-// make new XMLHttpRequest 
+// make new XMLHttpRequest
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const request = new XMLHttpRequest()
 // set the url
-const url = "https://api.deversifi.com/v1/pub/24HoursVolume/2020/1/1"
+const url = "https://api.rhino.fi/v1/pub/24HoursVolume/2020/1/1"
 // execute the request
 request.open("GET", url)
 request.send()

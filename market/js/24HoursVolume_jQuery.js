@@ -9,7 +9,7 @@ global.document = document;
 var $ = require('jquery')(window);
 
 // set the url
-const url = "https://api.deversifi.com/v1/pub/24HoursVolume/2020/1/1"
+const url = "https://api.rhino.fi/v1/pub/24HoursVolume/2020/1/1"
 // get and print the result on success
 $.get(url).then(function(d) {
     console.log(d);

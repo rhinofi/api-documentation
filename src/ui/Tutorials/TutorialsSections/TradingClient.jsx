@@ -11,7 +11,7 @@ export const TradingClient = () => (
   <>
     <TutorialSection title="Trading Client">
       <Text>
-        We can use dvf-client to make our own trading client, which makes it easy to place buy or sell orders.
+        We can use @rhino.fi/client-js to make our own trading client, which makes it easy to place buy or sell orders.
       </Text>
     </TutorialSection>
     <SubSection id="Trading" className="section">
@@ -23,7 +23,7 @@ export const TradingClient = () => (
           code={`
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
-const DVF = require('dvf-client-js');
+const RhinofiClientFactory = require('@rhino.fi/client-js');
 
 async function client () {
   const providerUrl = '// Infura or similar provider url //';
@@ -52,7 +52,7 @@ async function client () {
     starkPrivateKey
   }
 
-  const dvfConfig = {
+  const rhinofiConfig = {
     api: 'https://api.rhino.fi',
     wallet: {
       type: 'tradingKey',
@@ -62,14 +62,14 @@ async function client () {
     }
   }
 
-  dvf = await DVF(web3, dvfConfig);
+  const rhinofi = await RhinofiClientFactory(web3, rhinofiConfig);
 
   // Buy order placing
-  const rBuyOrder = await dvf.submitOrder(buy)
+  const rBuyOrder = await rhinofi.submitOrder(buy)
   console.info('buy order receipt', JSON.stringify(rBuyOrder))
 
   // Sell order placing
-  const rSellOrder = await dvf.submitOrder(sell)
+  const rSellOrder = await rhinofi.submitOrder(sell)
   console.info('sell order receipt', JSON.stringify(rSellOrder))
 }
           `}
@@ -81,8 +81,8 @@ async function client () {
           language="js"
           code={`
 // Order canceling
-const rBuyOrder = await dvf.submitOrder(buy)
-await dvf.cancelOrder({ orderId: rBuyOrder._id })
+const rBuyOrder = await rhinofi.submitOrder(buy)
+await rhinofi.cancelOrder({ orderId: rBuyOrder._id })
           `}
           />
       </CodeWrapper>

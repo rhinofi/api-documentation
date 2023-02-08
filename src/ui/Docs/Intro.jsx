@@ -52,7 +52,7 @@ export const Intro = (props) => (
           </List>
         </Text>
         <Text>
-          The rhino.fi APIs can be interacted with directly as described by the endpoint documentation section, or making use of our open-source client libraries. The <CodeInText>dvf-client-js</CodeInText> (Node.js) library simplifies the interaction with the exchange and helps you get started faster. The library itself and tutorial on how to use it can be found on the <GreenLink href="https://github.com/rhinofi/dvf-client-js">rhino.fi Github</GreenLink>
+          The rhino.fi APIs can be interacted with directly as described by the endpoint documentation section, or making use of our open-source client libraries. The <CodeInText>@rhino.fi/client-js</CodeInText> (Node.js) library simplifies the interaction with the exchange and helps you get started faster. The library itself and tutorial on how to use it can be found on the <GreenLink href="https://github.com/rhinofi/@rhino.fi/client-js">rhino.fi Github</GreenLink>
         </Text>
         <Text>
           This documentation set is actively maintained and updated. If you would like to suggest any changes or find there is something missing, please <GreenLink href="https://github.com/rhinofi/api-documentation/issues">create an issue on Github</GreenLink>.

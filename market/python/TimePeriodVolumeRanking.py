@@ -2,7 +2,7 @@ import requests
 import json
 
 # set the url
-url = "https://api.deversifi.com/v1/pub/tokenRanking/{currency}"
+url = "https://api.rhino.fi/v1/pub/tokenRanking/{currency}"
 
 # set the parameters
 url = url.format(currency="ETH")

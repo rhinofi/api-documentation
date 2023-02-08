@@ -2,7 +2,7 @@ import requests
 import json
 
 # set the url
-url = "https://api.deversifi.com/v1/pub/last24HoursVolume"
+url = "https://api.rhino.fi/v1/pub/last24HoursVolume"
 
 # standard headers
 headers = {

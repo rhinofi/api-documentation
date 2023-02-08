@@ -23,7 +23,7 @@ export const InternalTransfers = () => (
           code={`
 const HDWalletProvider = require('truffle-hdwallet-provider')
 const Web3 = require('web3')
-const DVF = require('dvf-client-js');
+const RhinofiClientFactory = require('@rhino.fi/client-js');
 
 async function transfer () {
   const providerUrl = '// Infura or similar provider url //';
@@ -37,7 +37,7 @@ async function transfer () {
   const provider = new HDWalletProvider(ethPrivKey, providerUrl);
   const web3 = new Web3(provider);
 
-  const dvfConfig = {
+  const rhinofiConfig = {
     api: 'https://api.rhino.fi',
     wallet: {
       type: 'tradingKey',
@@ -47,14 +47,14 @@ async function transfer () {
     }
   }
 
-  dvf = await DVF(web3, dvfConfig);
+  const rhinofi = await RhinofiClientFactory(web3, rhinofiConfig);
 
-  await dvf.transfer({ recipientEthAddress, token, amount })
+  await rhinofi.transfer({ recipientEthAddress, token, amount })
 }
           `}
         />
       </CodeWrapper>
-      <Text>To fetch transfer history we would query the <Code>/transfers</Code> endpoint using previously establish dvf with key credentials and your preferred http request package:</Text>
+      <Text>To fetch transfer history we would query the <Code>/transfers</Code> endpoint using previously instantiated rhinofi client with key credentials and your preferred http request package:</Text>
       <CodeWrapper>
         <PrismCode
           language="js"
@@ -66,7 +66,7 @@ const makeEcRecoverHeader = data => {
   return 'EcRecover ' + bufferStarkAuthData.toString('base64')
 }
 
-const { nonce, signature } = await dvf.sign.nonceSignature()
+const { nonce, signature } = await rhinofi.sign.nonceSignature()
 
 const authData = {
   signature,
@@ -90,14 +90,14 @@ console.info('transfer history', await rTransfers.json())
         />
       </CodeWrapper>
       <Text>To better reference each transfer it is possible to provide a memo property which will be attached to the transfer. It will also be reflected in
-        transfer history response. It is added from 2.5.1v in dvf-client-js. Currently only available in the github repository. The code would be exactly similar
+        transfer history response. It is added from 2.5.1v in @rhino.fi/client-js. Currently only available in the github repository. The code would be exactly similar
         to the first example, except adding one more property to the <Code>transfer</Code>:</Text>
       <CodeWrapper>
         <PrismCode
             language="js"
             code={`
 const memo = 'Test transfer'
-await dvf.transfer({ recipientEthAddress, token, amount, memo })
+await rhinofi.transfer({ recipientEthAddress, token, amount, memo })
 
             `}
         />

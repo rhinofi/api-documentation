@@ -2,7 +2,7 @@ import requests
 import json
 
 # set the url
-url = "https://api.deversifi.com/v1/pub/24HoursVolume/{year}/{month}/{day}"
+url = "https://api.rhino.fi/v1/pub/24HoursVolume/{year}/{month}/{day}"
 
 # set the parameters
 url = url.format(year=2020, month=1, day=1)

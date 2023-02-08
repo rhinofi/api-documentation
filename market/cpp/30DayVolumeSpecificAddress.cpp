@@ -10,7 +10,7 @@ int main()
   // set the parameters
   std::string address = "0xf63246f4df508eba748df25daa8bd96816a668ba";
   // set the url
-  std::string url = "https://api.deversifi.com/v1/pub/30DaysVolume/" + address;
+  std::string url = "https://api.rhino.fi/v1/pub/30DaysVolume/" + address;
   try {
     // use the automatic cleanup of curlpp's used resources (RAII style)
     curlpp::Cleanup cleaner;
@@ -26,9 +26,9 @@ int main()
     // perform the request
     request.perform();
 
-    // print the result 
+    // print the result
     std::cout << response.str() << std::endl;
-  
+
     return EXIT_SUCCESS;
   }
   catch ( curlpp::LogicError & e ) {

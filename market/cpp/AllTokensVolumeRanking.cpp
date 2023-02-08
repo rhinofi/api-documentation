@@ -7,7 +7,7 @@
 
 int main()
 {
-  std::string url = "https://api.deversifi.com/v1/pub/USDRanking";
+  std::string url = "https://api.rhino.fi/v1/pub/USDRanking";
   try {
     // use the automatic cleanup of curlpp's used resources (RAII style)
     curlpp::Cleanup cleaner;
@@ -23,9 +23,9 @@ int main()
     // perform the request
     request.perform();
 
-    // print the result 
+    // print the result
     std::cout << response.str() << std::endl;
-  
+
     return EXIT_SUCCESS;
   }
   catch ( curlpp::LogicError & e ) {
