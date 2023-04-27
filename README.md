@@ -10,7 +10,5 @@ This documentation set is actively maintained and updated. If you would like to 
 
 The base URL for requests is https://api.rhino.fi
 Trading base url: https://api.rhino.fi/v1/trading/
-Public volume data base url: https://api.rhino.fi/v1/pub/
-Price data base url: https://api.rhino.fi/bfx/v2/
-Price data websocket base url : https://api.rhino.fi/bfx/ws/2/
+
 
