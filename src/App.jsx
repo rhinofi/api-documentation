@@ -14,7 +14,6 @@ export const App = () => {
         <LayoutProvider>
           <Switch>
             <Route exact path="/docs" component={DocsScreen}/>
-            <Route exact path="/articles" component={TutorialsScreen}/>
             <Route exact path="/" component={Intro}/>
             <Route path="*" component={NotFound}/>
           </Switch>

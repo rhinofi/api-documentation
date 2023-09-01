@@ -22,12 +22,13 @@ export const Intro = (props) => (
           alt="docs"
           text="Docs"
         />
-        <LinkButton
-          onClick={() => props.history.push('/articles')}
-          image={tutorials}
-          alt="articles"
-          text="Articles"
-        />
+        <a target="blank" href="https://tech.rhino.fi">
+          <BigButton>
+            <img src={tutorials} alt="articles"/>
+            <LinkButtonText>Articles</LinkButtonText>
+            <ExploreText>Explore</ExploreText>
+          </BigButton>
+        </a>
         <a target="blank" href="https://github.com/rhinofi">
           <BigButton>
             <img src={github} alt="github"/>
@@ -39,33 +40,19 @@ export const Intro = (props) => (
       <Context>
         <Title>Introduction to rhino.fi</Title>
         <Text>
-          The rhino.fi API allows automated high-speed trading of cryptocurrencies and tokens, including Ethereum and Bitcoin, using funds held in a secure personal wallet or smart-contract.
+          rhino.fi is a frictionless multi-chain DeFi aggregator that gives you access to all the best decentralised finance (DeFi) opportunities in one place securely and safely. It is self-custodial meaning you are always in control of your funds, and authenticating only using cryptographic signatures in place of API keys.
         </Text>
 
         <Text>
-          The endpoints which have been made available allow access to submit, cancel and query placed orders onto the rhino.fi order book, whilst maintaining full control and custody of funds and authenticating only using cryptographic signatures in place of API keys. Using this API you will be able to:
-          <List>
-            <ListItem>Create and integrate trading into your own application</ListItem>
-            <ListItem>Design and run advanced trading algorithms</ListItem>
-            <ListItem>Monitor price data and rhino.fi trading volumes</ListItem>
-            <ListItem>Take advantage of DeFi arbitrage opportunties whilst keeping secure control of your funds in a personal Ethereum wallet.</ListItem>
-          </List>
+          If you are looking to learn more about the technology that drives the rhino.fi platform, including information on integration, you can access our <GreenLink href="https://tech.rhino.fi">technical guide</GreenLink>
         </Text>
         <Text>
-          The rhino.fi APIs can be interacted with directly as described by the endpoint documentation section, or making use of our open-source client libraries. The <CodeInText>@rhino.fi/client-js</CodeInText> (Node.js) library simplifies the interaction with the exchange and helps you get started faster. The library itself and tutorial on how to use it can be found on the <GreenLink href="https://github.com/rhinofi/@rhino.fi/client-js">rhino.fi Github</GreenLink>
+          The rhino.fi APIs can be interacted with directly as described by the endpoint documentation section, or making use of our open-source client libraries. The <CodeInText>@rhino.fi/client-js</CodeInText> (Node.js) library simplifies the interaction with the exchange and helps you get started faster. The library itself and tutorial on how to use it can be found on the <GreenLink href="https://github.com/rhinofi/client-js">rhino.fi Github</GreenLink>
         </Text>
         <Text>
-          This documentation set is actively maintained and updated. If you would like to suggest any changes or find there is something missing, please <GreenLink href="https://github.com/rhinofi/api-documentation/issues">create an issue on Github</GreenLink>.
+          If you are looking for support on how to use the various features of the platform, please refer to our <GreenLink href="https://support.rhino.fi">support knowledge base</GreenLink>.
         </Text>
         <br/><br/>
-        <Title>URLs</Title>
-        <Text>The base URL for requests is <CodeInText>https://api.rhino.fi</CodeInText></Text>
-        <List>
-          <ListItem>Trading base url: <CodeInText>https://api.rhino.fi/v1/trading/</CodeInText></ListItem>
-          <ListItem>Public volume data base url: <CodeInText>https://api.rhino.fi/v1/pub/</CodeInText></ListItem>
-          <ListItem>Price data base url: <CodeInText>https://api.rhino.fi/market-data/</CodeInText></ListItem>
-          <ListItem>Price data websocket proxy base url: <CodeInText>wss://api.rhino.fi/market-data/ws/</CodeInText></ListItem>
-        </List>
       </Context>
     </Main>
   </div>
