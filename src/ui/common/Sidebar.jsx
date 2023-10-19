@@ -44,7 +44,7 @@ const SidebarView = styled.aside`
   flex-direction: column;
   width: ${({isExpanded}) => isExpanded ? '254px' : '111px'};
   height: 100%;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), #F2F2F2;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), #FFCFBB;
   z-index: 9999;
 `;
 
@@ -63,7 +63,7 @@ const SidebarInner = styled.div`
   overflow-y: auto;
   padding: 28px 12px;
   border-top: 0px solid;
-  border-image: linear-gradient(to right, #fde699, #F05558, #6BCACE) 1;
+  border-image: linear-gradient(to right, #fde699, #FF9A6F, #6BCACE) 1;
 `;
 
 
@@ -94,7 +94,7 @@ export const SidebarLink = styled.a`
   padding: 11px 12px;
   font-weight: ${({isActive}) => isActive ? '700' : '400'};
   color: ${({isActive}) => isActive ? '#FFFFFF' : 'black'};
-  background: ${({isActive}) => isActive ? '#F05558' : 'transparent'};
+  background: ${({isActive}) => isActive ? '#FF9A6F' : 'transparent'};
   border-radius: 4px;
   text-decoration: none;
   word-break: break-all;

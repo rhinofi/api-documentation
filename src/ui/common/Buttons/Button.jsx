@@ -6,7 +6,7 @@ export const ButtonBase = css`
   line-height: 144%;
   color: #FFFFFF;
   border-radius: 4px;
-  background: #6BCACE;
+  background: black;
   border: none;
   cursor: pointer;
 

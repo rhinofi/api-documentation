@@ -6,7 +6,7 @@ export const Type = styled.p`
   font-size: 10px;
   line-height: 16px;
   text-align: center;
-  color: #A3A6C2;
+  color: #fcddcf;
   border-radius: 4px;
-  background: #2e3141;
+  background: #FF9A6F;
 `;

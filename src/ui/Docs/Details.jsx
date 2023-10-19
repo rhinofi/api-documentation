@@ -66,7 +66,7 @@ const Row = styled.div`
 const Title = styled.p`
   font-size: 14px;
   line-height: 16px;
-  color: #F05558;
+  color: #FF9A6F;
 `;
 
 const Text = styled.p`

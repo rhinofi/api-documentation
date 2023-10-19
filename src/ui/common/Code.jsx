@@ -5,6 +5,6 @@ export const Code = styled.code`
   font-size: 13px;
   line-height: 16px;
   color: #FFFFFF;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), #212433;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), #FF9A6F;
   border-radius: 4px;
 `;

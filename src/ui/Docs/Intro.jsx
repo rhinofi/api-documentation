@@ -86,7 +86,7 @@ const BigButton = styled.button`
   height: 104px;
   min-width: 270px;
   padding: 16px;
-  background-color: #C5C5C5;
+  background-color: #FF9A6F;
   border: none;
   color: #fff;
   font-size: 16px;
@@ -114,7 +114,7 @@ const ExploreText = styled.p`
   margin-left: auto;
   font-size: 14px;
   line-height: 150%;
-  color: #F05558;
+  color: #FFFFFF;
 
   &::after {
     content: '';

@@ -8,7 +8,7 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   font-size: 14px;
   line-height: 150%;
-  color: #F05558;
+  color: #FF9A6F;
   margin-bottom: 20px;
 
   &::before {
@@ -18,7 +18,7 @@ export const ListItem = styled.li`
     width: 4px;
     height: 4px;
     transform: translateY(-50%);
-    background-color: #F05558;
+    background-color: #FF9A6F;
     border-radius: 50%;
   }
 `;

@@ -8,7 +8,7 @@ export const SearchInputWrapper = styled.div`
   width: 100%;
 `;
 
-export const InputSearch = styled(Input)`  
+export const InputSearch = styled(Input)`
   width: 100%;
   padding-left: 40px;
   background-image: url(${searchIcon});
@@ -25,9 +25,9 @@ export const InputResults = styled.ul`
   max-height: 232px;
   padding: 16px;
   z-index: 1000000;
-  background: #2D2F41;
+  background: #FF9A6F;
   border-radius: 4px;
-  color: #C8C9DA;
+  color: #FFCFBB;
   overflow-y: auto;
 
   &:empty {

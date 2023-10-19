@@ -5,7 +5,7 @@ export const FullScreenButton = styled.button`
   width: 32px;
   height: 32px;
   margin-left: 8px;
-  background: #2E3141 url(${arrowsIcon}) center no-repeat;
+  background: black url(${arrowsIcon}) center no-repeat;
   border-radius: 4px;
   border: none;
   cursor: pointer;

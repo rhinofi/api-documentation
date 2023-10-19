@@ -5,7 +5,7 @@ export const Link = styled.a`
   font-size: 14px;
   line-height: 150%;
   text-decoration: underline;
-  color: #F05558;
+  color: #FF9A6F;
 `;
 
 export const GreenLink = styled(Link)`
