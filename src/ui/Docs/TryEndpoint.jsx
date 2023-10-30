@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import {useLayout} from '../common/Layout/LayoutProvider';
 import {PrismCode} from './PrismCode';
 import { Details } from './Details';
+import { getParamExample } from '../../spec/getParamExample';
 
 export const TryEndpoint = ({endpoint, method}) => {
   const [parameterValues, setParameterValues] = useState({});
@@ -45,6 +46,8 @@ export const TryEndpoint = ({endpoint, method}) => {
             {endpoint.parameters.map((parameter, index) => {
               const {name, required, description, type} = parameter;
 
+              const example = getParamExample(parameter)
+
               return (
                 <Parameter
                   key={index}
@@ -54,7 +57,7 @@ export const TryEndpoint = ({endpoint, method}) => {
                   value={parameterValues[name]}
                   onChange={value => setParameterValues(old => ({...old, [name]: value !== '' ? value : null}))}
                   description={description}
-                  placeholder={parameter['x-example']}
+                  placeholder={example}
                 />
               );
             })}

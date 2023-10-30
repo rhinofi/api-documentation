@@ -1,6 +1,6 @@
 {
   "name": "deversifi-api-docs",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "parcel src/index.html",
@@ -12,6 +12,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
     "highlight-words-core": "^1.2.2",
+    "lodash": "^4.17.21",
+    "lodash.mapvalues": "^4.6.0",
     "lodash.merge": "^4.6.2",
     "prismjs": "^1.23.0",
     "react": "^16.12.0",

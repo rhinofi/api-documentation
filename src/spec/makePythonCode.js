@@ -1,4 +1,5 @@
 import {getExampleFromSchema} from './getBodyExample';
+import { getHeadersWithExtras } from './getHeadersWithExtras';
 import {getWsSubscribeParams} from './makeJsCode';
 
 export function makePythonCode(spec, entry, path, method) {
@@ -7,7 +8,7 @@ export function makePythonCode(spec, entry, path, method) {
     'import requests\n' +
     'import json\n' +
     '\n' +
-    getHeaders() +
+    getHeaders(entry.parameters) +
     getParams(entry.parameters) +
     getUrlLine(spec.host, path) +
     queryLine +
@@ -24,7 +25,7 @@ export function makePythonCode(spec, entry, path, method) {
 }
 
 export function makeWsPythonCode(spec, entry, path) {
-  const url = `'wss://${spec.host}/${path}'`;
+  const url = `'wss://${spec.host}${path}'`;
   const subParams = getWsSubscribeParams(entry.parameters, entry.operationId);
   return (
     `ws = websocket.WebSocketApp(${url})\n` +
@@ -80,11 +81,13 @@ function getBody(parameters) {
     : '';
 }
 
-function getHeaders() {
+function getHeaders(parameters = []) {
   return (
     'headers = {\n' +
-    '    "Accept": "application/json",\n' +
-    '    "Content-Type": "application/json",\n' +
+    Object.entries(
+      getHeadersWithExtras(parameters.filter(parameter => parameter.in === 'header'))
+    ).map(([key, value]) => `      "${key}": "${value}"`)
+     .join(',\n') + '\n' +
     '}\n\n'
   );
 }

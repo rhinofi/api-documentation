@@ -25,7 +25,6 @@ export const TabButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  text-transform: capitalize;
 
   &::after {
     content: '';
